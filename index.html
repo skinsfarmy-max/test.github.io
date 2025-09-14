@@ -3,123 +3,231 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Самый ужасный сайт в мире</title>
+    <title>САМЫЙ УЖАСНЫЙ САЙТ В ИНТЕРНЕТЕ</title>
     <style>
-        /* Ужасные стили начинаются здесь */
+        /* ОСНОВНОЙ БЕСПОРЯДОК */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transform: rotate(0.5deg);
+            animation: glitch 3s infinite;
+        }
+        
+        @keyframes glitch {
+            0% { filter: hue-rotate(0deg) blur(0.3px); }
+            20% { filter: hue-rotate(90deg) blur(0.7px); transform: skewX(5deg); }
+            40% { filter: hue-rotate(180deg) blur(1px); transform: skewY(5deg); }
+            60% { filter: hue-rotate(270deg) blur(0.5px); transform: skewX(-5deg); }
+            80% { filter: hue-rotate(360deg) blur(0.8px); transform: skewY(-5deg); }
+            100% { filter: hue-rotate(0deg) blur(0.3px); }
+        }
+        
         body {
-            font-family: Comic Sans MS, cursive, sans-serif;
-            background-color: #ff00ff;
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><rect width="100" height="100" fill="cyan"/><circle cx="50" cy="50" r="40" fill="yellow"/></svg>');
-            color: yellow;
+            font-family: "Comic Sans MS", "Times New Roman", serif;
+            background: #ff00ff url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><rect width="100" height="100" fill="cyan"/><circle cx="20" cy="20" r="15" fill="yellow"/><circle cx="80" cy="80" r="15" fill="lime"/></svg>');
+            color: yellow !important;
             margin: 0;
             padding: 20px;
-            animation: blink 0.5s infinite;
+            animation: bgChange 7s infinite, shake 0.3s infinite;
+            overflow-x: hidden;
+            cursor: wait;
         }
-
-        @keyframes blink {
+        
+        @keyframes bgChange {
             0% { background-color: #ff00ff; }
-            50% { background-color: #00ffff; }
+            20% { background-color: #00ffff; }
+            40% { background-color: #ffff00; }
+            60% { background-color: #00ff00; }
+            80% { background-color: #ff0000; }
             100% { background-color: #ff00ff; }
         }
-
+        
+        @keyframes shake {
+            0% { transform: translate(1px, 1px); }
+            10% { transform: translate(-1px, -2px); }
+            20% { transform: translate(-3px, 0px); }
+            30% { transform: translate(3px, 2px); }
+            40% { transform: translate(1px, -1px); }
+            50% { transform: translate(-1px, 2px); }
+            60% { transform: translate(-3px, 1px); }
+            70% { transform: translate(3px, 1px); }
+            80% { transform: translate(-1px, -1px); }
+            90% { transform: translate(1px, 2px); }
+            100% { transform: translate(1px, -2px); }
+        }
+        
+        /* ШАПКА */
         .header {
             text-align: center;
-            font-size: 48px;
-            text-shadow: 5px 5px 0 #000, -5px -5px 0 #f00;
+            font-size: 58px;
+            text-shadow: 5px 5px 0 #000, -5px -5px 0 #f00, 0 0 20px white;
             transform: rotate(-5deg);
-            animation: shake 0.2s infinite;
+            animation: headerShake 0.5s infinite, colorChange 2s infinite;
+            margin: 20px 0;
+            background: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            padding: 10px;
+            border: 10px dotted lime;
         }
-
-        @keyframes shake {
-            0% { transform: translate(1px, 1px) rotate(-5deg); }
-            10% { transform: translate(-1px, -2px) rotate(-6deg); }
-            20% { transform: translate(-3px, 0px) rotate(-4deg); }
-            30% { transform: translate(3px, 2px) rotate(-5deg); }
-            40% { transform: translate(1px, -1px) rotate(-7deg); }
-            50% { transform: translate(-1px, 2px) rotate(-5deg); }
-            60% { transform: translate(-3px, 1px) rotate(-4deg); }
-            70% { transform: translate(3px, 1px) rotate(-6deg); }
-            80% { transform: translate(-1px, -1px) rotate(-5deg); }
-            90% { transform: translate(1px, 2px) rotate(-7deg); }
-            100% { transform: translate(1px, -2px) rotate(-5deg); }
+        
+        @keyframes headerShake {
+            0% { transform: rotate(-5deg) scale(1); }
+            50% { transform: rotate(5deg) scale(1.1); }
+            100% { transform: rotate(-5deg) scale(1); }
         }
-
+        
+        @keyframes colorChange {
+            0% { color: red; }
+            25% { color: yellow; }
+            50% { color: blue; }
+            75% { color: green; }
+            100% { color: red; }
+        }
+        
+        /* БЕГУЩАЯ СТРОКА */
+        .marquee-container {
+            overflow: hidden;
+            background: #00ff00;
+            padding: 15px;
+            border: 8px dashed red;
+            margin: 20px 0;
+        }
+        
         .marquee {
             white-space: nowrap;
-            overflow: hidden;
-            box-sizing: border-box;
-            background: #00ff00;
-            padding: 10px;
-            border: 5px dashed red;
-            margin: 20px 0;
-            color: blue;
+            display: inline-block;
+            animation: marquee 15s linear infinite;
             font-size: 24px;
             font-weight: bold;
+            color: blue;
+            text-shadow: 2px 2px 0 white;
         }
-
-        .marquee span {
-            display: inline-block;
-            padding-left: 100%;
-            animation: marquee 15s linear infinite;
+        
+        .marquee2 {
+            animation: marquee 12s linear infinite reverse;
+            color: red;
         }
-
+        
         @keyframes marquee {
-            0% { transform: translate(0, 0); }
-            100% { transform: translate(-100%, 0); }
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
         }
-
+        
+        /* КОНТЕНТ */
         .content {
-            column-count: 7;
-            column-gap: 5px;
-            column-rule: 3px dotted yellow;
+            column-count: 5;
+            column-gap: 3px;
+            column-rule: 5px dotted yellow;
             text-align: justify;
+            margin: 20px 0;
+            animation: contentPulse 5s infinite;
         }
-
+        
+        @keyframes contentPulse {
+            0% { opacity: 0.3; }
+            50% { opacity: 1; }
+            100% { opacity: 0.3; }
+        }
+        
         .content p {
             margin: 0 0 15px 0;
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.9);
             padding: 10px;
             border-radius: 0;
+            animation: paraShake 7s infinite;
         }
-
+        
+        @keyframes paraShake {
+            0% { transform: rotate(0deg); }
+            33% { transform: rotate(1deg); }
+            66% { transform: rotate(-1deg); }
+            100% { transform: rotate(0deg); }
+        }
+        
+        /* КАРТИНКИ */
         .image {
             float: right;
             margin: 0 0 15px 30px;
-            border: 10px ridge #ff0;
+            border: 15px ridge #ff0;
             transform: rotate(10deg) scale(1.5);
-            filter: hue-rotate(90deg) blur(1px);
+            filter: hue-rotate(90deg) blur(1px) contrast(200%);
+            animation: imageSpin 10s infinite;
         }
-
+        
+        .image2 {
+            float: left;
+            margin: 30px 30px 15px 0;
+            transform: rotate(-5deg) scale(1.2);
+            border: 12px dotted #f0f;
+            animation: imagePulse 3s infinite;
+        }
+        
+        @keyframes imageSpin {
+            0% { transform: rotate(0deg) scale(1.5); }
+            100% { transform: rotate(360deg) scale(1.5); }
+        }
+        
+        @keyframes imagePulse {
+            0% { transform: scale(1.2) rotate(-5deg); }
+            50% { transform: scale(1.4) rotate(-7deg); }
+            100% { transform: scale(1.2) rotate(-5deg); }
+        }
+        
+        /* ВСПЛЫВАЮЩИЕ ОКНА */
         .popup {
             position: fixed;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
             background: #ffff00;
-            border: 3px solid #000;
-            padding: 20px;
+            border: 8px solid #000;
+            padding: 30px;
             z-index: 1000;
-            box-shadow: 0 0 0 1000px rgba(0,0,0,0.7);
-            animation: pulse 1s infinite;
+            box-shadow: 0 0 0 1000px rgba(0,0,0,0.8);
+            animation: popupShake 0.7s infinite, popupColor 4s infinite;
+            text-align: center;
+            width: 80%;
+            max-width: 500px;
         }
-
-        @keyframes pulse {
-            0% { transform: translate(-50%, -50%) scale(1); }
-            50% { transform: translate(-50%, -50%) scale(1.1); }
-            100% { transform: translate(-50%, -50%) scale(1); }
+        
+        @keyframes popupShake {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            25% { transform: translate(-50%, -50%) rotate(1deg); }
+            50% { transform: translate(-50%, -50%) rotate(-1deg); }
+            75% { transform: translate(-50%, -50%) rotate(2deg); }
+            100% { transform: translate(-50%, -50%) rotate(0deg); }
         }
-
+        
+        @keyframes popupColor {
+            0% { background: #ffff00; }
+            33% { background: #ff00ff; }
+            66% { background: #00ffff; }
+            100% { background: #ffff00; }
+        }
+        
+        /* СЧЕТЧИК */
         .counter {
             position: fixed;
             bottom: 10px;
             right: 10px;
             background: #000;
             color: #fff;
-            padding: 5px 10px;
-            border: 2px solid #f00;
+            padding: 10px 15px;
+            border: 5px solid #f00;
             font-size: 24px;
+            animation: counterPulse 2s infinite;
+            z-index: 900;
         }
-
+        
+        @keyframes counterPulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        /* СЛЕД ОТ КУРСОРА */
         .cursor-trail {
             position: absolute;
             width: 20px;
@@ -128,12 +236,15 @@
             border-radius: 50%;
             pointer-events: none;
             mix-blend-mode: difference;
+            animation: trailFade 1s forwards;
         }
-
-        .auto-playing-audio {
-            display: none;
+        
+        @keyframes trailFade {
+            0% { opacity: 1; transform: scale(1); }
+            100% { opacity: 0; transform: scale(0.1); }
         }
-
+        
+        /* ДОЖДЬ ИЗ СМАЙЛИКОВ */
         .rain-container {
             position: fixed;
             top: 0;
@@ -142,80 +253,192 @@
             height: 100%;
             pointer-events: none;
             z-index: -1;
+            overflow: hidden;
         }
-
+        
         .rain-drop {
             position: absolute;
-            width: 2px;
-            background: linear-gradient(to bottom, transparent, #0ff);
             animation: rain linear infinite;
+            font-size: 24px;
         }
-
+        
         @keyframes rain {
-            from { transform: translateY(-100px); }
-            to { transform: translateY(calc(100vh + 100px)); }
+            from { transform: translateY(-100px) rotate(0deg); }
+            to { transform: translateY(calc(100vh + 100px)) rotate(360deg); }
         }
-
+        
+        /* ФОРМА */
         .form-element {
-            margin: 10px 0;
+            margin: 15px 0;
+            animation: formShake 9s infinite;
         }
-
+        
+        @keyframes formShake {
+            0% { transform: translateX(0); }
+            25% { transform: translateX(5px); }
+            50% { transform: translateX(-5px); }
+            75% { transform: translateX(3px); }
+            100% { transform: translateX(0); }
+        }
+        
         input, textarea, select {
             background: #0ff;
             color: #f0f;
-            border: 3px wavy #ff0;
-            padding: 5px;
-            font-family: Comic Sans MS;
+            border: 5px wavy #ff0;
+            padding: 8px;
+            font-family: "Comic Sans MS";
+            font-size: 18px;
+            width: 100%;
+            animation: inputPulse 3s infinite;
         }
-
+        
+        @keyframes inputPulse {
+            0% { background: #0ff; }
+            50% { background: #f0f; }
+            100% { background: #0ff; }
+        }
+        
+        textarea {
+            height: 100px;
+            resize: both;
+        }
+        
         button {
             background: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);
             border: none;
-            padding: 10px 20px;
-            font-size: 20px;
+            padding: 15px 30px;
+            font-size: 24px;
             font-weight: bold;
-            animation: rainbow 2s infinite;
+            animation: rainbow 2s infinite, buttonShake 0.7s infinite;
+            cursor: pointer;
+            margin: 10px 5px;
         }
-
+        
         @keyframes rainbow {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
-
-        .cursor-changing-text:hover {
-            cursor: wait;
-            font-size: 200%;
-            color: #f00 !important;
+        
+        @keyframes buttonShake {
+            0% { transform: scale(1) rotate(0deg); }
+            25% { transform: scale(1.1) rotate(2deg); }
+            50% { transform: scale(1.05) rotate(-2deg); }
+            75% { transform: scale(1.1) rotate(1deg); }
+            100% { transform: scale(1) rotate(0deg); }
         }
-
-        /* Стили для мигающего текста */
+        
+        /* МИГАЮЩИЙ ТЕКСТ */
         .blink {
-            animation: text-blink 0.3s infinite;
+            animation: text-blink 0.5s infinite;
         }
-
+        
         @keyframes text-blink {
             0% { opacity: 1; }
             50% { opacity: 0; }
             100% { opacity: 1; }
         }
-
-        /* Не работающие медиа-запросы */
+        
+        /* КНОПКИ СОЦСЕТЕЙ */
+        .social-buttons {
+            position: fixed;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            z-index: 800;
+        }
+        
+        .social-button {
+            width: 60px;
+            height: 60px;
+            background: #f00;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin: 5px;
+            animation: socialPulse 3s infinite;
+        }
+        
+        @keyframes socialPulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+        
+        /* РЕКЛАМНЫЙ БАННЕР */
+        .ad-banner {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: #000;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+            font-size: 20px;
+            animation: adSlide 10s infinite;
+            z-index: 950;
+        }
+        
+        @keyframes adSlide {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0); }
+        }
+        
+        /* НЕРАБОТАЮЩИЕ МЕДИА-ЗАПРОСЫ */
         @media screen and (max-width: 600px) {
             body {
                 background: #000 !important;
                 color: #fff !important;
                 font-size: 300% !important;
+                transform: rotate(90deg);
             }
         }
-
-        /* Стили, которые никогда не применятся из-за специфичности */
+        
+        /* СТИЛИ, КОТОРЫЕ НИКОГДА НЕ ПРИМЕНЯТСЯ ИЗ-ЗА СПЕЦИФИЧНОСТИ */
         p {
             color: white !important;
+            font-size: 22px;
         }
-
+        
         .content p {
             color: black;
+            font-size: 16px;
+        }
+        
+        /* КНОПКА НАВЕРХ */
+        .scroll-top {
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            background: #f0f;
+            color: #0ff;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            animation: scrollPulse 1s infinite, scrollRotate 5s infinite;
+            z-index: 900;
+            cursor: pointer;
+        }
+        
+        @keyframes scrollPulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.3); }
+            100% { transform: scale(1); }
+        }
+        
+        @keyframes scrollRotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
     </style>
 </head>
@@ -225,35 +448,60 @@
         <source src="https://assets.mixkit.co/sfx/preview/mixkit-space-game-668.mp3" type="audio/mpeg">
     </audio>
 
-    <!-- Дождь из символов -->
+    <!-- Дождь из смайликов -->
     <div class="rain-container" id="rain-container"></div>
 
     <!-- Попап -->
     <div class="popup" id="popup">
-        <h2>ВНИМАНИЕ!</h2>
-        <p>Вы выиграли iPhone 15! Нажмите ОК, чтобы забрать приз!</p>
+        <h2>ВНИМАНИЕ! СРОЧНО!</h2>
+        <p>Ваш компьютер заражен 5 вирусами! Немедленно нажмите OK для очистки!</p>
         <button onclick="document.getElementById('popup').style.display = 'none'">OK</button>
-        <button onclick="showAnotherPopup()">НЕТ</button>
+        <button onclick="showAnotherPopup()">ОТМЕНА (НЕ РЕКОМЕНДУЕТСЯ)</button>
     </div>
 
     <!-- Счетчик посещений -->
     <div class="counter">
-        Посетителей: <span id="visitor-count">999999</span>
+        Посетителей: <span id="visitor-count">1837465</span>
     </div>
 
-    <!-- Заголовок -->
-    <h1 class="header blink">ДОБРО ПОЖАЛОВАТЬ НА САМЫЙ УЖАСНЫЙ САЙТ!</h1>
+    <!-- Кнопки соцсетей -->
+    <div class="social-buttons">
+        <div class="social-button">f</div>
+        <div class="social-button">t</div>
+        <div class="social-button">v</div>
+        <div class="social-button">in</div>
+    </div>
 
-    <!-- Бегущая строка -->
-    <div class="marquee">
-        <span>★ СКИДКИ ДО 300%! ★ Позвоните сейчас! ★ Ваш компьютер заражен! ★ Вы выиграли приз! ★ Не закрывайте страницу! ★</span>
+    <!-- Рекламный баннер -->
+    <div class="ad-banner">
+        ★★★ СКАЧАЙТЕ БЕСПЛАТНО: ИГРА В КОТОРОЙ ВЫ ВЫИГРАЕТЕ РЕАЛЬНЫЕ ДЕНЬГИ! ★★★
+    </div>
+
+    <!-- Кнопка наверх -->
+    <div class="scroll-top" onclick="window.scrollTo(0,0)">↑</div>
+
+    <!-- Заголовок -->
+    <h1 class="header blink">ДОБРО ПОЖАЛОВАТЬ НА САМЫЙ УЖАСНЫЙ САЙТ ВСЕЛЕННОЙ!</h1>
+
+    <!-- Бегущие строки -->
+    <div class="marquee-container">
+        <div class="marquee">
+            ★★★★★ СКИДКИ ДО 300%! ★★★★★ ЗВОНИТЕ ПРЯМО СЕЙЧАС! ★★★★★ ВАШ КОМПЬЮТЕР ЗАРАЖЕН! ★★★★★ ВЫ ВЫИГРАЛИ ПРИЗ! ★★★★★
+        </div>
+    </div>
+    
+    <div class="marquee-container">
+        <div class="marquee marquee2">
+            ████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████
+        </div>
     </div>
 
     <!-- Контент -->
     <div class="content">
-        <p class="cursor-changing-text">Добро пожаловать на самый ужасный сайт в интернете! Мы потратили много времени, чтобы сделать его максимально неудобным и раздражающим.</p>
+        <p class="cursor-changing-text">Добро пожаловать на самый ужасный сайт в интернете! Мы специально разработали его, чтобы испытать ваше терпение и выносливость. Наслаждайтесь (или нет)!</p>
         
         <img src="https://placekitten.com/200/300" alt="Котенок" class="image">
+        <img src="https://bipbap.ru/wp-content/uploads/2017/04/000f_729.jpg" alt="Цветочек" class="image2">
         
         <p>Наш сайт использует самые передовые технологии раздражения пользователей. Мигающие цвета, анимации, бегущие строки и многое другое!</p>
         
@@ -261,17 +509,23 @@
         
         <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nullam non velit nec ante aliquam mollis. Phasellus interdum felis sit amet nulla tempor in malesuada mi porttitor.</p>
         
-        <p class="blink">СПЕЦИАЛЬНОЕ ПРЕДЛОЖЕНИЕ: ТОЛЬКО СЕГОДНЯ! КУПИTE 1 ТОВАР И ПОЛУЧИТЕ 10 ДРУГИХ СОВЕРШЕННО БЕСПЛАТНО! НЕ УПУСТИТЕ ВОЗМОЖНОСТЬ!</p>
+        <p class="blink">СПЕЦИАЛЬНОЕ ПРЕДЛОЖЕНИЕ: ТОЛЬКО СЕГОДНЯ! КУПИТЕ 1 ТОВАР И ПОЛУЧИТЕ 10 ДРУГИХ СОВЕРШЕННО БЕСПЛАТНО! НЕ УПУСТИТЕ ВОЗМОЖНОСТЬ!</p>
         
         <p>Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Curabitur aliquet quam id dui posuere blandit.</p>
         
         <p>Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Cras ultricies ligula sed magna dictum porta. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem.</p>
         
         <p>Donec rutrum congue leo eget malesuada. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Proin eget tortor risus. Nulla porttitor accumsan tincidunt.</p>
+        
+        <p>Quisque velit nisi, pretium ut lacinia in, elementum id enim. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus.</p>
+        
+        <p>Sed porttitor lectus nibh. Curabitur aliquet quam id dui posuere blandit. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Cras ultricies ligula sed magna dictum porta.</p>
+        
+        <p class="blink">ПОЗВОНИТЕ СЕЙЧАС И ПОЛУЧИТЕ ВТОРОЙ ТОВАР ПОЛОВИНУ ЦЕНЫ ОТ ПОЛНОЙ ЦЕНЫ ПЕРВОГО ТОВАРА! НЕ УПУСТИТЕ!</p>
     </div>
 
     <!-- Форма -->
-    <h2>Форма обратной связи (обязательно к заполнению)</h2>
+    <h2>ФОРМА ОБРАТНОЙ СВЯЗИ (ОБЯЗАТЕЛЬНА ДЛЯ ЗАПОЛНЕНИЯ)</h2>
     <form>
         <div class="form-element">
             <label>Имя:</label>
@@ -298,8 +552,11 @@
             <label>Сообщение:</label>
             <textarea rows="4" required oninvalid="this.setCustomValidity('Напишите сообщение!')"></textarea>
         </div>
-        <button type="submit" onclick="alert('Форма не отправлена! Попробуйте еще раз!'); return false;">Отправить</button>
+        <button type="submit" onclick="alert('Форма не отправлена! Попробуйте еще раз!'); return false;">ОТПРАВИТЬ</button>
+        <button type="reset">СБРОСИТЬ</button>
     </form>
+
+    <div style="height: 1000px;"></div>
 
     <script>
         // Создаем след от курсора
@@ -308,27 +565,31 @@
             trail.className = 'cursor-trail';
             trail.style.left = e.pageX - 10 + 'px';
             trail.style.top = e.pageY - 10 + 'px';
+            trail.style.background = `hsl(${Math.random() * 360}, 100%, 50%)`;
             document.body.appendChild(trail);
             
             // Удаляем след через время
             setTimeout(function() {
-                trail.remove();
+                if (trail.parentElement) {
+                    trail.remove();
+                }
             }, 1000);
         });
 
-        // Создаем дождь из символов
+        // Создаем дождь из смайликов
         function createRain() {
             const container = document.getElementById('rain-container');
-            const symbols = ['★', '♦', '♣', '♠', '♥', '§', '¶', '€', '$', '£', '¥'];
+            const symbols = ['★', '●', '♦', '♣', '♠', '♥', '§', '¶', '€', '$', '£', '¥', '😀', '😎', '🤢', '💩', '👻', '💀', '🐱', '🐶'];
             
-            for (let i = 0; i < 50; i++) {
+            for (let i = 0; i < 100; i++) {
                 let drop = document.createElement('div');
                 drop.className = 'rain-drop';
                 drop.textContent = symbols[Math.floor(Math.random() * symbols.length)];
                 drop.style.left = Math.random() * 100 + 'vw';
-                drop.style.animationDuration = (Math.random() * 2 + 1) + 's';
-                drop.style.fontSize = (Math.random() * 20 + 10) + 'px';
+                drop.style.animationDuration = (Math.random() * 3 + 1) + 's';
+                drop.style.fontSize = (Math.random() * 30 + 10) + 'px';
                 drop.style.color = `hsl(${Math.random() * 360}, 100%, 50%)`;
+                drop.style.opacity = Math.random();
                 container.appendChild(drop);
             }
         }
@@ -337,12 +598,12 @@
 
         // Показываем случайные попапы
         function showRandomPopup() {
-            if (Math.random() > 0.7) {
+            if (Math.random() > 0.5) {
                 let popup = document.createElement('div');
                 popup.className = 'popup';
                 popup.innerHTML = `
                     <h2>${Math.random() > 0.5 ? 'ВАЖНО!' : 'ПОЗДРАВЛЯЕМ!'}</h2>
-                    <p>${Math.random() > 0.5 ? 'Ваш компьютер заражен! Скачайте наш антивирус!' : 'Вы выиграли гараж! Нажмите ОК для получения!'}</p>
+                    <p>${Math.random() > 0.5 ? 'Ваш компьютер заражен вирусами! Скачайте наш антивирус!' : 'Вы выиграли автомобиль! Нажмите ОК для получения!'}</p>
                     <button onclick="this.parentElement.remove()">ЗАКРЫТЬ</button>
                 `;
                 document.body.appendChild(popup);
@@ -362,13 +623,13 @@
         // Запускаем показ случайных попапов
         setTimeout(showRandomPopup, 5000);
         
-        // Функция для кнопки "НЕТ" в попапе
+        // Функция для кнопки "ОТМЕНА" в попапе
         function showAnotherPopup() {
             document.getElementById('popup').innerHTML = `
                 <h2>ВЫ УВЕРЕНЫ?</h2>
-                <p>Вы точно уверены, что не хотите бесплатный iPhone?</p>
+                <p>Вы точно уверены, что не хотите почистить компьютер от вирусов? Это может быть опасно!</p>
                 <button onclick="document.getElementById('popup').style.display = 'none'">ДА, УВЕРЕН</button>
-                <button onclick="showThirdPopup()">НЕТ, НЕ УВЕРЕН</button>
+                <button onclick="showThirdPopup()">НЕТ, Я ПЕРЕДУМАЛ</button>
             `;
         }
         
@@ -388,7 +649,10 @@
                 "Не уходите!",
                 "Смотрите сюда!",
                 "У нас есть специальное предложение!",
-                "Самый ужасный сайт в мире"
+                "Самый ужасный сайт в мире",
+                "ВНИМАНИЕ! ВАШ КОМПЬЮТЕР ЗАРАЖЕН!",
+                "ВЫ ВЫИГРАЛИ ПРИЗ!",
+                "*!*!*!* СРОЧНОЕ СООБЩЕНИЕ *!*!*!*"
             ];
             document.title = titles[Math.floor(Math.random() * titles.length)];
             
@@ -408,16 +672,37 @@
         // Блокируем правый клик
         document.addEventListener('contextmenu', function(e) {
             e.preventDefault();
-            alert('Копирование запрещено!');
+            alert('Копирование запрещено! Это воровство контента!');
         });
         
         // Предотвращаем использование клавиш
         document.addEventListener('keydown', function(e) {
             if (e.ctrlKey || e.keyCode === 116 || e.keyCode === 123) {
                 e.preventDefault();
-                alert('Эта функция заблокирована!');
+                alert('Эта функция заблокирована в целях безопасности!');
             }
         });
+        
+        // Случайное перемещение элементов
+        setInterval(() => {
+            const elements = document.querySelectorAll('p, img, button');
+            elements.forEach(el => {
+                if (Math.random() > 0.7) {
+                    el.style.marginLeft = `${Math.random() * 50 - 25}px`;
+                    el.style.marginTop = `${Math.random() * 30 - 15}px`;
+                }
+            });
+        }, 3000);
+        
+        // Мигание страницы
+        setInterval(() => {
+            if (Math.random() > 0.8) {
+                document.body.style.opacity = 0.5;
+                setTimeout(() => {
+                    document.body.style.opacity = 1;
+                }, 100);
+            }
+        }, 5000);
     </script>
 </body>
 </html>
