@@ -3,523 +3,421 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Моё признание для тебя</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    <title>Самый ужасный сайт в мире</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
+        /* Ужасные стили начинаются здесь */
         body {
-            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            overflow-x: hidden;
-            color: #5a3e36;
+            font-family: Comic Sans MS, cursive, sans-serif;
+            background-color: #ff00ff;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><rect width="100" height="100" fill="cyan"/><circle cx="50" cy="50" r="40" fill="yellow"/></svg>');
+            color: yellow;
+            margin: 0;
             padding: 20px;
-            font-family: 'Montserrat', sans-serif;
+            animation: blink 0.5s infinite;
         }
-        
-        .container {
-            max-width: 900px;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 25px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-            padding: 40px;
+
+        @keyframes blink {
+            0% { background-color: #ff00ff; }
+            50% { background-color: #00ffff; }
+            100% { background-color: #ff00ff; }
+        }
+
+        .header {
             text-align: center;
-            position: relative;
+            font-size: 48px;
+            text-shadow: 5px 5px 0 #000, -5px -5px 0 #f00;
+            transform: rotate(-5deg);
+            animation: shake 0.2s infinite;
+        }
+
+        @keyframes shake {
+            0% { transform: translate(1px, 1px) rotate(-5deg); }
+            10% { transform: translate(-1px, -2px) rotate(-6deg); }
+            20% { transform: translate(-3px, 0px) rotate(-4deg); }
+            30% { transform: translate(3px, 2px) rotate(-5deg); }
+            40% { transform: translate(1px, -1px) rotate(-7deg); }
+            50% { transform: translate(-1px, 2px) rotate(-5deg); }
+            60% { transform: translate(-3px, 1px) rotate(-4deg); }
+            70% { transform: translate(3px, 1px) rotate(-6deg); }
+            80% { transform: translate(-1px, -1px) rotate(-5deg); }
+            90% { transform: translate(1px, 2px) rotate(-7deg); }
+            100% { transform: translate(1px, -2px) rotate(-5deg); }
+        }
+
+        .marquee {
+            white-space: nowrap;
             overflow: hidden;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-        }
-        
-        .envelope {
-            position: absolute;
-            top: -50px;
-            right: -30px;
-            font-size: 200px;
-            color: rgba(255, 182, 193, 0.2);
-            transform: rotate(15deg);
-            z-index: 0;
-        }
-        
-        .heart {
-            position: absolute;
+            box-sizing: border-box;
+            background: #00ff00;
+            padding: 10px;
+            border: 5px dashed red;
+            margin: 20px 0;
+            color: blue;
             font-size: 24px;
-            color: #ff6b6b;
-            opacity: 0.8;
-            z-index: 0;
-            animation: float 6s ease-in-out infinite;
-            text-shadow: 0 0 10px rgba(255, 107, 107, 0.6);
+            font-weight: bold;
         }
-        
-        @keyframes float {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-25px) rotate(10deg); }
+
+        .marquee span {
+            display: inline-block;
+            padding-left: 100%;
+            animation: marquee 15s linear infinite;
         }
-        
-        h1 {
-            color: #d291bc;
-            margin-bottom: 25px;
-            font-size: 3.2rem;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-            position: relative;
-            z-index: 1;
-            font-family: 'Playfair Display', serif;
+
+        @keyframes marquee {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(-100%, 0); }
         }
-        
-        .title-decoration {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-bottom: 20px;
+
+        .content {
+            column-count: 7;
+            column-gap: 5px;
+            column-rule: 3px dotted yellow;
+            text-align: justify;
         }
-        
-        .title-decoration .line {
-            height: 2px;
-            width: 80px;
-            background: linear-gradient(to right, transparent, #d291bc, transparent);
-            margin: 0 15px;
+
+        .content p {
+            margin: 0 0 15px 0;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 10px;
+            border-radius: 0;
         }
-        
-        .title-decoration .icon {
-            font-size: 24px;
-            color: #d291bc;
-            animation: pulse 2s infinite;
+
+        .image {
+            float: right;
+            margin: 0 0 15px 30px;
+            border: 10px ridge #ff0;
+            transform: rotate(10deg) scale(1.5);
+            filter: hue-rotate(90deg) blur(1px);
         }
-        
+
+        .popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #ffff00;
+            border: 3px solid #000;
+            padding: 20px;
+            z-index: 1000;
+            box-shadow: 0 0 0 1000px rgba(0,0,0,0.7);
+            animation: pulse 1s infinite;
+        }
+
         @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.2); }
+            0% { transform: translate(-50%, -50%) scale(1); }
+            50% { transform: translate(-50%, -50%) scale(1.1); }
+            100% { transform: translate(-50%, -50%) scale(1); }
         }
-        
-        .message-box {
-            background: linear-gradient(to right, #fad0c480, #ffd1ff80);
-            padding: 30px;
-            border-radius: 20px;
-            margin: 30px 0;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
-            position: relative;
-            z-index: 1;
-            backdrop-filter: blur(5px);
-            border: 1px solid rgba(255, 255, 255, 0.5);
+
+        .counter {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            background: #000;
+            color: #fff;
+            padding: 5px 10px;
+            border: 2px solid #f00;
+            font-size: 24px;
         }
-        
-        p {
-            line-height: 1.8;
-            margin-bottom: 20px;
-            font-size: 1.2rem;
-            text-align: left;
-        }
-        
-        .message-start {
-            display: flex;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-        
-        .message-start .icon {
-            font-size: 32px;
-            margin-right: 15px;
-            color: #ff6b6b;
-        }
-        
-        .highlight {
-            color: #ff6b6b;
-            font-weight: 500;
-            text-shadow: 0 0 5px rgba(255, 107, 107, 0.3);
-        }
-        
-        .btn {
-            background: linear-gradient(to right, #ff6b6b, #ff8e8e);
-            color: white;
-            border: none;
-            padding: 15px 40px;
-            border-radius: 50px;
-            font-size: 1.2rem;
-            cursor: pointer;
-            transition: all 0.4s ease;
-            margin: 20px 15px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-            position: relative;
-            overflow: hidden;
-            z-index: 1;
-            font-weight: 500;
-            letter-spacing: 1px;
-        }
-        
-        .btn:before {
-            content: '';
+
+        .cursor-trail {
             position: absolute;
+            width: 20px;
+            height: 20px;
+            background: red;
+            border-radius: 50%;
+            pointer-events: none;
+            mix-blend-mode: difference;
+        }
+
+        .auto-playing-audio {
+            display: none;
+        }
+
+        .rain-container {
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(to right, #8ec5fc, #e0c3fc);
+            pointer-events: none;
             z-index: -1;
-            transition: opacity 0.4s ease;
-            opacity: 0;
-            border-radius: 50px;
         }
-        
-        .btn:hover:before {
-            opacity: 1;
-        }
-        
-        .btn:hover {
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.25);
-        }
-        
-        .btn-yes {
-            background: linear-gradient(to right, #8ec5fc, #e0c3fc);
-        }
-        
-        .btn-yes:before {
-            background: linear-gradient(to right, #ff6b6b, #ff8e8e);
-        }
-        
-        .flower {
-            font-size: 36px;
-            margin: 0 8px;
-            animation: spin 8s linear infinite;
-            display: inline-block;
-            text-shadow: 0 0 10px rgba(210, 145, 188, 0.5);
-        }
-        
-        @keyframes spin {
-            0% { transform: rotate(0deg) scale(1); }
-            50% { transform: rotate(180deg) scale(1.2); }
-            100% { transform: rotate(360deg) scale(1); }
-        }
-        
-        .photo-frame {
-            width: 250px;
-            height: 250px;
-            margin: 30px auto;
-            border: 8px solid #d291bc;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-            background: #fff;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            color: #d291bc;
-            font-size: 1.3rem;
-            position: relative;
-            transition: all 0.5s ease;
-        }
-        
-        .photo-frame:hover {
-            transform: scale(1.05) rotate(2deg);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
-        }
-        
-        .photo-placeholder {
-            font-size: 60px;
-            margin-bottom: 15px;
-        }
-        
-        .hidden-message {
-            display: none;
-            margin-top: 40px;
-            padding: 30px;
-            background: linear-gradient(to right, #e0c3fc80, #8ec5fc80);
-            border-radius: 20px;
-            animation: fadeIn 2s;
-            backdrop-filter: blur(5px);
-            border: 1px solid rgba(255, 255, 255, 0.5);
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .footer {
-            margin-top: 40px;
-            font-size: 1rem;
-            color: #888;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .music-control {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: rgba(255, 255, 255, 0.9);
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            cursor: pointer;
-            z-index: 100;
-            transition: all 0.3s ease;
-        }
-        
-        .music-control:hover {
-            transform: scale(1.1);
-        }
-        
-        .music-control i {
-            font-size: 24px;
-            color: #d291bc;
-        }
-        
-        .progress-bar {
-            height: 5px;
-            width: 100%;
-            background: rgba(210, 145, 188, 0.2);
+
+        .rain-drop {
             position: absolute;
-            bottom: 0;
-            left: 0;
-            border-radius: 0 0 25px 25px;
-            overflow: hidden;
+            width: 2px;
+            background: linear-gradient(to bottom, transparent, #0ff);
+            animation: rain linear infinite;
         }
-        
-        .progress-fill {
-            height: 100%;
-            width: 0%;
-            background: linear-gradient(to right, #ff6b6b, #d291bc);
-            animation: progress 30s linear infinite;
+
+        @keyframes rain {
+            from { transform: translateY(-100px); }
+            to { transform: translateY(calc(100vh + 100px)); }
         }
-        
-        @keyframes progress {
-            0% { width: 0%; }
-            100% { width: 100%; }
+
+        .form-element {
+            margin: 10px 0;
         }
-        
-        .confetti {
-            position: fixed;
-            width: 15px;
-            height: 15px;
-            opacity: 0;
-            z-index: 1000;
-            animation: confetti-fall 5s linear forwards;
+
+        input, textarea, select {
+            background: #0ff;
+            color: #f0f;
+            border: 3px wavy #ff0;
+            padding: 5px;
+            font-family: Comic Sans MS;
         }
-        
-        @keyframes confetti-fall {
-            0% {
-                transform: translateY(-100px) rotate(0deg);
-                opacity: 1;
+
+        button {
+            background: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);
+            border: none;
+            padding: 10px 20px;
+            font-size: 20px;
+            font-weight: bold;
+            animation: rainbow 2s infinite;
+        }
+
+        @keyframes rainbow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .cursor-changing-text:hover {
+            cursor: wait;
+            font-size: 200%;
+            color: #f00 !important;
+        }
+
+        /* Стили для мигающего текста */
+        .blink {
+            animation: text-blink 0.3s infinite;
+        }
+
+        @keyframes text-blink {
+            0% { opacity: 1; }
+            50% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        /* Не работающие медиа-запросы */
+        @media screen and (max-width: 600px) {
+            body {
+                background: #000 !important;
+                color: #fff !important;
+                font-size: 300% !important;
             }
-            100% {
-                transform: translateY(1000px) rotate(720deg);
-                opacity: 0;
-            }
         }
-        
-        /* Адаптивность для мобильных устройств */
-        @media (max-width: 768px) {
-            h1 { font-size: 2.5rem; }
-            .container { padding: 25px; }
-            .btn { padding: 12px 30px; margin: 15px 10px; }
-            .photo-frame { width: 200px; height: 200px; }
-            .envelope { font-size: 150px; top: -40px; right: -25px; }
+
+        /* Стили, которые никогда не применятся из-за специфичности */
+        p {
+            color: white !important;
         }
-        
-        @media (max-width: 480px) {
-            h1 { font-size: 2rem; }
-            .container { padding: 20px; border-radius: 20px; }
-            .message-box { padding: 20px; }
-            .btn { padding: 12px 25px; font-size: 1rem; }
-            p { font-size: 1rem; }
-            .photo-frame { width: 180px; height: 180px; }
-            .envelope { display: none; }
+
+        .content p {
+            color: black;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <i class="envelope fas fa-envelope-open"></i>
-        
-        <div class="title-decoration">
-            <div class="line"></div>
-            <i class="icon fas fa-heart"></i>
-            <div class="line"></div>
-        </div>
-        
-        <h1>Для самой прекрасной <span class="flower">🌹</span></h1>
-        
-        <div class="message-box">
-            <div class="message-start">
-                <i class="icon fas fa-quote-left"></i>
-                <h2>Моё дорогое признание</h2>
-            </div>
-            
-            <p>Дорогая <span class="highlight" id="name-placeholder">[Имя]</span>,</p>
-            <p>С того момента, как ты появилась в моей жизни, всё изменилось. Ты словно солнечный лучик, который освещает даже самый хмурый день.</p>
-            <p>Твоя улыбка заставляет мое сердце биться чаще, а твой смех - это самая прекрасная музыка, которую я когда-либо слышал.</p>
-            <p>Я восхищаюсь твоей добротой, умом и тем, как ты видишь красоту в мелочах. Каждый день рядом с тобой - это подарок судьбы.</p>
-            <p>Ты вдохновляешь меня становиться лучше, мечтать о большем и верить в чудеса. И сегодня я хочу сказать тебе самое главное...</p>
-        </div>
-        
-        <div class="photo-frame">
-            <i class="photo-placeholder fas fa-camera"></i>
-            <div>Наше место для фото</div>
-        </div>
-        
-        <h2><span class="flower">💖</span> Я тебя люблю! <span class="flower">💖</span></h2>
-        
-        <div class="buttons">
-            <button class="btn btn-yes" onclick="showResponse('yes')">
-                <i class="fas fa-heart"></i> Принять признание
-            </button>
-            <button class="btn" onclick="showResponse('no')">
-                <i class="fas fa-clock"></i> Я подумаю
-            </button>
-        </div>
-        
-        <div id="hidden-message-yes" class="hidden-message">
-            <h3>Спасибо, что приняла моё признание! <span class="flower">🌸</span></h3>
-            <p>Ты сделала меня самым счастливым человеком на земле! Я обещаю делать всё возможное, чтобы ты всегда улыбалась и чувствовала себя самой любимой!</p>
-            <p>Надеюсь, наша история будет длиться вечно...</p>
-        </div>
-        
-        <div id="hidden-message-no" class="hidden-message">
-            <h3>Я понимаю...</h3>
-            <p>Я готов ждать столько, сколько потребуется, потому что мои чувства искренни и глубоки. Надеюсь, что когда-нибудь ты сможешь принять их.</p>
-            <p>Ты стои́т того, чтобы ждать!</p>
-        </div>
-        
-        <div class="progress-bar">
-            <div class="progress-fill"></div>
-        </div>
-        
-        <div class="footer">
-            Создано с <i class="fas fa-heart" style="color: #ff6b6b;"></i> специально для тебя
-        </div>
-    </div>
-
-    <div class="music-control" onclick="toggleMusic()">
-        <i class="fas fa-music"></i>
-    </div>
-
-    <audio id="bgMusic" loop>
-        <source src="https://cdn.pixabay.com/download/audio/2022/01/20/audio_dc39bbc811.mp3?filename=soft-romantic-background-music-6445.mp3" type="audio/mpeg">
+    <!-- Автовоспроизведение аудио -->
+    <audio class="auto-playing-audio" autoplay loop>
+        <source src="https://assets.mixkit.co/sfx/preview/mixkit-space-game-668.mp3" type="audio/mpeg">
     </audio>
 
+    <!-- Дождь из символов -->
+    <div class="rain-container" id="rain-container"></div>
+
+    <!-- Попап -->
+    <div class="popup" id="popup">
+        <h2>ВНИМАНИЕ!</h2>
+        <p>Вы выиграли iPhone 15! Нажмите ОК, чтобы забрать приз!</p>
+        <button onclick="document.getElementById('popup').style.display = 'none'">OK</button>
+        <button onclick="showAnotherPopup()">НЕТ</button>
+    </div>
+
+    <!-- Счетчик посещений -->
+    <div class="counter">
+        Посетителей: <span id="visitor-count">999999</span>
+    </div>
+
+    <!-- Заголовок -->
+    <h1 class="header blink">ДОБРО ПОЖАЛОВАТЬ НА САМЫЙ УЖАСНЫЙ САЙТ!</h1>
+
+    <!-- Бегущая строка -->
+    <div class="marquee">
+        <span>★ СКИДКИ ДО 300%! ★ Позвоните сейчас! ★ Ваш компьютер заражен! ★ Вы выиграли приз! ★ Не закрывайте страницу! ★</span>
+    </div>
+
+    <!-- Контент -->
+    <div class="content">
+        <p class="cursor-changing-text">Добро пожаловать на самый ужасный сайт в интернете! Мы потратили много времени, чтобы сделать его максимально неудобным и раздражающим.</p>
+        
+        <img src="https://placekitten.com/200/300" alt="Котенок" class="image">
+        
+        <p>Наш сайт использует самые передовые технологии раздражения пользователей. Мигающие цвета, анимации, бегущие строки и многое другое!</p>
+        
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui mauris. Vivamus hendrerit arcu sed erat molestie vehicula. Sed auctor neque eu tellus rhoncus ut eleifend nibh porttitor. Ut enim nulla, suscipit sit amet tempor at, laoreet quis magna.</p>
+        
+        <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nullam non velit nec ante aliquam mollis. Phasellus interdum felis sit amet nulla tempor in malesuada mi porttitor.</p>
+        
+        <p class="blink">СПЕЦИАЛЬНОЕ ПРЕДЛОЖЕНИЕ: ТОЛЬКО СЕГОДНЯ! КУПИTE 1 ТОВАР И ПОЛУЧИТЕ 10 ДРУГИХ СОВЕРШЕННО БЕСПЛАТНО! НЕ УПУСТИТЕ ВОЗМОЖНОСТЬ!</p>
+        
+        <p>Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Curabitur aliquet quam id dui posuere blandit.</p>
+        
+        <p>Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Cras ultricies ligula sed magna dictum porta. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem.</p>
+        
+        <p>Donec rutrum congue leo eget malesuada. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Proin eget tortor risus. Nulla porttitor accumsan tincidunt.</p>
+    </div>
+
+    <!-- Форма -->
+    <h2>Форма обратной связи (обязательно к заполнению)</h2>
+    <form>
+        <div class="form-element">
+            <label>Имя:</label>
+            <input type="text" required oninvalid="this.setCustomValidity('Поле обязательно для заполнения!')">
+        </div>
+        <div class="form-element">
+            <label>Email:</label>
+            <input type="email" required oninvalid="this.setCustomValidity('Введите правильный email!')">
+        </div>
+        <div class="form-element">
+            <label>Телефон:</label>
+            <input type="tel" pattern="[0-9]{10}" required oninvalid="this.setCustomValidity('Введите 10 цифр без пробелов!')">
+        </div>
+        <div class="form-element">
+            <label>Выберите вариант:</label>
+            <select>
+                <option>-- Выберите --</option>
+                <option>Вариант 1</option>
+                <option>Вариант 2</option>
+                <option>Вариант 3</option>
+            </select>
+        </div>
+        <div class="form-element">
+            <label>Сообщение:</label>
+            <textarea rows="4" required oninvalid="this.setCustomValidity('Напишите сообщение!')"></textarea>
+        </div>
+        <button type="submit" onclick="alert('Форма не отправлена! Попробуйте еще раз!'); return false;">Отправить</button>
+    </form>
+
     <script>
-        // Функция для добавления плавающих сердечек
-        function createHearts() {
-            const container = document.querySelector('.container');
-            for (let i = 0; i < 15; i++) {
-                const heart = document.createElement('div');
-                heart.classList.add('heart');
-                heart.innerHTML = '❤';
-                heart.style.left = Math.random() * 100 + '%';
-                heart.style.top = Math.random() * 100 + '%';
-                heart.style.fontSize = (Math.random() * 25 + 20) + 'px';
-                heart.style.animationDuration = (Math.random() * 6 + 4) + 's';
-                heart.style.animationDelay = (Math.random() * 5) + 's';
-                container.appendChild(heart);
+        // Создаем след от курсора
+        document.addEventListener('mousemove', function(e) {
+            let trail = document.createElement('div');
+            trail.className = 'cursor-trail';
+            trail.style.left = e.pageX - 10 + 'px';
+            trail.style.top = e.pageY - 10 + 'px';
+            document.body.appendChild(trail);
+            
+            // Удаляем след через время
+            setTimeout(function() {
+                trail.remove();
+            }, 1000);
+        });
+
+        // Создаем дождь из символов
+        function createRain() {
+            const container = document.getElementById('rain-container');
+            const symbols = ['★', '♦', '♣', '♠', '♥', '§', '¶', '€', '$', '£', '¥'];
+            
+            for (let i = 0; i < 50; i++) {
+                let drop = document.createElement('div');
+                drop.className = 'rain-drop';
+                drop.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+                drop.style.left = Math.random() * 100 + 'vw';
+                drop.style.animationDuration = (Math.random() * 2 + 1) + 's';
+                drop.style.fontSize = (Math.random() * 20 + 10) + 'px';
+                drop.style.color = `hsl(${Math.random() * 360}, 100%, 50%)`;
+                container.appendChild(drop);
             }
         }
         
-        // Функция для создания конфетти
-        function createConfetti() {
-            const colors = ['#ff6b6b', '#d291bc', '#8ec5fc', '#e0c3fc', '#ff9a9e'];
-            const symbols = ['❤', '💖', '💕', '💘', '💓', '💝'];
-            
-            for (let i = 0; i < 150; i++) {
+        createRain();
+
+        // Показываем случайные попапы
+        function showRandomPopup() {
+            if (Math.random() > 0.7) {
+                let popup = document.createElement('div');
+                popup.className = 'popup';
+                popup.innerHTML = `
+                    <h2>${Math.random() > 0.5 ? 'ВАЖНО!' : 'ПОЗДРАВЛЯЕМ!'}</h2>
+                    <p>${Math.random() > 0.5 ? 'Ваш компьютер заражен! Скачайте наш антивирус!' : 'Вы выиграли гараж! Нажмите ОК для получения!'}</p>
+                    <button onclick="this.parentElement.remove()">ЗАКРЫТЬ</button>
+                `;
+                document.body.appendChild(popup);
+                
+                // Автоматически закрыть через случайное время
                 setTimeout(() => {
-                    const confetti = document.createElement('div');
-                    confetti.classList.add('confetti');
-                    confetti.innerHTML = symbols[Math.floor(Math.random() * symbols.length)];
-                    confetti.style.left = Math.random() * 100 + 'vw';
-                    confetti.style.color = colors[Math.floor(Math.random() * colors.length)];
-                    confetti.style.fontSize = (Math.random() * 20 + 16) + 'px';
-                    confetti.style.animationDuration = (Math.random() * 3 + 2) + 's';
-                    document.body.appendChild(confetti);
-                    
-                    // Удаляем конфетти после анимации
-                    setTimeout(() => {
-                        confetti.remove();
-                    }, 5000);
-                }, i * 20);
-            }
-        }
-        
-        // Функция для показа ответа
-        function showResponse(type) {
-            document.getElementById('hidden-message-yes').style.display = 'none';
-            document.getElementById('hidden-message-no').style.display = 'none';
-            
-            if (type === 'yes') {
-                document.getElementById('hidden-message-yes').style.display = 'block';
-                // Добавляем дополнительные сердца и конфетти при положительном ответе
-                for (let i = 0; i < 30; i++) {
-                    setTimeout(() => {
-                        const heart = document.createElement('div');
-                        heart.classList.add('heart');
-                        heart.innerHTML = '❤';
-                        heart.style.left = Math.random() * 100 + '%';
-                        heart.style.top = Math.random() * 100 + '%';
-                        heart.style.fontSize = (Math.random() * 30 + 20) + 'px';
-                        heart.style.animationDuration = (Math.random() * 4 + 2) + 's';
-                        document.querySelector('.container').appendChild(heart);
-                    }, i * 100);
-                }
-                createConfetti();
-                playCelebrationSound();
-            } else {
-                document.getElementById('hidden-message-no').style.display = 'block';
-            }
-        }
-        
-        // Функция для воспроизведения праздничного звука
-        function playCelebrationSound() {
-            const audio = new Audio('https://cdn.pixabay.com/download/audio/2022/03/15/audio_5c12850e8c.mp3?filename=success-fanfare-trumpets-6185.mp3');
-            audio.play();
-        }
-        
-        // Функция для управления музыкой
-        function toggleMusic() {
-            const music = document.getElementById('bgMusic');
-            const musicControl = document.querySelector('.music-control i');
-            
-            if (music.paused) {
-                music.play();
-                musicControl.classList.remove('fa-music');
-                musicControl.classList.add('fa-pause');
-            } else {
-                music.pause();
-                musicControl.classList.remove('fa-pause');
-                musicControl.classList.add('fa-music');
-            }
-        }
-        
-        // Запрашиваем имя при загрузке страницы
-        window.onload = function() {
-            const name = prompt("Пожалуйста, введите имя вашей возлюбленной:", "Любимая");
-            if (name && name.trim() !== "") {
-                document.getElementById('name-placeholder').textContent = name;
-                document.title = "Для " + name + " - Моё признание";
+                    if (popup.parentElement) {
+                        popup.remove();
+                    }
+                }, 3000);
             }
             
-            createHearts();
+            // Планируем следующий попап
+            setTimeout(showRandomPopup, 5000 + Math.random() * 10000);
+        }
+        
+        // Запускаем показ случайных попапов
+        setTimeout(showRandomPopup, 5000);
+        
+        // Функция для кнопки "НЕТ" в попапе
+        function showAnotherPopup() {
+            document.getElementById('popup').innerHTML = `
+                <h2>ВЫ УВЕРЕНЫ?</h2>
+                <p>Вы точно уверены, что не хотите бесплатный iPhone?</p>
+                <button onclick="document.getElementById('popup').style.display = 'none'">ДА, УВЕРЕН</button>
+                <button onclick="showThirdPopup()">НЕТ, НЕ УВЕРЕН</button>
+            `;
+        }
+        
+        function showThirdPopup() {
+            document.getElementById('popup').innerHTML = `
+                <h2>ПОСЛЕДНИЙ ШАНС!</h2>
+                <p>Только сегодня и только сейчас! Уникальное предложение!</p>
+                <button onclick="document.getElementById('popup').style.display = 'none'">ЗАКРЫТЬ</button>
+                <button onclick="showAnotherPopup()">НАЗАД</button>
+            `;
+        }
+        
+        // Меняем title случайным образом
+        function changeTitle() {
+            const titles = [
+                "Вернитесь!",
+                "Не уходите!",
+                "Смотрите сюда!",
+                "У нас есть специальное предложение!",
+                "Самый ужасный сайт в мире"
+            ];
+            document.title = titles[Math.floor(Math.random() * titles.length)];
             
-            // Автовоспроизведение музыки с задержкой
-            setTimeout(() => {
-                document.getElementById('bgMusic').play().catch(e => {
-                    console.log("Автовоспроизведение музыки заблокировано. Пользователь должен взаимодействовать со страницей.");
-                });
-            }, 2000);
-        };
+            setTimeout(changeTitle, 2000);
+        }
+        
+        changeTitle();
+        
+        // Изменяем счетчик посещений
+        setInterval(() => {
+            const countElement = document.getElementById('visitor-count');
+            let count = parseInt(countElement.textContent);
+            count += Math.floor(Math.random() * 10);
+            countElement.textContent = count;
+        }, 1000);
+        
+        // Блокируем правый клик
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+            alert('Копирование запрещено!');
+        });
+        
+        // Предотвращаем использование клавиш
+        document.addEventListener('keydown', function(e) {
+            if (e.ctrlKey || e.keyCode === 116 || e.keyCode === 123) {
+                e.preventDefault();
+                alert('Эта функция заблокирована!');
+            }
+        });
     </script>
 </body>
 </html>
