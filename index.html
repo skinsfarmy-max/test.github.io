@@ -3,109 +3,205 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Кастомные курсоры</title>
+    <title>Необычные кастомные курсоры</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
+        * {
             margin: 0;
-            padding: 20px;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            color: #fff;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
+            padding: 20px;
+            overflow-x: hidden;
         }
-
-        .container {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            padding: 40px;
-            border-radius: 20px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        
+        header {
             text-align: center;
+            margin-bottom: 40px;
+            max-width: 800px;
         }
-
+        
         h1 {
-            color: white;
-            margin-bottom: 30px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            font-size: 3rem;
+            margin-bottom: 15px;
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.7);
+            letter-spacing: 2px;
         }
-
+        
+        p {
+            font-size: 1.2rem;
+            color: #a0e7ff;
+            line-height: 1.6;
+        }
+        
         .buttons-container {
             display: flex;
-            flex-direction: column;
-            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 25px;
+            max-width: 1000px;
+            margin-bottom: 40px;
         }
-
+        
         .cursor-btn {
-            padding: 15px 30px;
-            font-size: 18px;
+            padding: 18px 30px;
+            font-size: 1.3rem;
             font-weight: bold;
             border: none;
-            border-radius: 50px;
+            border-radius: 15px;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.4s ease;
             background: linear-gradient(45deg, #ff6b6b, #ee5a24);
             color: white;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
         }
-
+        
+        .cursor-btn:nth-child(2) {
+            background: linear-gradient(45deg, #4834d4, #686de0);
+        }
+        
+        .cursor-btn:nth-child(3) {
+            background: linear-gradient(45deg, #f0932b, #ffbe76);
+        }
+        
+        .cursor-btn:nth-child(4) {
+            background: linear-gradient(45deg, #6ab04c, #badc58);
+        }
+        
+        .cursor-btn:nth-child(5) {
+            background: linear-gradient(45deg, #e056fd, #686de0);
+        }
+        
         .cursor-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+            transform: translateY(-7px) scale(1.05);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
         }
-
+        
         .cursor-btn:active {
-            transform: translateY(0);
+            transform: translateY(2px);
         }
-
-        /* Кастомные курсоры в base64 */
-        .cursor-1 { cursor: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAzMiAzMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMTYiIGN5PSIxNiIgcj0iMTQiIGZpbGw9IiNGRjYwNjAiIHN0cm9rZT0iI0ZGMzAzMCIgc3Ryb2tlLXdpZHRoPSIyIi8+CjxjaXJjbGUgY3g9IjExIiBjeT0iMTEiIHI9IjEuNSIgZmlsbD0id2hpdGUiLz4KPGNpcmNsZSBjeD0iMjEiIGN5PSIxMSIgcj0iMS41IiBmaWxsPSJ3aGl0ZSIvPgo8cGF0aCBkPSJNMTIgMTlDMTMgMjEgMTUgMjIgMTYgMjJDMTcgMjIgMTkgMjEgMjAgMTkiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+Cjwvc3ZnPg=="), auto; }
-
-        .cursor-2 { cursor: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAzMiAzMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTYgNkwxNiAyNkwyNiA2IiBzdHJva2U9IiM0QkE1RjYiIHN0cm9rZS13aWR0aD0iMyIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+CjxjaXJjbGUgY3g9IjE2IiBjeT0iOCIgcj0iMiIgZmlsbD0iIzRCQTVGNiIvPgo8L3N2Zz4="), auto; }
-
-        .cursor-3 { cursor: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAzMiAzMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMTYiIGN5PSIxNiIgcj0iMTIiIGZpbGw9IiNGRjlCMDAiIHN0cm9rZT0iI0ZGN0IwMCIgc3Ryb2tlLXdpZHRoPSIyIi8+CjxwYXRoIGQ9Ik0xMiAxMkwyMCAyMCIgc3Ryb2tlPSJ3aGl0ZSIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KPHBhdGggZD0iTTIwIDEyTDEyIDIwIiBzdHJva2U9IndoaXRlIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgo8L3N2Zz4="), auto; }
-
-        .cursor-4 { cursor: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAzMiAzMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3QgeD0iNiIgeT0iNiIgd2lkdGg9IjIwIiBoZWlnaHQ9IjIwIiByeD0iNCIgZmlsbD0iIzU1Q0M1NSIgc3Ryb2tlPSIjNDRBQTQ0IiBzdHJva2Utd2lkdGg9IjIiLz4KPHBhdGggZD0iTTE0IDEyTDE4IDE2TDE0IDIwIiBzdHJva2U9IndoaXRlIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgZmlsbD0ibm9uZSIvPgo8L3N2Zz4="), auto; }
-
-        .cursor-5 { cursor: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAzMiAzMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMTYiIGN5PSIxNiIgcj0iMTIiIGZpbGw9IiNBOUI4RkYiIHN0cm9rZT0iIzg2NkZGNSIgc3Ryb2tlLXdpZHRoPSIyIi8+CjxwYXRoIGQ9Ik0xNiA4VjI0IiBzdHJva2U9IndoaXRlIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgo8cGF0aCBkPSJNOCAxNkgyNCIgc3Ryb2tlPSJ3aGl0ZSIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KPC9zdmc+"), auto; }
-
-        .current-cursor {
-            margin-top: 20px;
-            color: white;
-            font-size: 16px;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        
+        .cursor-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            z-index: -1;
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.4s ease;
+        }
+        
+        .cursor-btn:hover::before {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+        
+        .cursor-display {
+            margin-top: 30px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            max-width: 600px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .cursor-display h2 {
+            margin-bottom: 15px;
+            color: #ffeb3b;
+            font-size: 1.8rem;
+        }
+        
+        .cursor-display p {
+            font-size: 1.3rem;
+            color: #4fc3f7;
+        }
+        
+        /* Кастомные курсоры */
+        .cursor-1 { cursor: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAzMiAzMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTI2LjUgMTZDMjYuNSAyMS43OTk5IDIxLjc5OTkgMjYuNSAxNiAyNi41QzEwLjIwMDEgMjYuNSA1LjUgMjEuNzk5OSA1LjUgMTZDNS41IDEwLjIwMDEgMTAuMjAwMSA1LjUgMTYgNS41QzIxLjc5OTkgNS41IDI2LjUgMTAuMjAwMSAyNi41IDE2WiIgc3Ryb2tlPSIjRkY0ODg3IiBzdHJva2Utd2lkdGg9IjMiLz4KPHBhdGggZD0iTTE2IDhWMTYiIHN0cm9rZT0iI0ZGNDg4NyIgc3Ryb2tlLXdpZHRoPSIzIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KPHBhdGggZD0iTTEyIDEySDIwIiBzdHJva2U9IiNGRjQ4ODciIHN0cm9rZS13aWR0aD0iMyIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CjxjaXJjbGUgY3g9IjE2IiBjeT0iMTYiIHI9IjEwIiBzdHJva2U9IiNGRjkzRTIiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWRhc2hhcnJheT0iNCA0Ii8+Cjwvc3ZnPg=="), auto; }
+        
+        .cursor-2 { cursor: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDgiIGhlaWdodD0iNDgiIHZpZXdCb3g9IjAgMCA0OCA0OCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTI0IDRWMjBNMjQgNDRWMjgiIHN0cm9rZT0iIzRFQkFFNSIgc3Ryb2tlLXdpZHRoPSI0IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KPGNpcmNsZSBjeD0iMjQiIGN5PSIyNCIgcj0iOCIgc3Ryb2tlPSIjNEVCQUU1IiBzdHJva2Utd2lkdGg9IjQiLz4KPHBhdGggZD0iTTM2IDI0QzM2IDMwLjYyNzQgMzAuNjI3NCAzNiAyNCAzNkMxNy4zNzI2IDM2IDEyIDMwLjYyNzQgMTIgMjRDMTIgMTcuMzcyNiAxNy4zNzI2IDEyIDI0IDEyQzMwLjYyNzQgMTIgMzYgMTcuMzcyNiAzNiAyNFoiIHN0cm9rZT0iIzRFQkFFNSIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtZGFzaGFycmF5PSI2IDQiLz4KPHBhdGggZD0iTTQwIDI0QzQwIDMyLjgzNjYgMzIuODM2NiA0MCAyNCA0MEMxNS4xNjM0IDQwIDggMzIuODM2NiA4IDI0QzggMTUuMTYzNCAxNS4xNjM0IDggMjQgOEMzMi44MzY2IDggNDAgMTUuMTYzNCA0MCAyNFoiIHN0cm9rZT0iIzRFQkFFNSIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtZGFzaGFycmF5PSIyIDYiLz4KPC9zdmc+"), auto; }
+        
+        .cursor-3 { cursor: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDgiIGhlaWdodD0iNDgiIHZpZXdCb3g9IjAgMCA0OCA0OCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTE2IDE2TDMyIDMyIiBzdHJva2U9IiNGRjkzRTIiIHN0cm9rZS13aWR0aD0iNCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CjxwYXRoIGQ9Ik0xNiAzMkwzMiAxNiIgc3Ryb2tlPSIjRkY5M0UyIiBzdHJva2Utd2lkdGg9IjQiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgo8Y2lyY2xlIGN4PSIyNCIgY3k9IjI0IiByPSIxNCIgc3Ryb2tlPSIjRkY5M0UyIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1kYXNoYXJyYXk9IjQgMiIvPgo8Y2lyY2xlIGN4PSIyNCIgY3k9IjI0IiByPSI4IiBzdHJva2U9IiNGRjkzRTIiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWRhc2hhcnJheT0iMiA0Ii8+Cjwvc3ZnPg=="), auto; }
+        
+        .cursor-4 { cursor: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDgiIGhlaWdodD0iNDgiIHZpZXdCb3g9IjAgMCA0OCA0OCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTI0IDQ0QzM1LjA0NTcgNDQgNDQgMzUuMDQ1NyA0NCAyNEM0NCAxMi45NTQzIDM1LjA0NTcgNCAyNCA0QzEyLjk1NDMgNCA0IDEyLjk1NDMgNCAyNEM0IDM1LjA0NTcgMTIuOTU0MyA0NCAyNCA0NFoiIHN0cm9rZT0iIzU1Q0M1NSIgc3Ryb2tlLXdpZHRoPSI0Ii8+CjxwYXRoIGQ9Ik0xOSAyMEwyNCAyNEwyOSAyMCIgc3Ryb2tlPSIjNTVDQzU1IiBzdHJva2Utd2lkdGg9IjQiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgo8cGF0aCBkPSJNMTkgMjhMMjQgMjRMMjkgMjgiIHN0cm9rZT0iIzU1Q0M1NSIgc3Ryb2tlLXdpZHRoPSI0IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KPHBhdGggZD0iTTIwIDE2TDI4IDMyIiBzdHJva2U9IiM1NUNDNTUiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWRhc2hhcnJheT0iNCAyIi8+Cjwvc3ZnPg=="), auto; }
+        
+        .cursor-5 { cursor: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDgiIGhlaWdodD0iNDgiIHZpZXdCb3g9IjAgMCA0OCA0OCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTI0IDRWMjBNMjQgNDRWMjgiIHN0cm9rZT0iI0UwNTBGRiIgc3Ryb2tlLXdpZHRoPSI0IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KPHBhdGggZD0iTTQgMjRIMjBNNDQgMjRIMjgiIHN0cm9rZT0iI0UwNTBGRiIgc3Ryb2tlLXdpZHRoPSI0IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KPGNpcmNsZSBjeD0iMjQiIGN5PSIyNCIgcj0iNiIgZmlsbD0iI0UwNTBGRiIvPgo8Y2lyY2xlIGN4PSIyNCIgY3k9IjI0IiByPSIxNCIgc3Ryb2tlPSIjRTA1MEZGIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1kYXNoYXJyYXk9IjQgMiIvPgo8Y2lyY2xlIGN4PSIyNCIgY3k9IjI0IiByPSIyMCIgc3Ryb2tlPSIjRTA1MEZGIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1kYXNoYXJyYXk9IjIgNCIvPgo8L3N2Zz4="), auto; }
+        
+        footer {
+            margin-top: 40px;
+            text-align: center;
+            color: #81d4fa;
+            font-size: 1rem;
+        }
+        
+        @media (max-width: 768px) {
+            .buttons-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            p {
+                font-size: 1rem;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Выберите курсор</h1>
-        <div class="buttons-container">
-            <button class="cursor-btn" onclick="changeCursor('cursor-1')">😊 Смайлик</button>
-            <button class="cursor-btn" onclick="changeCursor('cursor-2')">🔺 Стрелка</button>
-            <button class="cursor-btn" onclick="changeCursor('cursor-3')">❌ Крестик</button>
-            <button class="cursor-btn" onclick="changeCursor('cursor-4')">▶️ Играть</button>
-            <button class="cursor-btn" onclick="changeCursor('cursor-5')">➕ Плюсик</button>
-        </div>
-        <div class="current-cursor" id="cursor-info">Текущий курсор: Обычный</div>
+    <header>
+        <h1>Необычные кастомные курсоры</h1>
+        <p>Нажмите на любую кнопку ниже, чтобы активировать уникальный курсор. Каждый курсор имеет свой неповторимый стиль и анимацию!</p>
+    </header>
+    
+    <div class="buttons-container">
+        <button class="cursor-btn" onclick="changeCursor('cursor-1', 'Часы с пульсирующими кругами')">⏰ Часы</button>
+        <button class="cursor-btn" onclick="changeCursor('cursor-2', 'Концентрические круги с анимацией')">🌀 Круги</button>
+        <button class="cursor-btn" onclick="changeCursor('cursor-3', 'Перекрестие с двойным кругом')">🎯 Мишень</button>
+        <button class="cursor-btn" onclick="changeCursor('cursor-4', 'Вращающаяся сфера со стрелками')">🔄 Сфера</button>
+        <button class="cursor-btn" onclick="changeCursor('cursor-5', 'Пульсирующий плюсик с кругами')">➕ Плюсик</button>
     </div>
+    
+    <div class="cursor-display">
+        <h2 id="cursor-name">Текущий курсор: Обычный</h2>
+        <p id="cursor-desc">Нажмите на любую кнопку, чтобы активировать кастомный курсор</p>
+    </div>
+    
+    <footer>
+        <p>Создано с помощью HTML, CSS и SVG. Наведите на кнопки, чтобы увидеть эффекты!</p>
+    </footer>
 
     <script>
-        function changeCursor(cursorClass) {
-            document.body.className = cursorClass;
+        function changeCursor(cursorClass, description) {
+            // Удаляем предыдущие классы курсора
+            document.body.classList.remove('cursor-1', 'cursor-2', 'cursor-3', 'cursor-4', 'cursor-5');
             
-            const cursorNames = {
-                'cursor-1': 'Смайлик',
-                'cursor-2': 'Стрелка',
-                'cursor-3': 'Крестик',
-                'cursor-4': 'Играть',
-                'cursor-5': 'Плюсик'
-            };
+            // Добавляем новый класс курсора
+            document.body.classList.add(cursorClass);
             
-            document.getElementById('cursor-info').textContent = 
-                `Текущий курсор: ${cursorNames[cursorClass]}`;
+            // Обновляем информацию о курсоре
+            document.getElementById('cursor-name').textContent = 'Текущий курсор: ' + description;
+            document.getElementById('cursor-desc').textContent = 'Попробуйте поводить курсором по экрану, чтобы увидеть анимацию';
         }
     </script>
 </body>
