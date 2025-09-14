@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Моё признание</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow-x: hidden;
+            color: #5a3e36;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 800px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+            padding: 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .heart {
+            position: absolute;
+            font-size: 20px;
+            color: #ff6b6b;
+            opacity: 0.6;
+            z-index: 0;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(10deg); }
+        }
+        
+        h1 {
+            color: #d291bc;
+            margin-bottom: 20px;
+            font-size: 2.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .message-box {
+            background: linear-gradient(to right, #fad0c4, #ffd1ff);
+            padding: 25px;
+            border-radius: 15px;
+            margin: 25px 0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 1;
+        }
+        
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+        
+        .highlight {
+            color: #ff6b6b;
+            font-weight: bold;
+        }
+        
+        .btn {
+            background: linear-gradient(to right, #ff6b6b, #ff8e8e);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 15px 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn-yes {
+            background: linear-gradient(to right, #8ec5fc, #e0c3fc);
+        }
+        
+        .flower {
+            font-size: 30px;
+            margin: 0 5px;
+            animation: spin 4s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .photo-frame {
+            width: 200px;
+            height: 200px;
+            margin: 20px auto;
+            border: 5px solid #d291bc;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            background: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #d291bc;
+            font-size: 1.2rem;
+        }
+        
+        .hidden-message {
+            display: none;
+            margin-top: 30px;
+            padding: 20px;
+            background: linear-gradient(to right, #e0c3fc, #8ec5fc);
+            border-radius: 15px;
+            animation: fadeIn 2s;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .footer {
+            margin-top: 30px;
+            font-size: 0.9rem;
+            color: #888;
+        }
+        
+        /* Адаптивность для мобильных устройств */
+        @media (max-width: 600px) {
+            h1 { font-size: 2rem; }
+            .container { padding: 20px; }
+            .btn { padding: 10px 20px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Плавающие сердца -->
+        <div class="heart" style="top: 10%; left: 10%;">❤</div>
+        <div class="heart" style="top: 20%; right: 15%;">❤</div>
+        <div class="heart" style="bottom: 30%; left: 15%;">❤</div>
+        <div class="heart" style="bottom: 20%; right: 10%;">❤</div>
+        
+        <h1>Моё сердце говорит с тобой <span class="flower">🌹</span></h1>
+        
+        <div class="message-box">
+            <p>Дорогая <span class="highlight" id="name-placeholder">[Имя]</span>,</p>
+            <p>С того момента, как ты появилась в моей жизни, всё изменилось. Ты словно солнечный лучик, который освещает даже самый хмурый день.</p>
+            <p>Твоя улыбка заставляет мое сердце биться чаще, а твой смех - это самая прекрасная музыка, которую я когда-либо слышал.</p>
+            <p>Я восхищаюсь твоей добротой, умом и тем, как ты видишь красоту в мелочах.</p>
+            <p>Сегодня я хочу сказать тебе самое главное...</p>
+        </div>
+        
+        <div class="photo-frame">
+            Ваше фото здесь
+        </div>
+        
+        <h2>Я тебя люблю!</h2>
+        
+        <div class="buttons">
+            <button class="btn btn-yes" onclick="showResponse('yes')">Принять признание</button>
+            <button class="btn" onclick="showResponse('no')">Я подумаю</button>
+        </div>
+        
+        <div id="hidden-message-yes" class="hidden-message">
+            <p>Спасибо, что приняла моё признание! Ты сделала меня самым счастливым человеком на земле! <span class="flower">🌸</span></p>
+            <p>Я обещаю делать всё возможное, чтобы ты всегда улыбалась!</p>
+        </div>
+        
+        <div id="hidden-message-no" class="hidden-message">
+            <p>Я понимаю и готов ждать столько, сколько потребуется. Мои чувства искренни, и я надеюсь, что когда-нибудь ты сможешь принять их.</p>
+        </div>
+        
+        <div class="footer">
+            Создано с ❤️ специально для тебя
+        </div>
+    </div>
+
+    <script>
+        // Функция для добавления плавающих сердечек
+        function createHearts() {
+            const container = document.querySelector('.container');
+            for (let i = 0; i < 10; i++) {
+                const heart = document.createElement('div');
+                heart.classList.add('heart');
+                heart.innerHTML = '❤';
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.top = Math.random() * 100 + '%';
+                heart.style.fontSize = (Math.random() * 20 + 15) + 'px';
+                heart.style.animationDuration = (Math.random() * 5 + 3) + 's';
+                container.appendChild(heart);
+            }
+        }
+        
+        // Функция для показа ответа
+        function showResponse(type) {
+            document.getElementById('hidden-message-yes').style.display = 'none';
+            document.getElementById('hidden-message-no').style.display = 'none';
+            
+            if (type === 'yes') {
+                document.getElementById('hidden-message-yes').style.display = 'block';
+                // Добавляем дополнительные сердца при положительном ответе
+                for (let i = 0; i < 20; i++) {
+                    setTimeout(() => {
+                        const heart = document.createElement('div');
+                        heart.classList.add('heart');
+                        heart.innerHTML = '❤';
+                        heart.style.left = Math.random() * 100 + '%';
+                        heart.style.top = Math.random() * 100 + '%';
+                        heart.style.fontSize = (Math.random() * 25 + 15) + 'px';
+                        heart.style.animationDuration = (Math.random() * 4 + 2) + 's';
+                        document.querySelector('.container').appendChild(heart);
+                    }, i * 100);
+                }
+            } else {
+                document.getElementById('hidden-message-no').style.display = 'block';
+            }
+        }
+        
+        // Запрашиваем имя при загрузке страницы
+        window.onload = function() {
+            const name = prompt("Пожалуйста, введите имя вашей возлюбленной:", "Любимая");
+            if (name && name.trim() !== "") {
+                document.getElementById('name-placeholder').textContent = name;
+            }
+            
+            createHearts();
+        };
+    </script>
+</body>
+</html>
