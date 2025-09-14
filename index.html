@@ -18,16 +18,18 @@
             background: #000;
             color: #fff;
             min-height: 100vh;
-            overflow-x: hidden;
+            overflow: hidden;
             position: relative;
             cursor: none; /* Скрываем стандартный курсор */
+            opacity: 0;
+            transition: opacity 1s ease;
         }
 
         /* Кастомный курсор */
         .cursor {
             position: fixed;
-            width: 20px;
-            height: 20px;
+            width: 10px;
+            height: 10px;
             border-radius: 50%;
             background: #ff0000;
             mix-blend-mode: difference;
@@ -39,14 +41,14 @@
 
         .cursor-follower {
             position: fixed;
-            width: 40px;
-            height: 40px;
+            width: 30px;
+            height: 30px;
             border: 1px solid #fff;
             border-radius: 50%;
             pointer-events: none;
             z-index: 9998;
             transform: translate(-50%, -50%);
-            transition: transform 0.3s ease, opacity 0.3s ease;
+            transition: transform 0.2s ease, width 0.2s ease, height 0.2s ease;
         }
 
         /* Контейнер для горизонтального скролла */
@@ -95,11 +97,13 @@
             height: 12px;
             border-radius: 50%;
             background: rgba(255, 255, 255, 0.3);
-            transition: background 0.3s ease;
+            transition: background 0.3s ease, transform 0.3s ease;
+            cursor: pointer;
         }
 
         .scroll-dot.active {
             background: #ff0000;
+            transform: scale(1.2);
         }
 
         /* Стили для различных секций */
@@ -139,7 +143,7 @@
             top: 0;
             left: 40%;
             transform: translateX(-50%);
-            width: 12px;
+            width: 8px;
             height: 100vh;
             background: linear-gradient(to bottom, 
                 rgba(255, 0, 0, 0.1) 0%, 
@@ -153,7 +157,7 @@
         .plus-horizontal {
             position: absolute;
             top: 50%;
-            height: 12px;
+            height: 8px;
             background: #ff0000;
         }
 
@@ -214,6 +218,7 @@
             padding: 0 2rem;
             pointer-events: none;
             z-index: 90;
+            transform: translateY(-50%);
         }
 
         .arrow {
@@ -230,10 +235,12 @@
             font-size: 1.5rem;
             cursor: none;
             transition: all 0.3s ease;
+            opacity: 0.7;
         }
 
         .arrow:hover {
             background: rgba(255, 0, 0, 0.5);
+            opacity: 1;
         }
 
         /* Контентные блоки */
@@ -262,6 +269,7 @@
             padding: 1.5rem;
             text-align: center;
             transition: all 0.3s ease;
+            cursor: none;
         }
 
         .grid-item:hover {
@@ -302,6 +310,14 @@
                 width: 40px;
                 height: 40px;
                 font-size: 1.2rem;
+            }
+            
+            .cursor, .cursor-follower {
+                display: none;
+            }
+            
+            body {
+                cursor: auto;
             }
         }
     </style>
@@ -416,91 +432,151 @@
 
     <!-- Стрелки навигации -->
     <div class="nav-arrows">
-        <div class="arrow left-arrow">←</div>
-        <div class="arrow right-arrow">→</div>
+        <div class="arrow left-arrow" id="left-arrow" style="visibility: hidden;">←</div>
+        <div class="arrow right-arrow" id="right-arrow">→</div>
     </div>
 
     <script>
-        // Кастомный курсор
-        const cursor = document.querySelector('.cursor');
-        const cursorFollower = document.querySelector('.cursor-follower');
-        
-        document.addEventListener('mousemove', (e) => {
-            cursor.style.left = e.clientX + 'px';
-            cursor.style.top = e.clientY + 'px';
+        // Инициализация после загрузки DOM
+        document.addEventListener('DOMContentLoaded', function() {
+            // Показать страницу с анимацией
+            document.body.style.opacity = 1;
             
-            setTimeout(() => {
-                cursorFollower.style.left = e.clientX + 'px';
-                cursorFollower.style.top = e.clientY + 'px';
-            }, 100);
-        });
-        
-        // Эффекты при наведении на интерактивные элементы
-        const interactiveElements = document.querySelectorAll('button, a, .arrow, .grid-item');
-        
-        interactiveElements.forEach(element => {
-            element.addEventListener('mouseenter', () => {
-                cursor.style.transform = 'translate(-50%, -50%) scale(1.5)';
-                cursorFollower.style.transform = 'translate(-50%, -50%) scale(1.5)';
-                cursorFollower.style.borderColor = '#ff0000';
+            // Кастомный курсор
+            const cursor = document.querySelector('.cursor');
+            const cursorFollower = document.querySelector('.cursor-follower');
+            
+            let mouseX = 0;
+            let mouseY = 0;
+            let followerX = 0;
+            let followerY = 0;
+            
+            // Плавное движение курсора
+            function animateCursor() {
+                // Движение основного курсора
+                cursor.style.left = mouseX + 'px';
+                cursor.style.top = mouseY + 'px';
+                
+                // Плавное движение следящего курсора
+                followerX += (mouseX - followerX) / 6;
+                followerY += (mouseY - followerY) / 6;
+                
+                cursorFollower.style.left = followerX + 'px';
+                cursorFollower.style.top = followerY + 'px';
+                
+                requestAnimationFrame(animateCursor);
+            }
+            
+            // Запуск анимации курсора
+            animateCursor();
+            
+            document.addEventListener('mousemove', (e) => {
+                mouseX = e.clientX;
+                mouseY = e.clientY;
             });
             
-            element.addEventListener('mouseleave', () => {
-                cursor.style.transform = 'translate(-50%, -50%) scale(1)';
-                cursorFollower.style.transform = 'translate(-50%, -50%) scale(1)';
-                cursorFollower.style.borderColor = '#fff';
-            });
-        });
-        
-        // Горизонтальный скролл
-        const scrollContainer = document.getElementById('scroll-container');
-        const dots = document.querySelectorAll('.scroll-dot');
-        const leftArrow = document.querySelector('.left-arrow');
-        const rightArrow = document.querySelector('.right-arrow');
-        
-        // Обработчики для стрелок
-        leftArrow.addEventListener('click', () => {
-            scrollContainer.scrollBy({
-                left: -window.innerWidth,
-                behavior: 'smooth'
-            });
-        });
-        
-        rightArrow.addEventListener('click', () => {
-            scrollContainer.scrollBy({
-                left: window.innerWidth,
-                behavior: 'smooth'
-            });
-        });
-        
-        // Обновление индикатора при скролле
-        scrollContainer.addEventListener('scroll', () => {
-            const scrollPosition = scrollContainer.scrollLeft;
-            const currentSection = Math.round(scrollPosition / window.innerWidth);
+            // Эффекты при наведении на интерактивные элементы
+            const interactiveElements = document.querySelectorAll('.arrow, .grid-item, .scroll-dot');
             
-            dots.forEach((dot, index) => {
-                if (index === currentSection) {
-                    dot.classList.add('active');
+            interactiveElements.forEach(element => {
+                element.addEventListener('mouseenter', () => {
+                    cursor.style.transform = 'translate(-50%, -50%) scale(1.5)';
+                    cursorFollower.style.transform = 'translate(-50%, -50%) scale(1.8)';
+                    cursorFollower.style.borderColor = '#ff0000';
+                    cursorFollower.style.width = '20px';
+                    cursorFollower.style.height = '20px';
+                });
+                
+                element.addEventListener('mouseleave', () => {
+                    cursor.style.transform = 'translate(-50%, -50%) scale(1)';
+                    cursorFollower.style.transform = 'translate(-50%, -50%) scale(1)';
+                    cursorFollower.style.borderColor = '#fff';
+                    cursorFollower.style.width = '30px';
+                    cursorFollower.style.height = '30px';
+                });
+            });
+            
+            // Горизонтальный скролл
+            const scrollContainer = document.getElementById('scroll-container');
+            const dots = document.querySelectorAll('.scroll-dot');
+            const leftArrow = document.getElementById('left-arrow');
+            const rightArrow = document.getElementById('right-arrow');
+            
+            // Функция обновления навигации
+            function updateNavigation() {
+                const scrollPosition = scrollContainer.scrollLeft;
+                const currentSection = Math.round(scrollPosition / window.innerWidth);
+                
+                // Обновить точки навигации
+                dots.forEach((dot, index) => {
+                    if (index === currentSection) {
+                        dot.classList.add('active');
+                    } else {
+                        dot.classList.remove('active');
+                    }
+                });
+                
+                // Показать/скрыть стрелки
+                if (currentSection === 0) {
+                    leftArrow.style.visibility = 'hidden';
                 } else {
-                    dot.classList.remove('active');
+                    leftArrow.style.visibility = 'visible';
                 }
-            });
-        });
-        
-        // Переход к секции при клике на точки
-        dots.forEach(dot => {
-            dot.addEventListener('click', () => {
-                const index = parseInt(dot.getAttribute('data-index'));
-                scrollContainer.scrollTo({
-                    left: index * window.innerWidth,
+                
+                if (currentSection === dots.length - 1) {
+                    rightArrow.style.visibility = 'hidden';
+                } else {
+                    rightArrow.style.visibility = 'visible';
+                }
+            }
+            
+            // Обработчики для стрелок
+            leftArrow.addEventListener('click', () => {
+                scrollContainer.scrollBy({
+                    left: -window.innerWidth,
                     behavior: 'smooth'
                 });
             });
-        });
-        
-        // Плавное появление элементов при загрузке
-        document.addEventListener('DOMContentLoaded', () => {
-            document.body.style.opacity = 1;
+            
+            rightArrow.addEventListener('click', () => {
+                scrollContainer.scrollBy({
+                    left: window.innerWidth,
+                    behavior: 'smooth'
+                });
+            });
+            
+            // Обновление индикатора при скролле
+            scrollContainer.addEventListener('scroll', updateNavigation);
+            
+            // Переход к секции при клике на точки
+            dots.forEach(dot => {
+                dot.addEventListener('click', () => {
+                    const index = parseInt(dot.getAttribute('data-index'));
+                    scrollContainer.scrollTo({
+                        left: index * window.innerWidth,
+                        behavior: 'smooth'
+                    });
+                });
+            });
+            
+            // Обработчики для клавиатуры
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowLeft') {
+                    leftArrow.click();
+                } else if (e.key === 'ArrowRight') {
+                    rightArrow.click();
+                }
+            });
+            
+            // Инициализация навигации
+            updateNavigation();
+            
+            // Отключение кастомного курсора на мобильных устройствах
+            if ('ontouchstart' in window || navigator.maxTouchPoints) {
+                document.body.style.cursor = 'auto';
+                if (cursor) cursor.style.display = 'none';
+                if (cursorFollower) cursorFollower.style.display = 'none';
+            }
         });
     </script>
 </body>
