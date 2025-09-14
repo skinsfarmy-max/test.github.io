@@ -3,26 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RedWave Music - Ваша музыкальная платформа</title>
+    <title>RedSound - Музыкальная платформа</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --primary-bg: #121212;
+            --primary-bg: #0a0a0a;
             --secondary-bg: #1a1a1a;
             --accent-color: #ff0038;
             --text-primary: #ffffff;
             --text-secondary: #b3b3b3;
             --card-bg: #242424;
-            --highlight: #ff2a4d;
-        }
-
-        .light-theme {
-            --primary-bg: #f5f5f5;
-            --secondary-bg: #e0e0e0;
-            --accent-color: #ff0038;
-            --text-primary: #121212;
-            --text-secondary: #4a4a4a;
-            --card-bg: #ffffff;
             --highlight: #ff2a4d;
         }
 
@@ -73,31 +63,11 @@
             -webkit-text-fill-color: transparent;
         }
 
-        .theme-switcher {
-            background: var(--card-bg);
-            border: none;
-            color: var(--text-primary);
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-weight: 500;
-        }
-
-        .theme-switcher:hover {
-            background: var(--accent-color);
-        }
-
-        .playlists-bar {
-            background-color: var(--secondary-bg);
-            padding: 0.8rem 2rem;
+        .playlists-nav {
             display: flex;
             gap: 1.5rem;
             overflow-x: auto;
-            white-space: nowrap;
-            border-bottom: 1px solid rgba(255, 0, 56, 0.2);
+            padding: 0.5rem 0;
         }
 
         .playlist-tab {
@@ -106,6 +76,7 @@
             border-radius: 20px;
             cursor: pointer;
             font-weight: 500;
+            white-space: nowrap;
         }
 
         .playlist-tab.active {
@@ -372,20 +343,16 @@
     <header>
         <div class="logo">
             <div class="logo-icon"><i class="fas fa-wave-square"></i></div>
-            <div class="logo-text">RedWave Music</div>
+            <div class="logo-text">RedSound</div>
         </div>
-        <button class="theme-switcher" id="themeSwitcher">
-            <i class="fas fa-moon"></i> Тёмная тема
-        </button>
+        <div class="playlists-nav">
+            <div class="playlist-tab active">Главный плейлист</div>
+            <div class="playlist-tab">Рок-хиты</div>
+            <div class="playlist-tab">Электроника</div>
+            <div class="playlist-tab">Хип-хоп</div>
+            <div class="playlist-tab">Мой микс</div>
+        </div>
     </header>
-
-    <div class="playlists-bar">
-        <div class="playlist-tab active">Главный плейлист</div>
-        <div class="playlist-tab">Рок-хиты</div>
-        <div class="playlist-tab">Электроника</div>
-        <div class="playlist-tab">Хип-хоп</div>
-        <div class="playlist-tab">Мой микс</div>
-    </div>
 
     <div class="main-content">
         <div class="player-section">
@@ -394,16 +361,16 @@
                     <i class="fas fa-music"></i>
                 </div>
                 <div class="track-info">
-                    <div class="track-title">Dark Red Symphony</div>
-                    <div class="track-artist">Crimson Shadows</div>
+                    <div class="track-title">Загрузите свой трек</div>
+                    <div class="track-artist">Имя исполнителя</div>
                 </div>
                 <div class="player-controls">
                     <div class="progress-container">
                         <div class="progress"></div>
                     </div>
                     <div class="time-info">
-                        <span>1:20</span>
-                        <span>4:30</span>
+                        <span>0:00</span>
+                        <span>0:00</span>
                     </div>
                     <div class="control-buttons">
                         <button class="control-btn"><i class="fas fa-random"></i></button>
@@ -421,18 +388,18 @@
 
             <div class="upload-section">
                 <h2 class="section-title"><i class="fas fa-cloud-upload-alt"></i> Загрузить трек</h2>
-                <form class="upload-form">
+                <form class="upload-form" id="uploadForm">
                     <div class="form-group">
                         <label class="form-label">Название трека</label>
-                        <input type="text" class="form-input" placeholder="Введите название">
+                        <input type="text" class="form-input" id="trackTitle" placeholder="Введите название" required>
                     </div>
                     <div class="form-group">
                         <label class="form-label">Исполнитель</label>
-                        <input type="text" class="form-input" placeholder="Введите имя исполнителя">
+                        <input type="text" class="form-input" id="trackArtist" placeholder="Введите имя исполнителя" required>
                     </div>
                     <div class="form-group">
                         <label class="form-label">Выберите файл (MP3)</label>
-                        <input type="file" class="form-input file-input" accept=".mp3">
+                        <input type="file" class="form-input file-input" id="trackFile" accept=".mp3" required>
                     </div>
                     <button type="submit" class="upload-btn">Загрузить трек</button>
                 </form>
@@ -441,156 +408,210 @@
 
         <div class="playlist-section">
             <h2 class="section-title"><i class="fas fa-list-ol"></i> Треки в плейлисте</h2>
-            <div class="tracks-list">
-                <div class="track-item active">
-                    <div class="track-number">1</div>
-                    <div class="track-item-info">
-                        <div class="track-item-title">Dark Red Symphony</div>
-                        <div class="track-item-artist">Crimson Shadows</div>
-                    </div>
-                    <div class="track-duration">4:30</div>
-                </div>
-                <div class="track-item">
-                    <div class="track-number">2</div>
-                    <div class="track-item-info">
-                        <div class="track-item-title">Midnight Pulse</div>
-                        <div class="track-item-artist">Scarlet Beats</div>
-                    </div>
-                    <div class="track-duration">3:45</div>
-                </div>
-                <div class="track-item">
-                    <div class="track-number">3</div>
-                    <div class="track-item-info">
-                        <div class="track-item-title">Crimson Echo</div>
-                        <div class="track-item-artist">Ruby Notes</div>
-                    </div>
-                    <div class="track-duration">5:12</div>
-                </div>
-                <div class="track-item">
-                    <div class="track-number">4</div>
-                    <div class="track-item-info">
-                        <div class="track-item-title">Bleeding Melody</div>
-                        <div class="track-item-artist">Bloodstone</div>
-                    </div>
-                    <div class="track-duration">3:20</div>
-                </div>
-                <div class="track-item">
-                    <div class="track-number">5</div>
-                    <div class="track-item-info">
-                        <div class="track-item-title">Scarlet Rhythm</div>
-                        <div class="track-item-artist">Vermilion</div>
-                    </div>
-                    <div class="track-duration">4:05</div>
-                </div>
-                <div class="track-item">
-                    <div class="track-number">6</div>
-                    <div class="track-item-info">
-                        <div class="track-item-title">Ruby Resonance</div>
-                        <div class="track-item-artist">Garnet Sound</div>
-                    </div>
-                    <div class="track-duration">6:10</div>
-                </div>
-                <div class="track-item">
-                    <div class="track-number">7</div>
-                    <div class="track-item-info">
-                        <div class="track-item-title">Blood Moon Sonata</div>
-                        <div class="track-item-artist">Maroon Five</div>
-                    </div>
-                    <div class="track-duration">3:55</div>
-                </div>
-                <div class="track-item">
-                    <div class="track-number">8</div>
-                    <div class="track-item-info">
-                        <div class="track-item-title">Crimson Tide</div>
-                        <div class="track-item-artist">Burgundy Waves</div>
-                    </div>
-                    <div class="track-duration">4:40</div>
-                </div>
-                <div class="track-item">
-                    <div class="track-number">9</div>
-                    <div class="track-item-info">
-                        <div class="track-item-title">Scarlet Sky</div>
-                        <div class="track-item-artist">Cardinal Chords</div>
-                    </div>
-                    <div class="track-duration">5:25</div>
-                </div>
-                <div class="track-item">
-                    <div class="track-number">10</div>
-                    <div class="track-item-info">
-                        <div class="track-item-title">Dark Red Symphony (Remix)</div>
-                        <div class="track-item-artist">Crimson Shadows ft. Ruby Notes</div>
-                    </div>
-                    <div class="track-duration">4:50</div>
-                </div>
+            <div class="tracks-list" id="tracksList">
+                <!-- Треки будут добавляться динамически -->
             </div>
         </div>
     </div>
 
     <footer>
-        <p>© 2023 RedWave Music - Платформа для обмена музыкой</p>
+        <p>© 2023 RedSound - Платформа для обмена музыкой</p>
         <p>Все треки принадлежат их правообладателям</p>
     </footer>
 
     <script>
-        // Переключение темы
-        const themeSwitcher = document.getElementById('themeSwitcher');
-        const icon = themeSwitcher.querySelector('i');
-        
-        themeSwitcher.addEventListener('click', () => {
-            document.body.classList.toggle('light-theme');
-            
-            if (document.body.classList.contains('light-theme')) {
-                themeSwitcher.innerHTML = '<i class="fas fa-sun"></i> Светлая тема';
-            } else {
-                themeSwitcher.innerHTML = '<i class="fas fa-moon"></i> Тёмная тема';
-            }
-        });
+        // Массив для хранения треков
+        let tracks = [];
+        let currentTrackIndex = 0;
+        let audioPlayer = new Audio();
+        let isPlaying = false;
 
-        // Воспроизведение музыки
-        const playBtn = document.querySelector('.play-btn');
-        const playIcon = playBtn.querySelector('i');
-        
-        playBtn.addEventListener('click', () => {
-            if (playIcon.classList.contains('fa-play')) {
-                playIcon.classList.remove('fa-play');
-                playIcon.classList.add('fa-pause');
-            } else {
-                playIcon.classList.remove('fa-pause');
-                playIcon.classList.add('fa-play');
+        // Инициализация при загрузке страницы
+        document.addEventListener('DOMContentLoaded', function() {
+            // Загрузка треков из localStorage
+            const savedTracks = localStorage.getItem('tracks');
+            if (savedTracks) {
+                tracks = JSON.parse(savedTracks);
+                renderTracks();
             }
-        });
 
-        // Выбор трека из плейлиста
-        const trackItems = document.querySelectorAll('.track-item');
-        
-        trackItems.forEach(item => {
-            item.addEventListener('click', () => {
-                // Убираем активный класс у всех треков
-                trackItems.forEach(track => track.classList.remove('active'));
-                // Добавляем активный класс к выбранному треку
-                item.classList.add('active');
-                
-                // Обновляем информацию о текущем треке
-                const title = item.querySelector('.track-item-title').textContent;
-                const artist = item.querySelector('.track-item-artist').textContent;
-                
-                document.querySelector('.track-title').textContent = title;
-                document.querySelector('.track-artist').textContent = artist;
-                
-                // Сбрасываем кнопку воспроизведения
-                playIcon.classList.remove('fa-pause');
-                playIcon.classList.add('fa-play');
+            // Обработка отправки формы
+            document.getElementById('uploadForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                uploadTrack();
             });
+
+            // Настройка обработчиков для элементов управления плеером
+            setupPlayerControls();
         });
 
-        // Обработка загрузки трека
-        const uploadForm = document.querySelector('.upload-form');
-        
-        uploadForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            alert('Трек успешно загружен! (в реальной реализации здесь будет загрузка на сервер)');
-            uploadForm.reset();
-        });
+        // Функция для отображения треков в плейлисте
+        function renderTracks() {
+            const tracksList = document.getElementById('tracksList');
+            tracksList.innerHTML = '';
+
+            tracks.forEach((track, index) => {
+                const trackItem = document.createElement('div');
+                trackItem.className = 'track-item' + (index === currentTrackIndex ? ' active' : '');
+                trackItem.innerHTML = `
+                    <div class="track-number">${index + 1}</div>
+                    <div class="track-item-info">
+                        <div class="track-item-title">${track.title}</div>
+                        <div class="track-item-artist">${track.artist}</div>
+                    </div>
+                    <div class="track-duration">0:00</div>
+                `;
+                trackItem.addEventListener('click', () => {
+                    playTrack(index);
+                });
+                tracksList.appendChild(trackItem);
+            });
+        }
+
+        // Функция загрузки трека
+        function uploadTrack() {
+            const title = document.getElementById('trackTitle').value;
+            const artist = document.getElementById('trackArtist').value;
+            const fileInput = document.getElementById('trackFile');
+            const file = fileInput.files[0];
+
+            if (!title || !artist || !file) {
+                alert('Пожалуйста, заполните все поля и выберите файл');
+                return;
+            }
+
+            // Создание объекта URL для выбранного файла
+            const trackUrl = URL.createObjectURL(file);
+
+            // Добавление трека в массив
+            const newTrack = {
+                title,
+                artist,
+                url: trackUrl,
+                // В реальном приложении здесь будет ссылка на GitHub репозиторий
+                // Например: url: `https://raw.githubusercontent.com/username/repo/main/music${tracks.length + 1}.mp3`
+            };
+
+            tracks.push(newTrack);
+            
+            // Сохранение в localStorage
+            localStorage.setItem('tracks', JSON.stringify(tracks));
+            
+            // Обновление отображения
+            renderTracks();
+            
+            // Сброс формы
+            document.getElementById('uploadForm').reset();
+            
+            alert('Трек успешно загружен!');
+        }
+
+        // Функция воспроизведения трека
+        function playTrack(index) {
+            if (index < 0 || index >= tracks.length) return;
+            
+            currentTrackIndex = index;
+            const track = tracks[index];
+            
+            // Обновление интерфейса
+            document.querySelector('.track-title').textContent = track.title;
+            document.querySelector('.track-artist').textContent = track.artist;
+            
+            // Установка активного трека в плейлисте
+            document.querySelectorAll('.track-item').forEach((item, i) => {
+                if (i === index) {
+                    item.classList.add('active');
+                } else {
+                    item.classList.remove('active');
+                }
+            });
+            
+            // Воспроизведение трека
+            audioPlayer.src = track.url;
+            audioPlayer.play();
+            isPlaying = true;
+            
+            // Обновление кнопки воспроизведения
+            document.querySelector('.play-btn i').classList.remove('fa-play');
+            document.querySelector('.play-btn i').classList.add('fa-pause');
+        }
+
+        // Настройка элементов управления плеером
+        function setupPlayerControls() {
+            const playBtn = document.querySelector('.play-btn');
+            const prevBtn = document.querySelector('.fa-step-backward').parentElement;
+            const nextBtn = document.querySelector('.fa-step-forward').parentElement;
+            
+            // Обработчик кнопки воспроизведения/паузы
+            playBtn.addEventListener('click', () => {
+                if (isPlaying) {
+                    audioPlayer.pause();
+                    playBtn.querySelector('i').classList.remove('fa-pause');
+                    playBtn.querySelector('i').classList.add('fa-play');
+                } else {
+                    if (tracks.length > 0 && !audioPlayer.src) {
+                        playTrack(0);
+                    } else {
+                        audioPlayer.play();
+                    }
+                    playBtn.querySelector('i').classList.remove('fa-play');
+                    playBtn.querySelector('i').classList.add('fa-pause');
+                }
+                isPlaying = !isPlaying;
+            });
+            
+            // Обработчик кнопки следующего трека
+            nextBtn.addEventListener('click', () => {
+                let nextIndex = (currentTrackIndex + 1) % tracks.length;
+                playTrack(nextIndex);
+            });
+            
+            // Обработчик кнопки предыдущего трека
+            prevBtn.addEventListener('click', () => {
+                let prevIndex = (currentTrackIndex - 1 + tracks.length) % tracks.length;
+                playTrack(prevIndex);
+            });
+            
+            // Обработчик изменения громкости
+            document.querySelector('.volume-slider').addEventListener('input', (e) => {
+                audioPlayer.volume = e.target.value / 100;
+            });
+            
+            // Обновление прогресса воспроизведения
+            audioPlayer.addEventListener('timeupdate', () => {
+                const progress = document.querySelector('.progress');
+                const currentTime = document.querySelector('.time-info span:first-child');
+                const duration = document.querySelector('.time-info span:last-child');
+                
+                const currentMinutes = Math.floor(audioPlayer.currentTime / 60);
+                const currentSeconds = Math.floor(audioPlayer.currentTime % 60);
+                currentTime.textContent = `${currentMinutes}:${currentSeconds < 10 ? '0' : ''}${currentSeconds}`;
+                
+                const durationMinutes = Math.floor(audioPlayer.duration / 60);
+                const durationSeconds = Math.floor(audioPlayer.duration % 60);
+                if (!isNaN(audioPlayer.duration)) {
+                    duration.textContent = `${durationMinutes}:${durationSeconds < 10 ? '0' : ''}${durationSeconds}`;
+                }
+                
+                const progressPercent = (audioPlayer.currentTime / audioPlayer.duration) * 100;
+                progress.style.width = `${progressPercent}%`;
+            });
+            
+            // Перемотка при клике на прогресс-бар
+            document.querySelector('.progress-container').addEventListener('click', (e) => {
+                const progressContainer = e.currentTarget;
+                const clickPosition = e.offsetX;
+                const containerWidth = progressContainer.offsetWidth;
+                const seekTime = (clickPosition / containerWidth) * audioPlayer.duration;
+                audioPlayer.currentTime = seekTime;
+            });
+            
+            // Автопереход к следующему треку
+            audioPlayer.addEventListener('ended', () => {
+                let nextIndex = (currentTrackIndex + 1) % tracks.length;
+                playTrack(nextIndex);
+            });
+        }
     </script>
 </body>
 </html>
