@@ -3,615 +3,114 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RedSound - Музыкальная платформа</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Космический пульсар</title>
     <style>
-        :root {
-            --primary-bg: #0a0a0a;
-            --secondary-bg: #1a1a1a;
-            --accent-color: #ff0038;
-            --text-primary: #ffffff;
-            --text-secondary: #b3b3b3;
-            --card-bg: #242424;
-            --highlight: #ff2a4d;
-        }
-
-        * {
+        body {
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            transition: background-color 0.3s, color 0.3s;
-        }
-
-        body {
-            background-color: var(--primary-bg);
-            color: var(--text-primary);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-
-        header {
-            background-color: var(--secondary-bg);
-            padding: 1rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .logo-icon {
-            color: var(--accent-color);
-            font-size: 2rem;
-        }
-
-        .logo-text {
-            font-size: 1.8rem;
-            font-weight: bold;
-            background: linear-gradient(45deg, var(--accent-color), #ff2a4d);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .playlists-nav {
-            display: flex;
-            gap: 1.5rem;
-            overflow-x: auto;
-            padding: 0.5rem 0;
-        }
-
-        .playlist-tab {
-            background-color: var(--card-bg);
-            padding: 0.5rem 1.2rem;
-            border-radius: 20px;
-            cursor: pointer;
-            font-weight: 500;
-            white-space: nowrap;
-        }
-
-        .playlist-tab.active {
-            background-color: var(--accent-color);
-        }
-
-        .playlist-tab:hover {
-            background-color: var(--highlight);
-        }
-
-        .main-content {
-            display: flex;
-            flex: 1;
-            padding: 2rem;
-            gap: 2rem;
-        }
-
-        .player-section {
-            flex: 2;
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-        }
-
-        .player-card {
-            background-color: var(--card-bg);
-            border-radius: 15px;
-            padding: 1.5rem;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
-        }
-
-        .now-playing {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            gap: 1rem;
-        }
-
-        .album-art {
-            width: 250px;
-            height: 250px;
-            border-radius: 10px;
-            background: linear-gradient(135deg, var(--accent-color), #990022);
+            overflow: hidden;
+            background: #000;
+            height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 4rem;
-            color: white;
-            margin-bottom: 1rem;
         }
 
-        .track-info {
-            margin-bottom: 1.5rem;
-        }
-
-        .track-title {
-            font-size: 1.5rem;
-            font-weight: bold;
-            margin-bottom: 0.5rem;
-        }
-
-        .track-artist {
-            color: var(--text-secondary);
-            font-size: 1.1rem;
-        }
-
-        .player-controls {
+        .space {
+            position: relative;
             width: 100%;
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        .progress-container {
-            width: 100%;
-            height: 6px;
-            background-color: rgba(255, 255, 255, 0.2);
-            border-radius: 3px;
-            cursor: pointer;
-        }
-
-        .progress {
             height: 100%;
-            background: linear-gradient(90deg, var(--accent-color), var(--highlight));
-            border-radius: 3px;
-            width: 30%;
         }
 
-        .time-info {
-            display: flex;
-            justify-content: space-between;
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-        }
-
-        .control-buttons {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 1.5rem;
-        }
-
-        .control-btn {
-            background: none;
-            border: none;
-            color: var(--text-primary);
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-
-        .play-btn {
-            background-color: var(--accent-color);
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 1.8rem;
-        }
-
-        .volume-control {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            margin-top: 1rem;
-        }
-
-        .volume-slider {
-            width: 100px;
-            accent-color: var(--accent-color);
-        }
-
-        .playlist-section {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-        }
-
-        .section-title {
-            font-size: 1.5rem;
-            font-weight: bold;
-            margin-bottom: 1rem;
-            color: var(--text-primary);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .tracks-list {
-            display: flex;
-            flex-direction: column;
-            gap: 0.8rem;
-        }
-
-        .track-item {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            padding: 0.8rem;
-            border-radius: 8px;
-            background-color: var(--card-bg);
-            cursor: pointer;
-        }
-
-        .track-item:hover {
-            background-color: rgba(255, 0, 56, 0.1);
-        }
-
-        .track-item.active {
-            background-color: rgba(255, 0, 56, 0.2);
-            border-left: 4px solid var(--accent-color);
-        }
-
-        .track-number {
-            color: var(--text-secondary);
+        .pulsar {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
             width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: radial-gradient(circle, #00ffff, #0088ff, #0000ff);
+            box-shadow: 0 0 40px #00ffff, 0 0 80px #0088ff;
+            animation: pulsate 2s infinite alternate, rotate 4s infinite linear;
         }
 
-        .track-item-info {
-            flex: 1;
+        .pulsar-beam {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 4px;
+            height: 300px;
+            background: linear-gradient(to top, transparent, #00ffff, #0088ff, transparent);
+            transform-origin: center bottom;
+            opacity: 0.7;
+            animation: beam 0.5s infinite alternate;
         }
 
-        .track-item-title {
-            font-weight: 500;
+        .star {
+            position: absolute;
+            background: #fff;
+            border-radius: 50%;
+            animation: twinkle 3s infinite alternate;
         }
 
-        .track-item-artist {
-            font-size: 0.9rem;
-            color: var(--text-secondary);
+        @keyframes pulsate {
+            0% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+            100% { transform: translate(-50%, -50%) scale(1.5); opacity: 0.8; }
         }
 
-        .track-duration {
-            color: var(--text-secondary);
+        @keyframes rotate {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
         }
 
-        .upload-section {
-            background-color: var(--card-bg);
-            border-radius: 15px;
-            padding: 1.5rem;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+        @keyframes beam {
+            0% { height: 200px; opacity: 0.3; }
+            100% { height: 400px; opacity: 0.7; }
         }
 
-        .upload-form {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        .form-group {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-        }
-
-        .form-label {
-            font-weight: 500;
-        }
-
-        .form-input {
-            padding: 0.8rem;
-            border-radius: 8px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            background-color: var(--secondary-bg);
-            color: var(--text-primary);
-        }
-
-        .file-input {
-            padding: 0.5rem;
-        }
-
-        .upload-btn {
-            background: linear-gradient(90deg, var(--accent-color), var(--highlight));
-            color: white;
-            border: none;
-            padding: 1rem;
-            border-radius: 8px;
-            font-weight: bold;
-            cursor: pointer;
-            margin-top: 1rem;
-        }
-
-        .upload-btn:hover {
-            opacity: 0.9;
-        }
-
-        footer {
-            background-color: var(--secondary-bg);
-            padding: 1.5rem 2rem;
-            text-align: center;
-            margin-top: auto;
-        }
-
-        @media (max-width: 900px) {
-            .main-content {
-                flex-direction: column;
-            }
+        @keyframes twinkle {
+            0% { opacity: 0.3; }
+            100% { opacity: 1; }
         }
     </style>
 </head>
 <body>
-    <header>
-        <div class="logo">
-            <div class="logo-icon"><i class="fas fa-wave-square"></i></div>
-            <div class="logo-text">RedSound</div>
-        </div>
-        <div class="playlists-nav">
-            <div class="playlist-tab active">Главный плейлист</div>
-            <div class="playlist-tab">Рок-хиты</div>
-            <div class="playlist-tab">Электроника</div>
-            <div class="playlist-tab">Хип-хоп</div>
-            <div class="playlist-tab">Мой микс</div>
-        </div>
-    </header>
-
-    <div class="main-content">
-        <div class="player-section">
-            <div class="player-card now-playing">
-                <div class="album-art">
-                    <i class="fas fa-music"></i>
-                </div>
-                <div class="track-info">
-                    <div class="track-title">Загрузите свой трек</div>
-                    <div class="track-artist">Имя исполнителя</div>
-                </div>
-                <div class="player-controls">
-                    <div class="progress-container">
-                        <div class="progress"></div>
-                    </div>
-                    <div class="time-info">
-                        <span>0:00</span>
-                        <span>0:00</span>
-                    </div>
-                    <div class="control-buttons">
-                        <button class="control-btn"><i class="fas fa-random"></i></button>
-                        <button class="control-btn"><i class="fas fa-step-backward"></i></button>
-                        <button class="control-btn play-btn"><i class="fas fa-play"></i></button>
-                        <button class="control-btn"><i class="fas fa-step-forward"></i></button>
-                        <button class="control-btn"><i class="fas fa-redo"></i></button>
-                    </div>
-                    <div class="volume-control">
-                        <i class="fas fa-volume-up"></i>
-                        <input type="range" class="volume-slider" min="0" max="100" value="80">
-                    </div>
-                </div>
-            </div>
-
-            <div class="upload-section">
-                <h2 class="section-title"><i class="fas fa-cloud-upload-alt"></i> Загрузить трек</h2>
-                <form class="upload-form" id="uploadForm">
-                    <div class="form-group">
-                        <label class="form-label">Название трека</label>
-                        <input type="text" class="form-input" id="trackTitle" placeholder="Введите название" required>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Исполнитель</label>
-                        <input type="text" class="form-input" id="trackArtist" placeholder="Введите имя исполнителя" required>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Выберите файл (MP3)</label>
-                        <input type="file" class="form-input file-input" id="trackFile" accept=".mp3" required>
-                    </div>
-                    <button type="submit" class="upload-btn">Загрузить трек</button>
-                </form>
-            </div>
-        </div>
-
-        <div class="playlist-section">
-            <h2 class="section-title"><i class="fas fa-list-ol"></i> Треки в плейлисте</h2>
-            <div class="tracks-list" id="tracksList">
-                <!-- Треки будут добавляться динамически -->
-            </div>
-        </div>
+    <div class="space" id="space">
+        <div class="pulsar"></div>
+        <div class="pulsar-beam"></div>
     </div>
 
-    <footer>
-        <p>© 2023 RedSound - Платформа для обмена музыкой</p>
-        <p>Все треки принадлежат их правообладателям</p>
-    </footer>
-
     <script>
-        // Массив для хранения треков
-        let tracks = [];
-        let currentTrackIndex = 0;
-        let audioPlayer = new Audio();
-        let isPlaying = false;
+        // Создаем звезды
+        const space = document.getElementById('space');
+        const starCount = 200;
 
-        // Инициализация при загрузке страницы
-        document.addEventListener('DOMContentLoaded', function() {
-            // Загрузка треков из localStorage
-            const savedTracks = localStorage.getItem('tracks');
-            if (savedTracks) {
-                tracks = JSON.parse(savedTracks);
-                renderTracks();
-            }
-
-            // Обработка отправки формы
-            document.getElementById('uploadForm').addEventListener('submit', function(e) {
-                e.preventDefault();
-                uploadTrack();
-            });
-
-            // Настройка обработчиков для элементов управления плеером
-            setupPlayerControls();
-        });
-
-        // Функция для отображения треков в плейлисте
-        function renderTracks() {
-            const tracksList = document.getElementById('tracksList');
-            tracksList.innerHTML = '';
-
-            tracks.forEach((track, index) => {
-                const trackItem = document.createElement('div');
-                trackItem.className = 'track-item' + (index === currentTrackIndex ? ' active' : '');
-                trackItem.innerHTML = `
-                    <div class="track-number">${index + 1}</div>
-                    <div class="track-item-info">
-                        <div class="track-item-title">${track.title}</div>
-                        <div class="track-item-artist">${track.artist}</div>
-                    </div>
-                    <div class="track-duration">0:00</div>
-                `;
-                trackItem.addEventListener('click', () => {
-                    playTrack(index);
-                });
-                tracksList.appendChild(trackItem);
-            });
+        for (let i = 0; i < starCount; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            
+            // Случайные параметры для звезд
+            const size = Math.random() * 3 + 1;
+            const left = Math.random() * 100;
+            const top = Math.random() * 100;
+            const delay = Math.random() * 5;
+            
+            star.style.width = size + 'px';
+            star.style.height = size + 'px';
+            star.style.left = left + 'vw';
+            star.style.top = top + 'vh';
+            star.style.animationDelay = delay + 's';
+            
+            space.appendChild(star);
         }
 
-        // Функция загрузки трека
-        function uploadTrack() {
-            const title = document.getElementById('trackTitle').value;
-            const artist = document.getElementById('trackArtist').value;
-            const fileInput = document.getElementById('trackFile');
-            const file = fileInput.files[0];
-
-            if (!title || !artist || !file) {
-                alert('Пожалуйста, заполните все поля и выберите файл');
-                return;
-            }
-
-            // Создание объекта URL для выбранного файла
-            const trackUrl = URL.createObjectURL(file);
-
-            // Добавление трека в массив
-            const newTrack = {
-                title,
-                artist,
-                url: trackUrl,
-                // В реальном приложении здесь будет ссылка на GitHub репозиторий
-                // Например: url: `https://raw.githubusercontent.com/username/repo/main/music${tracks.length + 1}.mp3`
-            };
-
-            tracks.push(newTrack);
-            
-            // Сохранение в localStorage
-            localStorage.setItem('tracks', JSON.stringify(tracks));
-            
-            // Обновление отображения
-            renderTracks();
-            
-            // Сброс формы
-            document.getElementById('uploadForm').reset();
-            
-            alert('Трек успешно загружен!');
-        }
-
-        // Функция воспроизведения трека
-        function playTrack(index) {
-            if (index < 0 || index >= tracks.length) return;
-            
-            currentTrackIndex = index;
-            const track = tracks[index];
-            
-            // Обновление интерфейса
-            document.querySelector('.track-title').textContent = track.title;
-            document.querySelector('.track-artist').textContent = track.artist;
-            
-            // Установка активного трека в плейлисте
-            document.querySelectorAll('.track-item').forEach((item, i) => {
-                if (i === index) {
-                    item.classList.add('active');
-                } else {
-                    item.classList.remove('active');
-                }
-            });
-            
-            // Воспроизведение трека
-            audioPlayer.src = track.url;
-            audioPlayer.play();
-            isPlaying = true;
-            
-            // Обновление кнопки воспроизведения
-            document.querySelector('.play-btn i').classList.remove('fa-play');
-            document.querySelector('.play-btn i').classList.add('fa-pause');
-        }
-
-        // Настройка элементов управления плеером
-        function setupPlayerControls() {
-            const playBtn = document.querySelector('.play-btn');
-            const prevBtn = document.querySelector('.fa-step-backward').parentElement;
-            const nextBtn = document.querySelector('.fa-step-forward').parentElement;
-            
-            // Обработчик кнопки воспроизведения/паузы
-            playBtn.addEventListener('click', () => {
-                if (isPlaying) {
-                    audioPlayer.pause();
-                    playBtn.querySelector('i').classList.remove('fa-pause');
-                    playBtn.querySelector('i').classList.add('fa-play');
-                } else {
-                    if (tracks.length > 0 && !audioPlayer.src) {
-                        playTrack(0);
-                    } else {
-                        audioPlayer.play();
-                    }
-                    playBtn.querySelector('i').classList.remove('fa-play');
-                    playBtn.querySelector('i').classList.add('fa-pause');
-                }
-                isPlaying = !isPlaying;
-            });
-            
-            // Обработчик кнопки следующего трека
-            nextBtn.addEventListener('click', () => {
-                let nextIndex = (currentTrackIndex + 1) % tracks.length;
-                playTrack(nextIndex);
-            });
-            
-            // Обработчик кнопки предыдущего трека
-            prevBtn.addEventListener('click', () => {
-                let prevIndex = (currentTrackIndex - 1 + tracks.length) % tracks.length;
-                playTrack(prevIndex);
-            });
-            
-            // Обработчик изменения громкости
-            document.querySelector('.volume-slider').addEventListener('input', (e) => {
-                audioPlayer.volume = e.target.value / 100;
-            });
-            
-            // Обновление прогресса воспроизведения
-            audioPlayer.addEventListener('timeupdate', () => {
-                const progress = document.querySelector('.progress');
-                const currentTime = document.querySelector('.time-info span:first-child');
-                const duration = document.querySelector('.time-info span:last-child');
-                
-                const currentMinutes = Math.floor(audioPlayer.currentTime / 60);
-                const currentSeconds = Math.floor(audioPlayer.currentTime % 60);
-                currentTime.textContent = `${currentMinutes}:${currentSeconds < 10 ? '0' : ''}${currentSeconds}`;
-                
-                const durationMinutes = Math.floor(audioPlayer.duration / 60);
-                const durationSeconds = Math.floor(audioPlayer.duration % 60);
-                if (!isNaN(audioPlayer.duration)) {
-                    duration.textContent = `${durationMinutes}:${durationSeconds < 10 ? '0' : ''}${durationSeconds}`;
-                }
-                
-                const progressPercent = (audioPlayer.currentTime / audioPlayer.duration) * 100;
-                progress.style.width = `${progressPercent}%`;
-            });
-            
-            // Перемотка при клике на прогресс-бар
-            document.querySelector('.progress-container').addEventListener('click', (e) => {
-                const progressContainer = e.currentTarget;
-                const clickPosition = e.offsetX;
-                const containerWidth = progressContainer.offsetWidth;
-                const seekTime = (clickPosition / containerWidth) * audioPlayer.duration;
-                audioPlayer.currentTime = seekTime;
-            });
-            
-            // Автопереход к следующему треку
-            audioPlayer.addEventListener('ended', () => {
-                let nextIndex = (currentTrackIndex + 1) % tracks.length;
-                playTrack(nextIndex);
-            });
-        }
+        // Анимируем луч пульсара
+        const beam = document.querySelector('.pulsar-beam');
+        setInterval(() => {
+            const rotation = Math.floor(Math.random() * 360);
+            beam.style.transform = `translate(-50%, -50%) rotate(${rotation}deg)`;
+        }, 4000);
     </script>
 </body>
 </html>
