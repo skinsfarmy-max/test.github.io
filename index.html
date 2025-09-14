@@ -3,8 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Пульсар в Глубоком Космосе</title>
+    <title>Innovate Digital - Креативные решения</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #06b6d4;
+            --dark: #1e293b;
+            --light: #f8fafc;
+            --gray: #64748b;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --error: #ef4444;
+        }
+        
         * {
             margin: 0;
             padding: 0;
@@ -12,660 +26,966 @@
         }
         
         body {
-            overflow: hidden;
-            background: #000;
-            height: 100vh;
-            font-family: 'Arial', sans-serif;
-            perspective: 1000px;
+            font-family: 'Raleway', sans-serif;
+            color: var(--dark);
+            background-color: var(--light);
+            line-height: 1.6;
+            overflow-x: hidden;
         }
         
-        .universe {
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        /* Header & Navigation */
+        header {
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo i {
+            margin-right: 0.5rem;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 2rem;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s;
             position: relative;
+        }
+        
+        nav ul li a:hover {
+            color: var(--primary);
+        }
+        
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary);
+            transition: width 0.3s;
+        }
+        
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+        
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 8rem 0 5rem;
+            background: linear-gradient(135deg, #f0f4ff 0%, #e6f7ff 100%);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--dark);
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: var(--gray);
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        /* Features Section */
+        .features {
+            padding: 5rem 0;
+            background-color: white;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--dark);
+        }
+        
+        .section-title p {
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .feature-card {
+            background-color: var(--light);
+            border-radius: 10px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+        
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        /* Portfolio Section */
+        .portfolio {
+            padding: 5rem 0;
+            background-color: #f8fafc;
+        }
+        
+        .portfolio-filters {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .filter-btn {
+            padding: 0.5rem 1.5rem;
+            margin: 0.5rem;
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .filter-btn.active, .filter-btn:hover {
+            background-color: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+        
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .portfolio-item {
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+            height: 250px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .portfolio-img {
             width: 100%;
             height: 100%;
-            transform-style: preserve-3d;
+            object-fit: cover;
+            transition: transform 0.5s;
         }
         
-        /* Пульсар */
-        .pulsar {
+        .portfolio-overlay {
             position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 100;
-        }
-        
-        .pulsar-core {
-            width: 35px;
-            height: 35px;
-            border-radius: 50%;
-            background: radial-gradient(circle, #ffffff, #00ffff, #0088ff, #0000ff);
-            box-shadow: 
-                0 0 30px #00ffff,
-                0 0 60px #0088ff,
-                0 0 90px #0000ff;
-            animation: pulsate 1.8s infinite alternate ease-in-out;
-        }
-        
-        .pulsar-ray {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 6px;
-            height: 0;
-            background: linear-gradient(to top, transparent, #00ffff, #0088ff, transparent);
-            transform-origin: center bottom;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(99, 102, 241, 0.8);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             opacity: 0;
-            animation: ray-grow 1.2s infinite alternate;
+            transition: opacity 0.5s;
+            padding: 2rem;
+            text-align: center;
+            color: white;
         }
         
-        /* Планеты */
-        .planet {
-            position: absolute;
+        .portfolio-item:hover .portfolio-overlay {
+            opacity: 1;
+        }
+        
+        .portfolio-item:hover .portfolio-img {
+            transform: scale(1.1);
+        }
+        
+        /* Testimonials */
+        .testimonials {
+            padding: 5rem 0;
+            background-color: white;
+        }
+        
+        .testimonials-container {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        .testimonial {
+            text-align: center;
+            padding: 2rem;
+            display: none;
+        }
+        
+        .testimonial.active {
+            display: block;
+            animation: fadeIn 1s;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .testimonial-img {
+            width: 100px;
+            height: 100px;
             border-radius: 50%;
-            transform-style: preserve-3d;
-            animation-timing-function: linear;
-            animation-iteration-count: infinite;
-            box-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
+            object-fit: cover;
+            margin: 0 auto 1rem;
+            border: 5px solid var(--light);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
         
-        /* Разные планеты */
-        .planet1 {
-            width: 40px;
-            height: 40px;
-            background: radial-gradient(circle at 30% 30%, #ff6b6b, #c44569, #786fa6);
-            top: 20%;
-            left: 20%;
-            animation: orbit1 40s infinite linear;
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
         }
         
-        .planet2 {
-            width: 60px;
-            height: 60px;
-            background: radial-gradient(circle at 40% 20%, #f5cd79, #e15f41, #c44569);
-            top: 70%;
-            left: 80%;
-            animation: orbit2 60s infinite linear;
+        .testimonial-author {
+            font-weight: 600;
+            color: var(--primary);
         }
         
-        .planet3 {
-            width: 25px;
-            height: 25px;
-            background: radial-gradient(circle at 20% 50%, #778beb, #546de5, #2d46b9);
-            top: 40%;
-            left: 75%;
-            animation: orbit3 30s infinite linear;
+        .testimonial-nav {
+            display: flex;
+            justify-content: center;
+            margin-top: 2rem;
         }
         
-        .planet4 {
+        .testimonial-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: #ddd;
+            margin: 0 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .testimonial-dot.active {
+            background-color: var(--primary);
+        }
+        
+        /* Contact Section */
+        .contact {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, #f0f4ff 0%, #e6f7ff 100%);
+        }
+        
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+        }
+        
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .contact-icon {
             width: 50px;
             height: 50px;
-            background: radial-gradient(circle at 60% 30%, #f3a683, #ea8685, #e77a67);
-            top: 65%;
-            left: 15%;
-            animation: orbit4 50s infinite linear;
-        }
-        
-        .planet5 {
-            width: 35px;
-            height: 35px;
-            background: radial-gradient(circle at 40% 40%, #cf6a87, #f8a5c2, #786fa6);
-            top: 25%;
-            left: 65%;
-            animation: orbit5 45s infinite linear;
-        }
-        
-        /* Спутники планет */
-        .moon {
-            position: absolute;
+            background-color: var(--primary);
             border-radius: 50%;
-            background: #ccc;
-            width: 8px;
-            height: 8px;
-            animation: moon-orbit 10s infinite linear;
-        }
-        
-        /* Астероиды */
-        .asteroid {
-            position: absolute;
-            background: #888;
-            border-radius: 30%;
-            width: 5px;
-            height: 5px;
-            animation: asteroid-move 20s infinite linear;
-        }
-        
-        /* Звезды */
-        .star {
-            position: absolute;
-            background: #fff;
-            border-radius: 50%;
-            animation: twinkle 4s infinite alternate;
-        }
-        
-        /* Туманности */
-        .nebula {
-            position: absolute;
-            border-radius: 50%;
-            opacity: 0.1;
-            filter: blur(40px);
-            pointer-events: none;
-        }
-        
-        .nebula1 {
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, #ff6b6b, #786fa6, transparent 70%);
-            top: 10%;
-            left: 10%;
-            animation: nebula-pulse 30s infinite alternate;
-        }
-        
-        .nebula2 {
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, #778beb, #546de5, transparent 70%);
-            bottom: 5%;
-            right: 15%;
-            animation: nebula-pulse 40s infinite alternate-reverse;
-        }
-        
-        /* Сверхновая */
-        .supernova {
-            position: absolute;
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background: #fff;
-            opacity: 0;
-            animation: supernova-explode 15s infinite;
-        }
-        
-        /* Комета */
-        .comet {
-            position: absolute;
-            width: 5px;
-            height: 5px;
-            background: #fff;
-            border-radius: 50%;
-            opacity: 0;
-            animation: comet-flight 25s infinite;
-        }
-        
-        /* Черная дыра */
-        .black-hole {
-            position: absolute;
-            width: 70px;
-            height: 70px;
-            border-radius: 50%;
-            background: radial-gradient(circle, #000, #222, #000);
-            box-shadow: 0 0 30px rgba(100, 100, 255, 0.3);
-            top: 80%;
-            left: 30%;
-            animation: black-hole-pulse 10s infinite alternate;
-        }
-        
-        .accretion-disk {
-            position: absolute;
-            width: 120px;
-            height: 30px;
-            border-radius: 50%;
-            background: linear-gradient(to right, transparent, #ff3366, #ff6633, transparent);
-            opacity: 0.6;
-            top: 80%;
-            left: 30%;
-            transform: translate(-50%, -50%) rotateX(80deg);
-            animation: disk-rotate 8s infinite linear;
-        }
-        
-        /* Галактика */
-        .galaxy {
-            position: absolute;
-            width: 300px;
-            height: 300px;
-            border-radius: 50%;
-            background: radial-gradient(ellipse, transparent 40%, rgba(255, 255, 255, 0.05) 100%);
-            top: 15%;
-            right: 10%;
-            transform: rotateX(70deg);
-            animation: galaxy-rotate 200s infinite linear;
-        }
-        
-        /* Контролы */
-        .controls {
-            position: fixed;
-            bottom: 20px;
-            left: 20px;
-            z-index: 1000;
-            background: rgba(0, 0, 0, 0.7);
-            padding: 15px;
-            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             color: white;
-            font-size: 14px;
-            max-width: 300px;
+            font-size: 1.2rem;
+            margin-right: 1rem;
         }
         
-        .controls h3 {
-            margin-bottom: 10px;
-            color: #00ffff;
+        .contact-form {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
         }
         
-        .control-group {
-            margin-bottom: 10px;
+        .form-group {
+            margin-bottom: 1.5rem;
         }
         
-        .control-group label {
+        .form-label {
             display: block;
-            margin-bottom: 5px;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
         }
         
-        .control-group input {
+        .form-input {
             width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: 'Raleway', sans-serif;
+            font-size: 1rem;
         }
         
-        /* Анимации */
-        @keyframes pulsate {
-            0% { transform: translate(-50%, -50%) scale(1); }
-            100% { transform: translate(-50%, -50%) scale(1.4); }
+        textarea.form-input {
+            min-height: 150px;
+            resize: vertical;
         }
         
-        @keyframes ray-grow {
-            0% { height: 100px; opacity: 0.3; }
-            50% { height: 400px; opacity: 0.7; }
-            100% { height: 100px; opacity: 0.3; }
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 3rem 0 1rem;
         }
         
-        @keyframes twinkle {
-            0% { opacity: 0.3; }
-            100% { opacity: 1; }
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
         }
         
-        @keyframes orbit1 {
-            0% { transform: rotate(0deg) translateX(150px) rotate(0deg); }
-            100% { transform: rotate(360deg) translateX(150px) rotate(-360deg); }
+        .footer-logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 1rem;
+            display: inline-block;
         }
         
-        @keyframes orbit2 {
-            0% { transform: rotate(0deg) translateX(200px) rotate(0deg); }
-            100% { transform: rotate(360deg) translateX(200px) rotate(-360deg); }
+        .footer-social {
+            display: flex;
+            margin-top: 1.5rem;
         }
         
-        @keyframes orbit3 {
-            0% { transform: rotate(0deg) translateX(100px) rotate(0deg); }
-            100% { transform: rotate(360deg) translateX(100px) rotate(-360deg); }
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 1rem;
+            transition: background-color 0.3s;
         }
         
-        @keyframes orbit4 {
-            0% { transform: rotate(0deg) translateX(180px) rotate(0deg); }
-            100% { transform: rotate(360deg) translateX(180px) rotate(-360deg); }
+        .social-icon:hover {
+            background-color: var(--primary);
         }
         
-        @keyframes orbit5 {
-            0% { transform: rotate(0deg) translateX(120px) rotate(0deg); }
-            100% { transform: rotate(360deg) translateX(120px) rotate(-360deg); }
+        .footer-links h3 {
+            color: white;
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
         }
         
-        @keyframes moon-orbit {
-            0% { transform: rotate(0deg) translateX(15px) rotate(0deg); }
-            100% { transform: rotate(360deg) translateX(15px) rotate(-360deg); }
+        .footer-links ul {
+            list-style: none;
         }
         
-        @keyframes asteroid-move {
-            0% { transform: translate(0, 0) rotate(0deg); opacity: 0; }
-            10% { opacity: 1; }
-            90% { opacity: 1; }
-            100% { transform: translate(100vw, 100vh) rotate(360deg); opacity: 0; }
+        .footer-links ul li {
+            margin-bottom: 0.8rem;
         }
         
-        @keyframes nebula-pulse {
-            0% { opacity: 0.05; transform: scale(1); }
-            100% { opacity: 0.15; transform: scale(1.2); }
+        .footer-links ul li a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s;
         }
         
-        @keyframes supernova-explode {
-            0% { opacity: 0; transform: scale(1); box-shadow: 0 0 0 rgba(255, 255, 255, 0); }
-            5% { opacity: 1; }
-            10% { transform: scale(30); box-shadow: 0 0 50px rgba(255, 255, 255, 0.8); opacity: 0.8; }
-            15% { transform: scale(50); opacity: 0; box-shadow: 0 0 100px rgba(255, 255, 255, 0); }
-            100% { opacity: 0; }
+        .footer-links ul li a:hover {
+            color: var(--primary);
         }
         
-        @keyframes comet-flight {
-            0% { transform: translate(-100px, -100px); opacity: 0; }
-            10% { opacity: 1; }
-            20% { transform: translate(100px, 100px); opacity: 0.8; }
-            30% { opacity: 0; }
-            100% { transform: translate(200px, 200px); opacity: 0; }
+        .footer-newsletter p {
+            margin-bottom: 1.5rem;
+            color: #ddd;
         }
         
-        @keyframes black-hole-pulse {
-            0% { box-shadow: 0 0 20px rgba(100, 100, 255, 0.3); }
-            100% { box-shadow: 0 0 40px rgba(100, 100, 255, 0.6); }
+        .newsletter-form {
+            display: flex;
         }
         
-        @keyframes disk-rotate {
-            0% { transform: translate(-50%, -50%) rotateX(80deg) rotate(0deg); }
-            100% { transform: translate(-50%, -50%) rotateX(80deg) rotate(360deg); }
+        .newsletter-input {
+            flex: 1;
+            padding: 0.8rem 1rem;
+            border: none;
+            border-radius: 5px 0 0 5px;
+            font-family: 'Raleway', sans-serif;
         }
         
-        @keyframes galaxy-rotate {
-            0% { transform: rotateX(70deg) rotate(0deg); }
-            100% { transform: rotateX(70deg) rotate(360deg); }
+        .newsletter-btn {
+            padding: 0 1.2rem;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 0 5px 5px 0;
+            cursor: pointer;
         }
         
-        /* Адаптивность */
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #ddd;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Styles */
         @media (max-width: 768px) {
-            .controls {
-                bottom: 10px;
-                left: 10px;
-                right: 10px;
-                max-width: none;
+            .menu-toggle {
+                display: block;
+            }
+            
+            nav {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 80%;
+                height: calc(100vh - 70px);
+                background-color: white;
+                flex-direction: column;
+                transition: left 0.3s;
+                box-shadow: 5px 0 15px rgba(0, 0, 0, 0.1);
+            }
+            
+            nav.active {
+                left: 0;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                padding: 2rem;
+            }
+            
+            nav ul li {
+                margin: 1rem 0;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
             }
         }
     </style>
 </head>
 <body>
-    <div class="universe" id="universe">
-        <div class="pulsar">
-            <div class="pulsar-core"></div>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <a href="#" class="logo">
+                <i class="fas fa-rocket"></i> Innovate
+            </a>
+            
+            <div class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </div>
+            
+            <nav id="nav">
+                <ul>
+                    <li><a href="#home">Главная</a></li>
+                    <li><a href="#features">Возможности</a></li>
+                    <li><a href="#portfolio">Портфолио</a></li>
+                    <li><a href="#testimonials">Отзывы</a></li>
+                    <li><a href="#contact">Контакты</a></li>
+                </ul>
+            </nav>
         </div>
-        
-        <!-- Туманности -->
-        <div class="nebula nebula1"></div>
-        <div class="nebula nebula2"></div>
-        
-        <!-- Планеты -->
-        <div class="planet planet1">
-            <div class="moon"></div>
-        </div>
-        <div class="planet planet2">
-            <div class="moon"></div>
-        </div>
-        <div class="planet planet3">
-            <div class="moon"></div>
-        </div>
-        <div class="planet planet4">
-            <div class="moon"></div>
-        </div>
-        <div class="planet planet5">
-            <div class="moon"></div>
-        </div>
-        
-        <!-- Черная дыра -->
-        <div class="black-hole"></div>
-        <div class="accretion-disk"></div>
-        
-        <!-- Галактика -->
-        <div class="galaxy"></div>
-    </div>
+    </header>
 
-    <div class="controls">
-        <h3>Управление космосом</h3>
-        
-        <div class="control-group">
-            <label for="speedControl">Скорость анимации: <span id="speedValue">1.0</span>x</label>
-            <input type="range" id="speedControl" min="0.1" max="3" step="0.1" value="1">
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container hero-content">
+            <h1>Создаём цифровой опыт будущего</h1>
+            <p>Мы помогаем брендам трансформировать их цифровое присутствие с помощью инновационных решений, которые действительно работают.</p>
+            <div class="hero-buttons">
+                <a href="#contact" class="btn">Начать проект</a>
+                <a href="#features" class="btn btn-outline">Узнать больше</a>
+            </div>
         </div>
-        
-        <div class="control-group">
-            <label for="starDensity">Плотность звезд: <span id="densityValue">100</span>%</label>
-            <input type="range" id="starDensity" min="20" max="200" step="10" value="100">
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>Наши возможности</h2>
+                <p>Мы предлагаем полный спектр услуг для цифрового преобразования вашего бизнеса</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-paint-brush"></i>
+                    </div>
+                    <h3>Дизайн интерфейсов</h3>
+                    <p>Создаем интуитивно понятные и эстетичные интерфейсы, которые нравятся пользователям.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3>Веб-разработка</h3>
+                    <p>Разрабатываем быстрые, безопасные и адаптивные веб-приложения современного уровня.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Мобильные приложения</h3>
+                    <p>Создаем кроссплатформенные мобильные приложения с превосходным пользовательским опытом.</p>
+                </div>
+            </div>
         </div>
-        
-        <div class="control-group">
-            <button id="toggleAnimations">Приостановить анимации</button>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section class="portfolio" id="portfolio">
+        <div class="container">
+            <div class="section-title">
+                <h2>Наши работы</h2>
+                <p>Посмотрите примеры наших последних проектов и кейсов</p>
+            </div>
+            
+            <div class="portfolio-filters">
+                <button class="filter-btn active" data-filter="all">Все</button>
+                <button class="filter-btn" data-filter="web">Веб-сайты</button>
+                <button class="filter-btn" data-filter="app">Приложения</button>
+                <button class="filter-btn" data-filter="design">Дизайн</button>
+            </div>
+            
+            <div class="portfolio-grid">
+                <div class="portfolio-item" data-category="web">
+                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Веб-проект" class="portfolio-img">
+                    <div class="portfolio-overlay">
+                        <h3>Корпоративный сайт</h3>
+                        <p>Современный адаптивный сайт для технологической компании</p>
+                        <a href="#" class="btn btn-outline">Подробнее</a>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item" data-category="app">
+                    <img src="https://images.unsplash.com/photo-1547658719-da2b51169166?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Мобильное приложение" class="portfolio-img">
+                    <div class="portfolio-overlay">
+                        <h3>Фитнес приложение</h3>
+                        <p>Трекер активности и питания для iOS и Android</p>
+                        <a href="#" class="btn btn-outline">Подробнее</a>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item" data-category="design">
+                    <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Дизайн" class="portfolio-img">
+                    <div class="portfolio-overlay">
+                        <h3>Брендбук</h3>
+                        <p>Разработка айдентики для стартапа</p>
+                        <a href="#" class="btn btn-outline">Подробнее</a>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item" data-category="web">
+                    <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Интернет-магазин" class="portfolio-img">
+                    <div class="portfolio-overlay">
+                        <h3>Интернет-магазин</h3>
+                        <p>Электронная коммерция с интегрированной CRM</p>
+                        <a href="#" class="btn btn-outline">Подробнее</a>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item" data-category="app">
+                    <img src="https://images.unsplash.com/photo-1581276879432-15e50529f34b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Приложение" class="portfolio-img">
+                    <div class="portfolio-overlay">
+                        <h3>Банковское приложение</h3>
+                        <p>Мобильный банкинг с биометрической аутентификацией</p>
+                        <a href="#" class="btn btn-outline">Подробнее</a>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item" data-category="design">
+                    <img src="https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Дизайн" class="portfolio-img">
+                    <div class="portfolio-overlay">
+                        <h3>UI/UX дизайн</h3>
+                        <p>Редизайн пользовательского интерфейса для SaaS платформы</p>
+                        <a href="#" class="btn btn-outline">Подробнее</a>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <div class="section-title">
+                <h2>Что говорят клиенты</h2>
+                <p>Отзывы наших довольных партнеров и клиентов</p>
+            </div>
+            
+            <div class="testimonials-container">
+                <div class="testimonial active">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Client" class="testimonial-img">
+                    <p class="testimonial-text">"Команда Innovate превзошла все наши ожидания. Веб-сайт, который они разработали, не только прекрасно выглядит, но и привлек на 40% больше клиентов за первые три месяца."</p>
+                    <p class="testimonial-author">Алексей Петров, CEO TechCompany</p>
+                </div>
+                
+                <div class="testimonial">
+                    <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Client" class="testimonial-img">
+                    <p class="testimonial-text">"Мобильное приложение, разработанное Innovate, получилось именно таким, каким мы его представляли. Процесс разработки был прозрачным и collaborative."</p>
+                    <p class="testimonial-author">Мария Иванова, Founder Startup</p>
+                </div>
+                
+                <div class="testimonial">
+                    <img src="https://images.unsplash.com/photo-1552058544-f2b08422138a?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Client" class="testimonial-img">
+                    <p class="testimonial-text">"Мы сотрудничаем с Innovate уже более трех лет. За это время они помогли нам реализовать множество digital-проектов, каждый из которых был выполнен безупречно."</p>
+                    <p class="testimonial-author">Дмитрий Смирнов, Marketing Director</p>
+                </div>
+                
+                <div class="testimonial-nav">
+                    <div class="testimonial-dot active" data-index="0"></div>
+                    <div class="testimonial-dot" data-index="1"></div>
+                    <div class="testimonial-dot" data-index="2"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Свяжитесь с нами</h2>
+                <p>Готовы начать свой проект? Напишите нам!</p>
+            </div>
+            
+            <div class="contact-container">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div>
+                            <h3>Адрес</h3>
+                            <p>ул. Примерная, 123, Москва, Россия</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div>
+                            <h3>Телефон</h3>
+                            <p>+7 (495) 123-45-67</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div>
+                            <h3>Email</h3>
+                            <p>info@innovate.ru</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name" class="form-label">Ваше имя</label>
+                            <input type="text" id="name" class="form-input" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" id="email" class="form-input" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message" class="form-label">Сообщение</label>
+                            <textarea id="message" class="form-input" required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn">Отправить сообщение</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-about">
+                    <a href="#" class="footer-logo">
+                        <i class="fas fa-rocket"></i> Innovate
+                    </a>
+                    <p>Мы создаем цифровые продукты, которые помогают бизнесу расти и развиваться в современном мире.</p>
+                    <div class="footer-social">
+                        <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Ссылки</h3>
+                    <ul>
+                        <li><a href="#home">Главная</a></li>
+                        <li><a href="#features">Возможности</a></li>
+                        <li><a href="#portfolio">Портфолио</a></li>
+                        <li><a href="#testimonials">Отзывы</a></li>
+                        <li><a href="#contact">Контакты</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Услуги</h3>
+                    <ul>
+                        <li><a href="#">Веб-разработка</a></li>
+                        <li><a href="#">Мобильные приложения</a></li>
+                        <li><a href="#">UI/UX дизайн</a></li>
+                        <li><a href="#">Брендинг</a></li>
+                        <li><a href="#">Digital-стратегия</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-newsletter">
+                    <h3>Новостная рассылка</h3>
+                    <p>Подпишитесь на нашу рассылку, чтобы получать новости и акции.</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Ваш email" class="newsletter-input" required>
+                        <button type="submit" class="newsletter-btn"><i class="fas fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2023 Innovate. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
 
     <script>
-        // Создаем элементы вселенной
-        const universe = document.getElementById('universe');
+        // Mobile Menu Toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const nav = document.getElementById('nav');
         
-        // 1. Создаем звезды
-        function createStars(density = 1) {
-            // Удаляем существующие звезды
-            document.querySelectorAll('.star').forEach(star => star.remove());
-            
-            const starCount = Math.floor(300 * density);
-            
-            for (let i = 0; i < starCount; i++) {
-                const star = document.createElement('div');
-                star.className = 'star';
-                
-                // Случайные параметры для звезд
-                const size = Math.random() * 3;
-                const left = Math.random() * 100;
-                const top = Math.random() * 100;
-                const delay = Math.random() * 5;
-                const brightness = Math.random() * 0.8 + 0.2;
-                
-                star.style.width = size + 'px';
-                star.style.height = size + 'px';
-                star.style.left = left + 'vw';
-                star.style.top = top + 'vh';
-                star.style.animationDelay = delay + 's';
-                star.style.opacity = brightness;
-                
-                universe.appendChild(star);
-            }
-        }
+        menuToggle.addEventListener('click', () => {
+            nav.classList.toggle('active');
+            menuToggle.querySelector('i').classList.toggle('fa-bars');
+            menuToggle.querySelector('i').classList.toggle('fa-times');
+        });
         
-        // 2. Создаем лучи пульсара
-        function createPulsarRays() {
-            const rayCount = 12;
-            
-            for (let i = 0; i < rayCount; i++) {
-                const ray = document.createElement('div');
-                ray.className = 'pulsar-ray';
-                ray.style.transform = `translate(-50%, -50%) rotate(${i * (360 / rayCount)}deg)`;
-                ray.style.animationDelay = `${(i / rayCount) * 0.8}s`;
-                universe.appendChild(ray);
-            }
-        }
+        // Portfolio Filter
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const portfolioItems = document.querySelectorAll('.portfolio-item');
         
-        // 3. Создаем астероиды
-        function createAsteroids(count = 20) {
-            for (let i = 0; i < count; i++) {
-                const asteroid = document.createElement('div');
-                asteroid.className = 'asteroid';
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons
+                filterButtons.forEach(btn => btn.classList.remove('active'));
                 
-                const left = Math.random() * 100;
-                const top = Math.random() * 100;
-                const delay = Math.random() * 20;
-                const size = Math.random() * 3 + 2;
+                // Add active class to clicked button
+                button.classList.add('active');
                 
-                asteroid.style.width = size + 'px';
-                asteroid.style.height = size + 'px';
-                asteroid.style.left = left + 'vw';
-                asteroid.style.top = top + 'vh';
-                asteroid.style.animationDelay = delay + 's';
+                // Get filter value
+                const filterValue = button.getAttribute('data-filter');
                 
-                universe.appendChild(asteroid);
-            }
-        }
-        
-        // 4. Создаем сверхновые
-        function createSupernovas(count = 3) {
-            for (let i = 0; i < count; i++) {
-                const supernova = document.createElement('div');
-                supernova.className = 'supernova';
-                
-                const left = Math.random() * 80 + 10;
-                const top = Math.random() * 80 + 10;
-                const delay = Math.random() * 15;
-                
-                supernova.style.left = left + 'vw';
-                supernova.style.top = top + 'vh';
-                supernova.style.animationDelay = delay + 's';
-                
-                universe.appendChild(supernova);
-            }
-        }
-        
-        // 5. Создаем кометы
-        function createComets(count = 5) {
-            for (let i = 0; i < count; i++) {
-                const comet = document.createElement('div');
-                comet.className = 'comet';
-                
-                const left = Math.random() * 20;
-                const top = Math.random() * 20;
-                const delay = Math.random() * 25;
-                
-                comet.style.left = left + 'vw';
-                comet.style.top = top + 'vh';
-                comet.style.animationDelay = delay + 's';
-                
-                universe.appendChild(comet);
-            }
-        }
-        
-        // 6. Управление скоростью анимации
-        function setupAnimationControls() {
-            const speedControl = document.getElementById('speedControl');
-            const speedValue = document.getElementById('speedValue');
-            const densityControl = document.getElementById('starDensity');
-            const densityValue = document.getElementById('densityValue');
-            const toggleButton = document.getElementById('toggleAnimations');
-            
-            let animationsRunning = true;
-            
-            speedControl.addEventListener('input', function() {
-                const speed = parseFloat(this.value);
-                speedValue.textContent = speed.toFixed(1);
-                document.documentElement.style.setProperty('--animation-speed', speed);
-                
-                // Изменяем скорость всех анимаций
-                document.querySelectorAll('*').forEach(el => {
-                    if (el.style.animationDuration) {
-                        const originalDuration = parseFloat(el.dataset.originalDuration || getComputedStyle(el).animationDuration);
-                        el.style.animationDuration = `${originalDuration / speed}s`;
+                // Filter portfolio items
+                portfolioItems.forEach(item => {
+                    if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
                     }
                 });
-            });
-            
-            densityControl.addEventListener('input', function() {
-                const density = parseInt(this.value);
-                densityValue.textContent = density;
-                createStars(density / 100);
-            });
-            
-            toggleButton.addEventListener('click', function() {
-                animationsRunning = !animationsRunning;
-                
-                document.querySelectorAll('*').forEach(el => {
-                    if (el.style.animationPlayState) {
-                        el.style.animationPlayState = animationsRunning ? 'running' : 'paused';
-                    }
-                });
-                
-                this.textContent = animationsRunning ? 'Приостановить анимации' : 'Возобновить анимации';
-            });
-        }
-        
-        // 7. Сохраняем оригинальную длительность анимаций
-        function preserveAnimationDurations() {
-            document.querySelectorAll('*').forEach(el => {
-                const style = getComputedStyle(el);
-                if (style.animationDuration && style.animationDuration !== '0s') {
-                    el.dataset.originalDuration = parseFloat(style.animationDuration);
-                }
-            });
-        }
-        
-        // 8. Добавляем эффект параллакса при движении мыши
-        function setupParallaxEffect() {
-            document.addEventListener('mousemove', function(e) {
-                const x = (e.clientX / window.innerWidth - 0.5) * 20;
-                const y = (e.clientY / window.innerHeight - 0.5) * 20;
-                
-                universe.style.transform = `translateZ(-1000px) rotateX(${y}deg) rotateY(${x}deg)`;
-            });
-        }
-        
-        // 9. Добавляем возможность масштабирования колесом мыши
-        function setupZoom() {
-            let scale = 1;
-            document.addEventListener('wheel', function(e) {
-                e.preventDefault();
-                scale += e.deltaY * -0.001;
-                scale = Math.min(Math.max(0.5, scale), 2);
-                universe.style.transform = `scale(${scale}) ${universe.style.transform}`;
-            }, { passive: false });
-        }
-        
-        // 10. Случайные вспышки пульсара
-        function randomPulsarFlashes() {
-            setInterval(() => {
-                const intensity = Math.random() * 0.5 + 0.5;
-                const core = document.querySelector('.pulsar-core');
-                core.style.boxShadow = `
-                    0 0 ${30 * intensity}px #00ffff,
-                    0 0 ${60 * intensity}px #0088ff,
-                    0 0 ${90 * intensity}px #0000ff
-                `;
-            }, 2000);
-        }
-        
-        // 11. Создаем кольца для планет
-        function addPlanetRings() {
-            document.querySelectorAll('.planet').forEach((planet, index) => {
-                if (index % 2 === 0) {
-                    const ring = document.createElement('div');
-                    ring.style.position = 'absolute';
-                    ring.style.width = (planet.offsetWidth * 2) + 'px';
-                    ring.style.height = (planet.offsetWidth * 0.2) + 'px';
-                    ring.style.background = 'linear-gradient(to right, transparent, #fff, transparent)';
-                    ring.style.borderRadius = '50%';
-                    ring.style.opacity = '0.6';
-                    ring.style.transform = 'translate(-50%, -50%) rotateX(75deg)';
-                    ring.style.top = '50%';
-                    ring.style.left = '50%';
-                    planet.appendChild(ring);
-                }
-            });
-        }
-        
-        // 12. Инициализация
-        function init() {
-            createStars();
-            createPulsarRays();
-            createAsteroids();
-            createSupernovas();
-            createComets();
-            preserveAnimationDurations();
-            setupAnimationControls();
-            setupParallaxEffect();
-            setupZoom();
-            randomPulsarFlashes();
-            addPlanetRings();
-            
-            // Сохраняем оригинальные значения анимаций
-            document.querySelectorAll('*').forEach(el => {
-                if (el.style.animationDuration) {
-                    el.dataset.originalDuration = parseFloat(getComputedStyle(el).animationDuration);
-                }
-            });
-        }
-        
-        // Запускаем инициализацию после загрузки страницы
-        window.addEventListener('load', init);
-        
-        // 13. Адаптация к размеру окна
-        window.addEventListener('resize', function() {
-            // Обновляем позиции элементов при изменении размера окна
-            document.querySelectorAll('.star, .asteroid').forEach(el => {
-                if (parseFloat(el.style.left) > 90) {
-                    el.style.left = Math.random() * 90 + 'vw';
-                }
-                if (parseFloat(el.style.top) > 90) {
-                    el.style.top = Math.random() * 90 + 'vh';
-                }
             });
         });
         
-        // 14. Добавляем CSS переменную для скорости анимации
-        document.documentElement.style.setProperty('--animation-speed', 1);
+        // Testimonials Slider
+        const testimonialDots = document.querySelectorAll('.testimonial-dot');
+        const testimonials = document.querySelectorAll('.testimonial');
+        
+        testimonialDots.forEach(dot => {
+            dot.addEventListener('click', () => {
+                // Remove active class from all dots and testimonials
+                testimonialDots.forEach(d => d.classList.remove('active'));
+                testimonials.forEach(t => t.classList.remove('active'));
+                
+                // Add active class to clicked dot
+                dot.classList.add('active');
+                
+                // Show corresponding testimonial
+                const testimonialIndex = dot.getAttribute('data-index');
+                testimonials[testimonialIndex].classList.add('active');
+            });
+        });
+        
+        // Auto rotate testimonials
+        let currentTestimonial = 0;
+        
+        function rotateTestimonials() {
+            testimonialDots.forEach(d => d.classList.remove('active'));
+            testimonials.forEach(t => t.classList.remove('active'));
+            
+            currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+            
+            testimonialDots[currentTestimonial].classList.add('active');
+            testimonials[currentTestimonial].classList.add('active');
+        }
+        
+        setInterval(rotateTestimonials, 5000);
+        
+        // Form submission
+        const contactForm = document.getElementById('contactForm');
+        
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // In a real application, you would send the form data to a server
+            alert('Спасибо! Ваше сообщение отправлено. Мы свяжемся с вами в ближайшее время.');
+            contactForm.reset();
+        });
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    if (nav.classList.contains('active')) {
+                        nav.classList.remove('active');
+                        menuToggle.querySelector('i').classList.toggle('fa-bars');
+                        menuToggle.querySelector('i').classList.toggle('fa-times');
+                    }
+                }
+            });
+        });
     </script>
 </body>
 </html>
