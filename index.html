@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Космический пульсар с планетами</title>
+    <title>Пульсар в Глубоком Космосе</title>
     <style>
         * {
             margin: 0;
@@ -15,32 +15,36 @@
             overflow: hidden;
             background: #000;
             height: 100vh;
+            font-family: 'Arial', sans-serif;
             perspective: 1000px;
         }
         
-        .space {
+        .universe {
             position: relative;
             width: 100%;
             height: 100%;
             transform-style: preserve-3d;
         }
         
-        /* Пульсар и его лучи */
-        .pulsar-core {
+        /* Пульсар */
+        .pulsar {
             position: absolute;
             top: 50%;
             left: 50%;
-            width: 30px;
-            height: 30px;
+            transform: translate(-50%, -50%);
+            z-index: 100;
+        }
+        
+        .pulsar-core {
+            width: 35px;
+            height: 35px;
             border-radius: 50%;
             background: radial-gradient(circle, #ffffff, #00ffff, #0088ff, #0000ff);
             box-shadow: 
                 0 0 30px #00ffff,
                 0 0 60px #0088ff,
                 0 0 90px #0000ff;
-            transform: translate(-50%, -50%);
-            animation: pulsate 1.5s infinite alternate;
-            z-index: 10;
+            animation: pulsate 1.8s infinite alternate ease-in-out;
         }
         
         .pulsar-ray {
@@ -51,8 +55,8 @@
             height: 0;
             background: linear-gradient(to top, transparent, #00ffff, #0088ff, transparent);
             transform-origin: center bottom;
-            opacity: 0.8;
-            animation: ray-grow 0.8s infinite alternate;
+            opacity: 0;
+            animation: ray-grow 1.2s infinite alternate;
         }
         
         /* Планеты */
@@ -62,9 +66,10 @@
             transform-style: preserve-3d;
             animation-timing-function: linear;
             animation-iteration-count: infinite;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
         }
         
-        /* Разные планеты с уникальными характеристиками */
+        /* Разные планеты */
         .planet1 {
             width: 40px;
             height: 40px;
@@ -72,7 +77,6 @@
             top: 20%;
             left: 20%;
             animation: orbit1 40s infinite linear;
-            box-shadow: 0 0 15px rgba(255, 107, 107, 0.6);
         }
         
         .planet2 {
@@ -82,7 +86,6 @@
             top: 70%;
             left: 80%;
             animation: orbit2 60s infinite linear;
-            box-shadow: 0 0 20px rgba(245, 205, 121, 0.6);
         }
         
         .planet3 {
@@ -92,7 +95,6 @@
             top: 40%;
             left: 75%;
             animation: orbit3 30s infinite linear;
-            box-shadow: 0 0 10px rgba(119, 139, 235, 0.6);
         }
         
         .planet4 {
@@ -102,7 +104,6 @@
             top: 65%;
             left: 15%;
             animation: orbit4 50s infinite linear;
-            box-shadow: 0 0 15px rgba(243, 166, 131, 0.6);
         }
         
         .planet5 {
@@ -112,7 +113,26 @@
             top: 25%;
             left: 65%;
             animation: orbit5 45s infinite linear;
-            box-shadow: 0 0 12px rgba(207, 106, 135, 0.6);
+        }
+        
+        /* Спутники планет */
+        .moon {
+            position: absolute;
+            border-radius: 50%;
+            background: #ccc;
+            width: 8px;
+            height: 8px;
+            animation: moon-orbit 10s infinite linear;
+        }
+        
+        /* Астероиды */
+        .asteroid {
+            position: absolute;
+            background: #888;
+            border-radius: 30%;
+            width: 5px;
+            height: 5px;
+            animation: asteroid-move 20s infinite linear;
         }
         
         /* Звезды */
@@ -123,15 +143,136 @@
             animation: twinkle 4s infinite alternate;
         }
         
+        /* Туманности */
+        .nebula {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.1;
+            filter: blur(40px);
+            pointer-events: none;
+        }
+        
+        .nebula1 {
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, #ff6b6b, #786fa6, transparent 70%);
+            top: 10%;
+            left: 10%;
+            animation: nebula-pulse 30s infinite alternate;
+        }
+        
+        .nebula2 {
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, #778beb, #546de5, transparent 70%);
+            bottom: 5%;
+            right: 15%;
+            animation: nebula-pulse 40s infinite alternate-reverse;
+        }
+        
+        /* Сверхновая */
+        .supernova {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #fff;
+            opacity: 0;
+            animation: supernova-explode 15s infinite;
+        }
+        
+        /* Комета */
+        .comet {
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            background: #fff;
+            border-radius: 50%;
+            opacity: 0;
+            animation: comet-flight 25s infinite;
+        }
+        
+        /* Черная дыра */
+        .black-hole {
+            position: absolute;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: radial-gradient(circle, #000, #222, #000);
+            box-shadow: 0 0 30px rgba(100, 100, 255, 0.3);
+            top: 80%;
+            left: 30%;
+            animation: black-hole-pulse 10s infinite alternate;
+        }
+        
+        .accretion-disk {
+            position: absolute;
+            width: 120px;
+            height: 30px;
+            border-radius: 50%;
+            background: linear-gradient(to right, transparent, #ff3366, #ff6633, transparent);
+            opacity: 0.6;
+            top: 80%;
+            left: 30%;
+            transform: translate(-50%, -50%) rotateX(80deg);
+            animation: disk-rotate 8s infinite linear;
+        }
+        
+        /* Галактика */
+        .galaxy {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: radial-gradient(ellipse, transparent 40%, rgba(255, 255, 255, 0.05) 100%);
+            top: 15%;
+            right: 10%;
+            transform: rotateX(70deg);
+            animation: galaxy-rotate 200s infinite linear;
+        }
+        
+        /* Контролы */
+        .controls {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            z-index: 1000;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 15px;
+            border-radius: 10px;
+            color: white;
+            font-size: 14px;
+            max-width: 300px;
+        }
+        
+        .controls h3 {
+            margin-bottom: 10px;
+            color: #00ffff;
+        }
+        
+        .control-group {
+            margin-bottom: 10px;
+        }
+        
+        .control-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        .control-group input {
+            width: 100%;
+        }
+        
         /* Анимации */
         @keyframes pulsate {
             0% { transform: translate(-50%, -50%) scale(1); }
-            100% { transform: translate(-50%, -50%) scale(1.3); }
+            100% { transform: translate(-50%, -50%) scale(1.4); }
         }
         
         @keyframes ray-grow {
             0% { height: 100px; opacity: 0.3; }
-            100% { height: 400px; opacity: 0.7; }
+            50% { height: 400px; opacity: 0.7; }
+            100% { height: 100px; opacity: 0.3; }
         }
         
         @keyframes twinkle {
@@ -164,97 +305,367 @@
             100% { transform: rotate(360deg) translateX(120px) rotate(-360deg); }
         }
         
-        /* Туманности */
-        .nebula {
-            position: absolute;
-            border-radius: 50%;
-            opacity: 0.1;
-            filter: blur(40px);
+        @keyframes moon-orbit {
+            0% { transform: rotate(0deg) translateX(15px) rotate(0deg); }
+            100% { transform: rotate(360deg) translateX(15px) rotate(-360deg); }
         }
         
-        .nebula1 {
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, #ff6b6b, #786fa6, transparent 70%);
-            top: 10%;
-            left: 10%;
+        @keyframes asteroid-move {
+            0% { transform: translate(0, 0) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translate(100vw, 100vh) rotate(360deg); opacity: 0; }
         }
         
-        .nebula2 {
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, #778beb, #546de5, transparent 70%);
-            bottom: 5%;
-            right: 15%;
+        @keyframes nebula-pulse {
+            0% { opacity: 0.05; transform: scale(1); }
+            100% { opacity: 0.15; transform: scale(1.2); }
+        }
+        
+        @keyframes supernova-explode {
+            0% { opacity: 0; transform: scale(1); box-shadow: 0 0 0 rgba(255, 255, 255, 0); }
+            5% { opacity: 1; }
+            10% { transform: scale(30); box-shadow: 0 0 50px rgba(255, 255, 255, 0.8); opacity: 0.8; }
+            15% { transform: scale(50); opacity: 0; box-shadow: 0 0 100px rgba(255, 255, 255, 0); }
+            100% { opacity: 0; }
+        }
+        
+        @keyframes comet-flight {
+            0% { transform: translate(-100px, -100px); opacity: 0; }
+            10% { opacity: 1; }
+            20% { transform: translate(100px, 100px); opacity: 0.8; }
+            30% { opacity: 0; }
+            100% { transform: translate(200px, 200px); opacity: 0; }
+        }
+        
+        @keyframes black-hole-pulse {
+            0% { box-shadow: 0 0 20px rgba(100, 100, 255, 0.3); }
+            100% { box-shadow: 0 0 40px rgba(100, 100, 255, 0.6); }
+        }
+        
+        @keyframes disk-rotate {
+            0% { transform: translate(-50%, -50%) rotateX(80deg) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotateX(80deg) rotate(360deg); }
+        }
+        
+        @keyframes galaxy-rotate {
+            0% { transform: rotateX(70deg) rotate(0deg); }
+            100% { transform: rotateX(70deg) rotate(360deg); }
+        }
+        
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            .controls {
+                bottom: 10px;
+                left: 10px;
+                right: 10px;
+                max-width: none;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="space">
-        <div class="pulsar-core"></div>
+    <div class="universe" id="universe">
+        <div class="pulsar">
+            <div class="pulsar-core"></div>
+        </div>
+        
+        <!-- Туманности -->
         <div class="nebula nebula1"></div>
         <div class="nebula nebula2"></div>
         
         <!-- Планеты -->
-        <div class="planet planet1"></div>
-        <div class="planet planet2"></div>
-        <div class="planet planet3"></div>
-        <div class="planet planet4"></div>
-        <div class="planet planet5"></div>
+        <div class="planet planet1">
+            <div class="moon"></div>
+        </div>
+        <div class="planet planet2">
+            <div class="moon"></div>
+        </div>
+        <div class="planet planet3">
+            <div class="moon"></div>
+        </div>
+        <div class="planet planet4">
+            <div class="moon"></div>
+        </div>
+        <div class="planet planet5">
+            <div class="moon"></div>
+        </div>
+        
+        <!-- Черная дыра -->
+        <div class="black-hole"></div>
+        <div class="accretion-disk"></div>
+        
+        <!-- Галактика -->
+        <div class="galaxy"></div>
+    </div>
+
+    <div class="controls">
+        <h3>Управление космосом</h3>
+        
+        <div class="control-group">
+            <label for="speedControl">Скорость анимации: <span id="speedValue">1.0</span>x</label>
+            <input type="range" id="speedControl" min="0.1" max="3" step="0.1" value="1">
+        </div>
+        
+        <div class="control-group">
+            <label for="starDensity">Плотность звезд: <span id="densityValue">100</span>%</label>
+            <input type="range" id="starDensity" min="20" max="200" step="10" value="100">
+        </div>
+        
+        <div class="control-group">
+            <button id="toggleAnimations">Приостановить анимации</button>
+        </div>
     </div>
 
     <script>
-        // Создаем звезды
-        const space = document.querySelector('.space');
-        const starCount = 300;
+        // Создаем элементы вселенной
+        const universe = document.getElementById('universe');
         
-        for (let i = 0; i < starCount; i++) {
-            const star = document.createElement('div');
-            star.className = 'star';
+        // 1. Создаем звезды
+        function createStars(density = 1) {
+            // Удаляем существующие звезды
+            document.querySelectorAll('.star').forEach(star => star.remove());
             
-            // Случайные параметры для звезд
-            const size = Math.random() * 3;
-            const left = Math.random() * 100;
-            const top = Math.random() * 100;
-            const delay = Math.random() * 5;
+            const starCount = Math.floor(300 * density);
             
-            star.style.width = size + 'px';
-            star.style.height = size + 'px';
-            star.style.left = left + 'vw';
-            star.style.top = top + 'vh';
-            star.style.animationDelay = delay + 's';
-            
-            space.appendChild(star);
+            for (let i = 0; i < starCount; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                
+                // Случайные параметры для звезд
+                const size = Math.random() * 3;
+                const left = Math.random() * 100;
+                const top = Math.random() * 100;
+                const delay = Math.random() * 5;
+                const brightness = Math.random() * 0.8 + 0.2;
+                
+                star.style.width = size + 'px';
+                star.style.height = size + 'px';
+                star.style.left = left + 'vw';
+                star.style.top = top + 'vh';
+                star.style.animationDelay = delay + 's';
+                star.style.opacity = brightness;
+                
+                universe.appendChild(star);
+            }
         }
         
-        // Создаем лучи пульсара
-        const rayCount = 12;
-        
-        for (let i = 0; i < rayCount; i++) {
-            const ray = document.createElement('div');
-            ray.className = 'pulsar-ray';
-            ray.style.transform = `translate(-50%, -50%) rotate(${i * (360 / rayCount)}deg)`;
-            ray.style.animationDelay = `${(i / rayCount) * 0.8}s`;
-            space.appendChild(ray);
+        // 2. Создаем лучи пульсара
+        function createPulsarRays() {
+            const rayCount = 12;
+            
+            for (let i = 0; i < rayCount; i++) {
+                const ray = document.createElement('div');
+                ray.className = 'pulsar-ray';
+                ray.style.transform = `translate(-50%, -50%) rotate(${i * (360 / rayCount)}deg)`;
+                ray.style.animationDelay = `${(i / rayCount) * 0.8}s`;
+                universe.appendChild(ray);
+            }
         }
         
-        // Добавляем дополнительные мелкие звезды для глубины
-        for (let i = 0; i < 100; i++) {
-            const star = document.createElement('div');
-            star.className = 'star';
-            
-            const size = Math.random() * 1;
-            const left = Math.random() * 100;
-            const top = Math.random() * 100;
-            
-            star.style.width = size + 'px';
-            star.style.height = size + 'px';
-            star.style.left = left + 'vw';
-            star.style.top = top + 'vh';
-            star.style.opacity = 0.5;
-            
-            space.appendChild(star);
+        // 3. Создаем астероиды
+        function createAsteroids(count = 20) {
+            for (let i = 0; i < count; i++) {
+                const asteroid = document.createElement('div');
+                asteroid.className = 'asteroid';
+                
+                const left = Math.random() * 100;
+                const top = Math.random() * 100;
+                const delay = Math.random() * 20;
+                const size = Math.random() * 3 + 2;
+                
+                asteroid.style.width = size + 'px';
+                asteroid.style.height = size + 'px';
+                asteroid.style.left = left + 'vw';
+                asteroid.style.top = top + 'vh';
+                asteroid.style.animationDelay = delay + 's';
+                
+                universe.appendChild(asteroid);
+            }
         }
+        
+        // 4. Создаем сверхновые
+        function createSupernovas(count = 3) {
+            for (let i = 0; i < count; i++) {
+                const supernova = document.createElement('div');
+                supernova.className = 'supernova';
+                
+                const left = Math.random() * 80 + 10;
+                const top = Math.random() * 80 + 10;
+                const delay = Math.random() * 15;
+                
+                supernova.style.left = left + 'vw';
+                supernova.style.top = top + 'vh';
+                supernova.style.animationDelay = delay + 's';
+                
+                universe.appendChild(supernova);
+            }
+        }
+        
+        // 5. Создаем кометы
+        function createComets(count = 5) {
+            for (let i = 0; i < count; i++) {
+                const comet = document.createElement('div');
+                comet.className = 'comet';
+                
+                const left = Math.random() * 20;
+                const top = Math.random() * 20;
+                const delay = Math.random() * 25;
+                
+                comet.style.left = left + 'vw';
+                comet.style.top = top + 'vh';
+                comet.style.animationDelay = delay + 's';
+                
+                universe.appendChild(comet);
+            }
+        }
+        
+        // 6. Управление скоростью анимации
+        function setupAnimationControls() {
+            const speedControl = document.getElementById('speedControl');
+            const speedValue = document.getElementById('speedValue');
+            const densityControl = document.getElementById('starDensity');
+            const densityValue = document.getElementById('densityValue');
+            const toggleButton = document.getElementById('toggleAnimations');
+            
+            let animationsRunning = true;
+            
+            speedControl.addEventListener('input', function() {
+                const speed = parseFloat(this.value);
+                speedValue.textContent = speed.toFixed(1);
+                document.documentElement.style.setProperty('--animation-speed', speed);
+                
+                // Изменяем скорость всех анимаций
+                document.querySelectorAll('*').forEach(el => {
+                    if (el.style.animationDuration) {
+                        const originalDuration = parseFloat(el.dataset.originalDuration || getComputedStyle(el).animationDuration);
+                        el.style.animationDuration = `${originalDuration / speed}s`;
+                    }
+                });
+            });
+            
+            densityControl.addEventListener('input', function() {
+                const density = parseInt(this.value);
+                densityValue.textContent = density;
+                createStars(density / 100);
+            });
+            
+            toggleButton.addEventListener('click', function() {
+                animationsRunning = !animationsRunning;
+                
+                document.querySelectorAll('*').forEach(el => {
+                    if (el.style.animationPlayState) {
+                        el.style.animationPlayState = animationsRunning ? 'running' : 'paused';
+                    }
+                });
+                
+                this.textContent = animationsRunning ? 'Приостановить анимации' : 'Возобновить анимации';
+            });
+        }
+        
+        // 7. Сохраняем оригинальную длительность анимаций
+        function preserveAnimationDurations() {
+            document.querySelectorAll('*').forEach(el => {
+                const style = getComputedStyle(el);
+                if (style.animationDuration && style.animationDuration !== '0s') {
+                    el.dataset.originalDuration = parseFloat(style.animationDuration);
+                }
+            });
+        }
+        
+        // 8. Добавляем эффект параллакса при движении мыши
+        function setupParallaxEffect() {
+            document.addEventListener('mousemove', function(e) {
+                const x = (e.clientX / window.innerWidth - 0.5) * 20;
+                const y = (e.clientY / window.innerHeight - 0.5) * 20;
+                
+                universe.style.transform = `translateZ(-1000px) rotateX(${y}deg) rotateY(${x}deg)`;
+            });
+        }
+        
+        // 9. Добавляем возможность масштабирования колесом мыши
+        function setupZoom() {
+            let scale = 1;
+            document.addEventListener('wheel', function(e) {
+                e.preventDefault();
+                scale += e.deltaY * -0.001;
+                scale = Math.min(Math.max(0.5, scale), 2);
+                universe.style.transform = `scale(${scale}) ${universe.style.transform}`;
+            }, { passive: false });
+        }
+        
+        // 10. Случайные вспышки пульсара
+        function randomPulsarFlashes() {
+            setInterval(() => {
+                const intensity = Math.random() * 0.5 + 0.5;
+                const core = document.querySelector('.pulsar-core');
+                core.style.boxShadow = `
+                    0 0 ${30 * intensity}px #00ffff,
+                    0 0 ${60 * intensity}px #0088ff,
+                    0 0 ${90 * intensity}px #0000ff
+                `;
+            }, 2000);
+        }
+        
+        // 11. Создаем кольца для планет
+        function addPlanetRings() {
+            document.querySelectorAll('.planet').forEach((planet, index) => {
+                if (index % 2 === 0) {
+                    const ring = document.createElement('div');
+                    ring.style.position = 'absolute';
+                    ring.style.width = (planet.offsetWidth * 2) + 'px';
+                    ring.style.height = (planet.offsetWidth * 0.2) + 'px';
+                    ring.style.background = 'linear-gradient(to right, transparent, #fff, transparent)';
+                    ring.style.borderRadius = '50%';
+                    ring.style.opacity = '0.6';
+                    ring.style.transform = 'translate(-50%, -50%) rotateX(75deg)';
+                    ring.style.top = '50%';
+                    ring.style.left = '50%';
+                    planet.appendChild(ring);
+                }
+            });
+        }
+        
+        // 12. Инициализация
+        function init() {
+            createStars();
+            createPulsarRays();
+            createAsteroids();
+            createSupernovas();
+            createComets();
+            preserveAnimationDurations();
+            setupAnimationControls();
+            setupParallaxEffect();
+            setupZoom();
+            randomPulsarFlashes();
+            addPlanetRings();
+            
+            // Сохраняем оригинальные значения анимаций
+            document.querySelectorAll('*').forEach(el => {
+                if (el.style.animationDuration) {
+                    el.dataset.originalDuration = parseFloat(getComputedStyle(el).animationDuration);
+                }
+            });
+        }
+        
+        // Запускаем инициализацию после загрузки страницы
+        window.addEventListener('load', init);
+        
+        // 13. Адаптация к размеру окна
+        window.addEventListener('resize', function() {
+            // Обновляем позиции элементов при изменении размера окна
+            document.querySelectorAll('.star, .asteroid').forEach(el => {
+                if (parseFloat(el.style.left) > 90) {
+                    el.style.left = Math.random() * 90 + 'vw';
+                }
+                if (parseFloat(el.style.top) > 90) {
+                    el.style.top = Math.random() * 90 + 'vh';
+                }
+            });
+        });
+        
+        // 14. Добавляем CSS переменную для скорости анимации
+        document.documentElement.style.setProperty('--animation-speed', 1);
     </script>
 </body>
 </html>
