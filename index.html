@@ -3,205 +3,1062 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Необычные кастомные курсоры</title>
+    <title>REDPLUS | Премиум доступ</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        :root {
+            --primary: #ff003c;
+            --primary-dark: #cc002f;
+            --secondary: #00d9ff;
+            --dark: #0a0a0a;
+            --dark-light: #1a1a1a;
+            --text: #ffffff;
+            --text-secondary: #aaaaaa;
+            --success: #00ff8c;
+            --warning: #ffcc00;
+            --danger: #ff2e2e;
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-            color: #fff;
+            font-family: 'Inter', sans-serif;
+            background: var(--dark);
+            color: var(--text);
             min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
             overflow-x: hidden;
-        }
-        
-        header {
-            text-align: center;
-            margin-bottom: 40px;
-            max-width: 800px;
-        }
-        
-        h1 {
-            font-size: 3rem;
-            margin-bottom: 15px;
-            text-shadow: 0 0 10px rgba(0, 255, 255, 0.7);
-            letter-spacing: 2px;
-        }
-        
-        p {
-            font-size: 1.2rem;
-            color: #a0e7ff;
+            position: relative;
             line-height: 1.6;
         }
-        
-        .buttons-container {
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Новый header */
+        header {
             display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 25px;
-            max-width: 1000px;
-            margin-bottom: 40px;
-        }
-        
-        .cursor-btn {
-            padding: 18px 30px;
-            font-size: 1.3rem;
-            font-weight: bold;
-            border: none;
-            border-radius: 15px;
-            cursor: pointer;
-            transition: all 0.4s ease;
-            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
-            color: white;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 0;
             position: relative;
-            overflow: hidden;
-            z-index: 1;
+            z-index: 10;
         }
-        
-        .cursor-btn:nth-child(2) {
-            background: linear-gradient(45deg, #4834d4, #686de0);
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
         }
-        
-        .cursor-btn:nth-child(3) {
-            background: linear-gradient(45deg, #f0932b, #ffbe76);
+
+        .logo-icon {
+            width: 30px;
+            height: 30px;
+            background: var(--primary);
+            border-radius: 6px;
+            position: relative;
+            transform: rotate(45deg);
         }
-        
-        .cursor-btn:nth-child(4) {
-            background: linear-gradient(45deg, #6ab04c, #badc58);
-        }
-        
-        .cursor-btn:nth-child(5) {
-            background: linear-gradient(45deg, #e056fd, #686de0);
-        }
-        
-        .cursor-btn:hover {
-            transform: translateY(-7px) scale(1.05);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
-        }
-        
-        .cursor-btn:active {
-            transform: translateY(2px);
-        }
-        
-        .cursor-btn::before {
+
+        .logo-icon::before {
             content: '';
             position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60%;
+            height: 60%;
+            background: var(--dark);
+            border-radius: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: var(--text);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: var(--transition);
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Новый hero section */
+        .hero {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 85vh;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            padding: 2rem 0;
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(to right, #fff, var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1.1;
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+            max-width: 600px;
+        }
+
+        .highlight {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            border: none;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+            border: 2px solid var(--primary);
+            box-shadow: 0 10px 30px rgba(255, 0, 60, 0.3);
+        }
+
+        .btn-primary:hover {
+            background: transparent;
+            color: var(--primary);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(255, 0, 60, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text);
+            border: 2px solid var(--text);
+        }
+
+        .btn-secondary:hover {
+            background: var(--text);
+            color: var(--dark);
+            transform: translateY(-5px);
+        }
+
+        .btn-secret {
+            background: transparent;
+            color: var(--warning);
+            border: 2px solid var(--warning);
+        }
+
+        .btn-secret:hover {
+            background: var(--warning);
+            color: var(--dark);
+            transform: translateY(-5px);
+        }
+
+        /* Новый фон с анимацией */
+        .animated-background {
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(255, 255, 255, 0.1);
+            pointer-events: none;
             z-index: -1;
-            transform: scaleX(0);
-            transform-origin: right;
-            transition: transform 0.4s ease;
+            overflow: hidden;
         }
-        
-        .cursor-btn:hover::before {
-            transform: scaleX(1);
-            transform-origin: left;
+
+        .bg-element {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.1;
+            background: var(--primary);
+            filter: blur(40px);
+            animation: float 15s infinite linear;
         }
-        
-        .cursor-display {
-            margin-top: 30px;
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 15px;
+
+        .bg-element:nth-child(1) {
+            width: 300px;
+            height: 300px;
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+            animation-duration: 25s;
+        }
+
+        .bg-element:nth-child(2) {
+            width: 200px;
+            height: 200px;
+            top: 60%;
+            left: 70%;
+            animation-delay: -5s;
+            animation-duration: 20s;
+        }
+
+        .bg-element:nth-child(3) {
+            width: 400px;
+            height: 400px;
+            top: 30%;
+            left: 50%;
+            animation-delay: -10s;
+            animation-duration: 30s;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+            25% {
+                transform: translate(50px, 50px) rotate(90deg);
+            }
+            50% {
+                transform: translate(100px, 0) rotate(180deg);
+            }
+            75% {
+                transform: translate(50px, -50px) rotate(270deg);
+            }
+            100% {
+                transform: translate(0, 0) rotate(360deg);
+            }
+        }
+
+        /* Новый дизайн для страниц */
+        .page {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--dark);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            padding: 2rem;
+        }
+
+        .page.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .page-content {
             text-align: center;
+            max-width: 800px;
+            padding: 3rem;
+            background: rgba(10, 10, 10, 0.95);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 0, 60, 0.3);
+            box-shadow: 0 10px 50px rgba(255, 0, 60, 0.2);
+            position: relative;
             backdrop-filter: blur(10px);
-            max-width: 600px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         }
-        
-        .cursor-display h2 {
-            margin-bottom: 15px;
-            color: #ffeb3b;
+
+        .page h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .page p {
+            font-size: 1.2rem;
+            color: var(--text);
+            margin-bottom: 3rem;
+            line-height: 1.6;
+        }
+
+        .back-btn {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            padding: 1rem 2.5rem;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .back-btn:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(255, 0, 60, 0.3);
+        }
+
+        /* Новый дизайн модального окна с паролем */
+        .password-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+        }
+
+        .password-modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .password-content {
+            background: var(--dark-light);
+            padding: 3rem;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 0, 60, 0.3);
+            box-shadow: 0 10px 50px rgba(255, 0, 60, 0.2);
+            width: 90%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        .password-content h3 {
+            color: var(--primary);
+            margin-bottom: 1.5rem;
             font-size: 1.8rem;
         }
-        
-        .cursor-display p {
-            font-size: 1.3rem;
-            color: #4fc3f7;
+
+        .password-input-container {
+            position: relative;
+            margin-bottom: 1.5rem;
         }
-        
-        /* Кастомные курсоры */
-        .cursor-1 { cursor: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAzMiAzMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTI2LjUgMTZDMjYuNSAyMS43OTk5IDIxLjc5OTkgMjYuNSAxNiAyNi41QzEwLjIwMDEgMjYuNSA1LjUgMjEuNzk5OSA1LjUgMTZDNS41IDEwLjIwMDEgMTAuMjAwMSA1LjUgMTYgNS41QzIxLjc5OTkgNS41IDI2LjUgMTAuMjAwMSAyNi41IDE2WiIgc3Ryb2tlPSIjRkY0ODg3IiBzdHJva2Utd2lkdGg9IjMiLz4KPHBhdGggZD0iTTE2IDhWMTYiIHN0cm9rZT0iI0ZGNDg4NyIgc3Ryb2tlLXdpZHRoPSIzIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KPHBhdGggZD0iTTEyIDEySDIwIiBzdHJva2U9IiNGRjQ4ODciIHN0cm9rZS13aWR0aD0iMyIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CjxjaXJjbGUgY3g9IjE2IiBjeT0iMTYiIHI9IjEwIiBzdHJva2U9IiNGRjkzRTIiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWRhc2hhcnJheT0iNCA0Ii8+Cjwvc3ZnPg=="), auto; }
-        
-        .cursor-2 { cursor: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDgiIGhlaWdodD0iNDgiIHZpZXdCb3g9IjAgMCA0OCA0OCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTI0IDRWMjBNMjQgNDRWMjgiIHN0cm9rZT0iIzRFQkFFNSIgc3Ryb2tlLXdpZHRoPSI0IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KPGNpcmNsZSBjeD0iMjQiIGN5PSIyNCIgcj0iOCIgc3Ryb2tlPSIjNEVCQUU1IiBzdHJva2Utd2lkdGg9IjQiLz4KPHBhdGggZD0iTTM2IDI0QzM2IDMwLjYyNzQgMzAuNjI3NCAzNiAyNCAzNkMxNy4zNzI2IDM2IDEyIDMwLjYyNzQgMTIgMjRDMTIgMTcuMzcyNiAxNy4zNzI2IDEyIDI0IDEyQzMwLjYyNzQgMTIgMzYgMTcuMzcyNiAzNiAyNFoiIHN0cm9rZT0iIzRFQkFFNSIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtZGFzaGFycmF5PSI2IDQiLz4KPHBhdGggZD0iTTQwIDI0QzQwIDMyLjgzNjYgMzIuODM2NiA0MCAyNCA0MEMxNS4xNjM0IDQwIDggMzIuODM2NiA4IDI0QzggMTUuMTYzNCAxNS4xNjM0IDggMjQgOEMzMi44MzY2IDggNDAgMTUuMTYzNCA0MCAyNFoiIHN0cm9rZT0iIzRFQkFFNSIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtZGFzaGFycmF5PSIyIDYiLz4KPC9zdmc+"), auto; }
-        
-        .cursor-3 { cursor: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDgiIGhlaWdodD0iNDgiIHZpZXdCb3g9IjAgMCA0OCA0OCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTE2IDE2TDMyIDMyIiBzdHJva2U9IiNGRjkzRTIiIHN0cm9rZS13aWR0aD0iNCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CjxwYXRoIGQ9Ik0xNiAzMkwzMiAxNiIgc3Ryb2tlPSIjRkY5M0UyIiBzdHJva2Utd2lkdGg9IjQiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgo8Y2lyY2xlIGN4PSIyNCIgY3k9IjI0IiByPSIxNCIgc3Ryb2tlPSIjRkY5M0UyIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1kYXNoYXJyYXk9IjQgMiIvPgo8Y2lyY2xlIGN4PSIyNCIgY3k9IjI0IiByPSI4IiBzdHJva2U9IiNGRjkzRTIiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWRhc2hhcnJheT0iMiA0Ii8+Cjwvc3ZnPg=="), auto; }
-        
-        .cursor-4 { cursor: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDgiIGhlaWdodD0iNDgiIHZpZXdCb3g9IjAgMCA0OCA0OCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTI0IDQ0QzM1LjA0NTcgNDQgNDQgMzUuMDQ1NyA0NCAyNEM0NCAxMi45NTQzIDM1LjA0NTcgNCAyNCA0QzEyLjk1NDMgNCA0IDEyLjk1NDMgNCAyNEM0IDM1LjA0NTcgMTIuOTU0MyA0NCAyNCA0NFoiIHN0cm9rZT0iIzU1Q0M1NSIgc3Ryb2tlLXdpZHRoPSI0Ii8+CjxwYXRoIGQ9Ik0xOSAyMEwyNCAyNEwyOSAyMCIgc3Ryb2tlPSIjNTVDQzU1IiBzdHJva2Utd2lkdGg9IjQiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgo8cGF0aCBkPSJNMTkgMjhMMjQgMjRMMjkgMjgiIHN0cm9rZT0iIzU1Q0M1NSIgc3Ryb2tlLXdpZHRoPSI0IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KPHBhdGggZD0iTTIwIDE2TDI4IDMyIiBzdHJva2U9IiM1NUNDNTUiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWRhc2hhcnJheT0iNCAyIi8+Cjwvc3ZnPg=="), auto; }
-        
-        .cursor-5 { cursor: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDgiIGhlaWdodD0iNDgiIHZpZXdCb3g9IjAgMCA0OCA0OCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTI0IDRWMjBNMjQgNDRWMjgiIHN0cm9rZT0iI0UwNTBGRiIgc3Ryb2tlLXdpZHRoPSI0IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KPHBhdGggZD0iTTQgMjRIMjBNNDQgMjRIMjgiIHN0cm9rZT0iI0UwNTBGRiIgc3Ryb2tlLXdpZHRoPSI0IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KPGNpcmNsZSBjeD0iMjQiIGN5PSIyNCIgcj0iNiIgZmlsbD0iI0UwNTBGRiIvPgo8Y2lyY2xlIGN4PSIyNCIgY3k9IjI0IiByPSIxNCIgc3Ryb2tlPSIjRTA1MEZGIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1kYXNoYXJyYXk9IjQgMiIvPgo8Y2lyY2xlIGN4PSIyNCIgY3k9IjI0IiByPSIyMCIgc3Ryb2tlPSIjRTA1MEZGIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1kYXNoYXJyYXk9IjIgNCIvPgo8L3N2Zz4="), auto; }
-        
-        footer {
-            margin-top: 40px;
+
+        .password-input {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            border: 2px solid #333;
+            border-radius: 8px;
+            background: var(--dark);
+            color: var(--text);
+            font-size: 1.2rem;
             text-align: center;
-            color: #81d4fa;
-            font-size: 1rem;
+            outline: none;
+            transition: var(--transition);
+        }
+
+        .password-input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 10px rgba(255, 0, 60, 0.3);
+        }
+
+        .password-error {
+            color: var(--danger);
+            margin-bottom: 1.5rem;
+            min-height: 1.5rem;
+            font-weight: 600;
+        }
+
+        .password-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        /* Новый footer */
+        footer {
+            text-align: center;
+            padding: 3rem 0;
+            margin-top: 5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-text {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* Новые кнопки управления */
+        .control-btn {
+            position: fixed;
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            z-index: 1000;
+            transition: var(--transition);
+            backdrop-filter: blur(10px);
+        }
+
+        .control-btn:hover {
+            background: rgba(255, 0, 60, 0.2);
+            border-color: var(--primary);
+            transform: scale(1.1);
+        }
+
+        .control-btn i {
+            font-size: 1.2rem;
+            color: var(--text);
+        }
+
+        .sound-btn {
+            bottom: 20px;
+            left: 20px;
+        }
+
+        .emergency-exit {
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 46, 46, 0.2);
+            border-color: var(--danger);
+        }
+
+        .emergency-exit:hover {
+            background: rgba(255, 46, 46, 0.4);
+        }
+
+        /* Секретная кнопка */
+        .secret-image-btn {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            z-index: 10;
+            opacity: 0.5;
+            transition: var(--transition);
+            border-radius: 50%;
+            overflow: hidden;
+        }
+
+        .secret-image-btn:hover {
+            opacity: 1;
+            transform: scale(1.2);
+        }
+
+        .secret-image-btn img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Позиционирование секретной кнопки на второй странице */
+        #second-page .secret-image-btn {
+            bottom: 20px;
+            right: 20px;
+        }
+
+        /* Пятая страница */
+        .hidden-content {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .hidden-content h2 {
+            color: var(--warning);
+            margin-bottom: 2rem;
+            font-size: 2.5rem;
+        }
+
+        .hidden-content p {
+            color: var(--text);
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+
+        /* Секретный код Konami Code */
+        .konami-alert {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(10, 10, 10, 0.95);
+            border: 2px solid var(--primary);
+            border-radius: 15px;
+            padding: 2rem;
+            z-index: 2000;
+            text-align: center;
+            display: none;
+            box-shadow: 0 0 50px rgba(255, 0, 60, 0.5);
+            backdrop-filter: blur(10px);
         }
         
+        .konami-alert h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 2rem;
+        }
+        
+        .konami-alert p {
+            color: var(--text);
+            margin-bottom: 1.5rem;
+        }
+
+        /* Новые кнопки режимов */
+        .mode-btn {
+            position: fixed;
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            z-index: 1000;
+            transition: var(--transition);
+            backdrop-filter: blur(10px);
+            color: var(--text);
+            font-weight: bold;
+            right: 20px;
+        }
+
+        .mode-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .rainbow-mode {
+            bottom: 280px;
+            background: linear-gradient(45deg, #ff0000, #ff9900, #ffff00, #00ff00, #00ffff, #0000ff, #ff00ff);
+            border: none;
+        }
+
+        .matrix-btn {
+            bottom: 225px;
+            background: rgba(0, 217, 255, 0.2);
+            border-color: var(--secondary);
+            color: var(--secondary);
+        }
+
+        .chaos-btn {
+            bottom: 170px;
+            background: rgba(255, 204, 0, 0.2);
+            border-color: var(--warning);
+            color: var(--warning);
+        }
+
+        .neon-btn {
+            bottom: 115px;
+            background: rgba(255, 0, 255, 0.2);
+            border-color: #ff00ff;
+            color: #ff00ff;
+        }
+
+        .retro-btn {
+            bottom: 60px;
+            background: rgba(0, 255, 255, 0.2);
+            border-color: #00ffff;
+            color: #00ffff;
+        }
+
+        /* Дополнительные элементы */
+        .countdown {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255, 0, 60, 0.2);
+            padding: 10px 20px;
+            border-radius: 20px;
+            border: 1px solid var(--primary);
+            z-index: 800;
+            font-family: 'Courier New', monospace;
+            font-size: 1.2rem;
+            color: var(--primary);
+            display: none;
+            backdrop-filter: blur(10px);
+        }
+
+        .secret-message {
+            position: fixed;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.7);
+            padding: 10px 20px;
+            border-radius: 20px;
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            font-size: 0.9rem;
+            z-index: 800;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .matrix-rain {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -2;
+            opacity: 0.1;
+            display: none;
+        }
+
+        /* Анимации */
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
+        }
+
+        .shake-effect {
+            animation: shake 0.5s ease-in-out;
+        }
+
+        /* Адаптивность */
         @media (max-width: 768px) {
-            .buttons-container {
-                flex-direction: column;
-                align-items: center;
-            }
-            
             h1 {
-                font-size: 2.2rem;
+                font-size: 2.5rem;
             }
             
-            p {
-                font-size: 1rem;
+            .subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .buttons {
+                flex-direction: column;
+            }
+            
+            .page-content {
+                padding: 2rem;
+            }
+            
+            .page h2 {
+                font-size: 2rem;
+            }
+            
+            .page p {
+                font-size: 1.1rem;
+            }
+
+            .secret-image-btn {
+                width: 35px;
+                height: 35px;
+            }
+            
+            .control-btn {
+                width: 40px;
+                height: 40px;
+            }
+            
+            .mode-btn {
+                width: 40px;
+                height: 40px;
+                right: 10px;
+            }
+            
+            .rainbow-mode { bottom: 240px; }
+            .matrix-btn { bottom: 190px; }
+            .chaos-btn { bottom: 140px; }
+            .neon-btn { bottom: 90px; }
+            .retro-btn { bottom: 40px; }
+
+            .nav-links {
+                display: none;
             }
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>Необычные кастомные курсоры</h1>
-        <p>Нажмите на любую кнопку ниже, чтобы активировать уникальный курсор. Каждый курсор имеет свой неповторимый стиль и анимацию!</p>
-    </header>
-    
-    <div class="buttons-container">
-        <button class="cursor-btn" onclick="changeCursor('cursor-1', 'Часы с пульсирующими кругами')">⏰ Часы</button>
-        <button class="cursor-btn" onclick="changeCursor('cursor-2', 'Концентрические круги с анимацией')">🌀 Круги</button>
-        <button class="cursor-btn" onclick="changeCursor('cursor-3', 'Перекрестие с двойным кругом')">🎯 Мишень</button>
-        <button class="cursor-btn" onclick="changeCursor('cursor-4', 'Вращающаяся сфера со стрелками')">🔄 Сфера</button>
-        <button class="cursor-btn" onclick="changeCursor('cursor-5', 'Пульсирующий плюсик с кругами')">➕ Плюсик</button>
+    <div class="animated-background">
+        <div class="bg-element"></div>
+        <div class="bg-element"></div>
+        <div class="bg-element"></div>
     </div>
-    
-    <div class="cursor-display">
-        <h2 id="cursor-name">Текущий курсор: Обычный</h2>
-        <p id="cursor-desc">Нажмите на любую кнопку, чтобы активировать кастомный курсор</p>
+
+    <div class="container">
+        <header>
+            <a href="#" class="logo">
+                <div class="logo-icon"></div>
+                REDPLUS
+            </a>
+            <div class="nav-links">
+                <a href="#" class="nav-link">Главная</a>
+                <a href="#" class="nav-link">О нас</a>
+                <a href="#" class="nav-link">Контакты</a>
+            </div>
+        </header>
+
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Премиум доступ</h1>
+                <p class="subtitle">Эксклюзивный контент для избранных. <span class="highlight">Присоединяйся к сообществу</span> и открой все возможности.</p>
+                <div class="buttons">
+                    <a href="#" class="btn btn-primary" id="next-btn">
+                        <i class="fas fa-arrow-right"></i> Начать
+                    </a>
+                    <a href="#" class="btn btn-secret" id="secret-btn">
+                        <i class="fas fa-lock"></i> Секретный доступ
+                    </a>
+                </div>
+            </div>
+        </section>
     </div>
-    
+
     <footer>
-        <p>Создано с помощью HTML, CSS и SVG. Наведите на кнопки, чтобы увидеть эффекты!</p>
+        <div class="container">
+            <p class="footer-text">© 2023 REDPLUS. Все права защищены. Конфиденциальность и безопасность.</p>
+        </div>
     </footer>
 
+    <!-- Элементы управления -->
+    <div class="control-btn sound-btn" id="sound-btn">
+        <i class="fas fa-volume-up"></i>
+    </div>
+    
+    <div class="control-btn emergency-exit" id="emergency-exit">
+        <i class="fas fa-times"></i>
+    </div>
+    
+    <div class="mode-btn rainbow-mode" id="rainbow-mode" title="Режим радуги">R</div>
+    <div class="mode-btn matrix-btn" id="matrix-btn" title="Matrix режим">M</div>
+    <div class="mode-btn chaos-btn" id="chaos-btn" title="Режим хаоса">C</div>
+    <div class="mode-btn neon-btn" id="neon-btn" title="Неоновый режим">N</div>
+    <div class="mode-btn retro-btn" id="retro-btn" title="8-bit ретро режим">8</div>
+    
+    <div class="countdown" id="countdown">00:00</div>
+    <div class="secret-message" id="secret-message"></div>
+    <canvas id="matrix-canvas" class="matrix-rain"></canvas>
+    
+    <div class="konami-alert" id="konami-alert">
+        <h3>Секретный код активирован!</h3>
+        <p>Вы получили доступ к дополнительным функциям! 🎉</p>
+        <button class="back-btn" id="close-konami">OK</button>
+    </div>
+
+    <!-- Вторая страница -->
+    <div class="page" id="second-page">
+        <div class="page-content">
+            <button class="secret-image-btn" id="secret-image-btn">
+                <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iI2ZmZmZmZiI+PHBhdGggZD0iTTEyIDJDNi40OCAyIDIgNi40OCAyIDEyczQuNDggMTAgMTAgMTAgMTAtNC40OCAxMC0xMFMxNy41MiAyIDEyIDJ6bTAgMTgtNC45OS0yLjE2TDEyIDE1LjQ1bDQuOTkgNC4zOUExMC4wMDIgMTAuMDAyIDAgMCAxIDEyIDIwemAtMy42MS00LjQ0bC0yLjg5IDIuNTlBNy45OTUgNy45OTUgMCAwIDEgNCAxMmMwLTEuODUuNjMtMy41NSAxLjY3LTQuOUw5LjM5IDE1bC0xLjAwIDQuNDZ6bTUuNjMgMGwtMS4wMS00LjQ2TDE4LjMzIDcuMUE3Ljk5NSA3Ljk5NSAwIDAgMSAyMCAxMmMwIDIuMjYtLjk2IDQuMy0yLjUgNS43NGwtMi44OS0yLjU5eiIvPjwvc3ZnPg==" alt="Секретная кнопка">
+            </button>
+            
+            <h2>Эксклюзивный контент</h2>
+            <p>Добро пожаловать в закрытый раздел. Здесь вы найдете материалы, доступные только избранным участникам нашего сообщества.</p>
+            <button class="back-btn" id="to-third-page-btn">
+                <i class="fas fa-arrow-left"></i> Продолжить
+            </button>
+        </div>
+    </div>
+
+    <!-- Третья страница -->
+    <div class="page" id="third-page">
+        <div class="page-content">
+            <h2>Премиум возможности</h2>
+            <p>Используйте все преимущества вашего статуса. Расширенные настройки, приоритетная поддержка и эксклюзивные функции уже ждут вас.</p>
+            <button class="back-btn" id="to-main-btn">
+                <i class="fas fa-home"></i> На главную
+            </button>
+        </div>
+    </div>
+
+    <!-- Четвертая страница -->
+    <div class="page" id="fourth-page">
+        <div class="page-content">
+            <h2>Секретная зона</h2>
+            <p>Поздравляем! Вы успешно прошли проверку и получили доступ к специальному разделу. Здесь хранятся самые ценные материалы нашей платформы.</p>
+            <button class="back-btn" id="to-main-from-fourth-btn">
+                <i class="fas fa-home"></i> На главную
+            </button>
+        </div>
+    </div>
+
+    <!-- Пятая страница (для секретной кнопки) -->
+    <div class="page" id="fifth-page">
+        <div class="page-content">
+            <div class="hidden-content">
+                <h2>Секретная находка!</h2>
+                <p>Вы обнаружили скрытый раздел! Это специальная зона для самых внимательных пользователей.</p>
+                <p>Здесь мы размещаем экспериментальные функции и эксклюзивные материалы.</p>
+                <button class="back-btn" id="to-main-from-fifth-btn">
+                    <i class="fas fa-home"></i> На главную
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Модальное окно для ввода пароля -->
+    <div class="password-modal" id="password-modal">
+        <div class="password-content">
+            <h3>Подтвердите доступ</h3>
+            <div class="password-input-container">
+                <input type="password" class="password-input" id="password-input" placeholder="Введите секретный код">
+            </div>
+            <div class="password-error" id="password-error"></div>
+            <div class="password-buttons">
+                <button class="btn btn-primary" id="submit-password">
+                    <i class="fas fa-check"></i> Подтвердить
+                </button>
+                <button class="btn btn-secondary" id="cancel-password">
+                    <i class="fas fa-times"></i> Отмена
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Аудио элемент -->
+    <audio id="background-music" loop>
+        <source src="https://assets.mixkit.co/music/preview/mixkit-tech-house-vibes-130.mp3" type="audio/mpeg">
+        Ваш браузер не поддерживает аудио элемент.
+    </audio>
+
     <script>
-        function changeCursor(cursorClass, description) {
-            // Удаляем предыдущие классы курсора
-            document.body.classList.remove('cursor-1', 'cursor-2', 'cursor-3', 'cursor-4', 'cursor-5');
+        // Получаем элементы DOM
+        const nextBtn = document.getElementById('next-btn');
+        const secretBtn = document.getElementById('secret-btn');
+        const secretImageBtn = document.getElementById('secret-image-btn');
+        const secondPage = document.getElementById('second-page');
+        const thirdPage = document.getElementById('third-page');
+        const fourthPage = document.getElementById('fourth-page');
+        const fifthPage = document.getElementById('fifth-page');
+        const toThirdPageBtn = document.getElementById('to-third-page-btn');
+        const toMainBtn = document.getElementById('to-main-btn');
+        const toMainFromFourthBtn = document.getElementById('to-main-from-fourth-btn');
+        const toMainFromFifthBtn = document.getElementById('to-main-from-fifth-btn');
+        const passwordModal = document.getElementById('password-modal');
+        const passwordInput = document.getElementById('password-input');
+        const passwordError = document.getElementById('password-error');
+        const submitPassword = document.getElementById('submit-password');
+        const cancelPassword = document.getElementById('cancel-password');
+        const soundBtn = document.getElementById('sound-btn');
+        const backgroundMusic = document.getElementById('background-music');
+        
+        // Флаг состояния звука
+        let isMuted = false;
+
+        // Обработчик клика по кнопке "Дальше"
+        nextBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            secondPage.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+
+        // Обработчик клика по кнопке "Секретная страница"
+        secretBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            passwordModal.classList.add('active');
+            passwordInput.focus();
+        });
+
+        // Обработчик клика по секретной кнопке с изображением
+        secretImageBtn.addEventListener('click', function() {
+            fifthPage.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+
+        // Обработчик клика по кнопке "Вернуться назад" на второй странице
+        toThirdPageBtn.addEventListener('click', function() {
+            secondPage.classList.remove('active');
+            thirdPage.classList.add('active');
+        });
+
+        // Обработчик клика по кнопке "На главную" на третьей странице
+        toMainBtn.addEventListener('click', function() {
+            thirdPage.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        });
+
+        // Обработчик клика по кнопке "На главную" на четвертой странице
+        toMainFromFourthBtn.addEventListener('click', function() {
+            fourthPage.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        });
+
+        // Обработчик клика по кнопке "На главную" на пятой странице
+        toMainFromFifthBtn.addEventListener('click', function() {
+            fifthPage.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        });
+
+        // Обработчик отправки пароля
+        submitPassword.addEventListener('click', function() {
+            if (passwordInput.value === '1080') {
+                passwordModal.classList.remove('active');
+                fourthPage.classList.add('active');
+                document.body.style.overflow = 'hidden';
+                passwordInput.value = '';
+                passwordError.textContent = '';
+            } else {
+                passwordError.textContent = 'Неверный код доступа! Попробуйте снова.';
+                passwordInput.value = '';
+                passwordInput.focus();
+            }
+        });
+
+        // Обработчик отмены ввода пароля
+        cancelPassword.addEventListener('click', function() {
+            passwordModal.classList.remove('active');
+            passwordInput.value = '';
+            passwordError.textContent = '';
+        });
+
+        // Обработчик нажатия Enter в поле пароля
+        passwordInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                submitPassword.click();
+            }
+        });
+
+        // Закрытие страниц при клике вне контента
+        const pages = [secondPage, thirdPage, fourthPage, fifthPage];
+        pages.forEach(page => {
+            page.addEventListener('click', function(e) {
+                if (e.target === page) {
+                    page.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                }
+            });
+        });
+
+        // Управление звуком
+        soundBtn.addEventListener('click', function() {
+            if (isMuted) {
+                // Включаем звук
+                backgroundMusic.play().catch(e => {
+                    console.log("Автовоспроизведение заблокировано. Пользователь должен взаимодействовать со страницей сначала.");
+                });
+                soundBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
+                soundBtn.classList.remove('muted');
+            } else {
+                // Выключаем звук
+                backgroundMusic.pause();
+                soundBtn.innerHTML = '<i class="fas fa-volume-mute"></i>';
+                soundBtn.classList.add('muted');
+            }
+            isMuted = !isMuted;
+        });
+
+        // Попытка автоматического воспроизведения при загрузке страницы
+        window.addEventListener('load', function() {
+            // Сначала ставим на паузу, затем пытаемся воспроизвести
+            backgroundMusic.pause();
+            const playPromise = backgroundMusic.play();
             
-            // Добавляем новый класс курсора
-            document.body.classList.add(cursorClass);
+            if (playPromise !== undefined) {
+                playPromise.catch(error => {
+                    // Автовоспроизведение было запрещено
+                    soundBtn.innerHTML = '<i class="fas fa-volume-mute"></i>';
+                    soundBtn.classList.add('muted');
+                    isMuted = true;
+                    console.log("Автовоспроизведение заблокировано. Пользователь должен взаимодействовать со страницей сначала.");
+                });
+            }
+        });
+
+        // Функция экстренного выхода
+        function initEmergencyExit() {
+            const emergencyExit = document.getElementById('emergency-exit');
             
-            // Обновляем информацию о курсоре
-            document.getElementById('cursor-name').textContent = 'Текущий курсор: ' + description;
-            document.getElementById('cursor-desc').textContent = 'Попробуйте поводить курсором по экрану, чтобы увидеть анимацию';
+            emergencyExit.addEventListener('click', () => {
+                // Закрываем все открытые страницы
+                pages.forEach(page => {
+                    page.classList.remove('active');
+                });
+                passwordModal.classList.remove('active');
+                document.getElementById('konami-alert').style.display = 'none';
+                document.body.style.overflow = 'auto';
+                
+                // Эффект "побега"
+                emergencyExit.style.background = '#ff0000';
+                emergencyExit.style.color = '#fff';
+                
+                setTimeout(() => {
+                    emergencyExit.style.background = 'rgba(255, 46, 46, 0.2)';
+                    emergencyExit.style.color = '#fff';
+                }, 1000);
+            });
+        }
+
+        // Инициализация функций
+        window.addEventListener('load', function() {
+            initEmergencyExit();
+            
+            // Автозапуск приветственного сообщения
+            setTimeout(() => {
+                showSecretMessage("Добро пожаловать! Исследуйте все возможности сайта!");
+            }, 2000);
+        });
+
+        // Показать секретное сообщение
+        function showSecretMessage(message) {
+            const messageElement = document.getElementById('secret-message');
+            messageElement.textContent = message;
+            messageElement.style.opacity = '1';
+            
+            setTimeout(() => {
+                messageElement.style.opacity = '0';
+            }, 3000);
         }
     </script>
 </body>
