@@ -43,10 +43,10 @@
             padding: 0 2rem;
         }
 
-        /* Новый header */
+        /* Упрощенный header */
         header {
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
             padding: 1.5rem 0;
             position: relative;
@@ -82,38 +82,6 @@
             height: 60%;
             background: var(--dark);
             border-radius: 2px;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-        }
-
-        .nav-link {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-weight: 500;
-            transition: var(--transition);
-            position: relative;
-        }
-
-        .nav-link:hover {
-            color: var(--text);
-        }
-
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--primary);
-            transition: var(--transition);
-        }
-
-        .nav-link:hover::after {
-            width: 100%;
         }
 
         /* Новый hero section */
@@ -424,19 +392,6 @@
             gap: 1rem;
         }
 
-        /* Новый footer */
-        footer {
-            text-align: center;
-            padding: 3rem 0;
-            margin-top: 5rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .footer-text {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-        }
-
         /* Новые кнопки управления */
         .control-btn {
             position: fixed;
@@ -560,111 +515,6 @@
             margin-bottom: 1.5rem;
         }
 
-        /* Новые кнопки режимов */
-        .mode-btn {
-            position: fixed;
-            width: 45px;
-            height: 45px;
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            z-index: 1000;
-            transition: var(--transition);
-            backdrop-filter: blur(10px);
-            color: var(--text);
-            font-weight: bold;
-            right: 20px;
-        }
-
-        .mode-btn:hover {
-            transform: scale(1.1);
-        }
-
-        .rainbow-mode {
-            bottom: 280px;
-            background: linear-gradient(45deg, #ff0000, #ff9900, #ffff00, #00ff00, #00ffff, #0000ff, #ff00ff);
-            border: none;
-        }
-
-        .matrix-btn {
-            bottom: 225px;
-            background: rgba(0, 217, 255, 0.2);
-            border-color: var(--secondary);
-            color: var(--secondary);
-        }
-
-        .chaos-btn {
-            bottom: 170px;
-            background: rgba(255, 204, 0, 0.2);
-            border-color: var(--warning);
-            color: var(--warning);
-        }
-
-        .neon-btn {
-            bottom: 115px;
-            background: rgba(255, 0, 255, 0.2);
-            border-color: #ff00ff;
-            color: #ff00ff;
-        }
-
-        .retro-btn {
-            bottom: 60px;
-            background: rgba(0, 255, 255, 0.2);
-            border-color: #00ffff;
-            color: #00ffff;
-        }
-
-        /* Дополнительные элементы */
-        .countdown {
-            position: fixed;
-            top: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: rgba(255, 0, 60, 0.2);
-            padding: 10px 20px;
-            border-radius: 20px;
-            border: 1px solid var(--primary);
-            z-index: 800;
-            font-family: 'Courier New', monospace;
-            font-size: 1.2rem;
-            color: var(--primary);
-            display: none;
-            backdrop-filter: blur(10px);
-        }
-
-        .secret-message {
-            position: fixed;
-            bottom: 10px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: rgba(0, 0, 0, 0.7);
-            padding: 10px 20px;
-            border-radius: 20px;
-            border: 1px solid var(--primary);
-            color: var(--primary);
-            font-size: 0.9rem;
-            z-index: 800;
-            opacity: 0;
-            transition: opacity 0.5s ease;
-            backdrop-filter: blur(10px);
-        }
-
-        .matrix-rain {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: -2;
-            opacity: 0.1;
-            display: none;
-        }
-
         /* Анимации */
         @keyframes shake {
             0%, 100% { transform: translateX(0); }
@@ -711,22 +561,6 @@
                 width: 40px;
                 height: 40px;
             }
-            
-            .mode-btn {
-                width: 40px;
-                height: 40px;
-                right: 10px;
-            }
-            
-            .rainbow-mode { bottom: 240px; }
-            .matrix-btn { bottom: 190px; }
-            .chaos-btn { bottom: 140px; }
-            .neon-btn { bottom: 90px; }
-            .retro-btn { bottom: 40px; }
-
-            .nav-links {
-                display: none;
-            }
         }
     </style>
 </head>
@@ -739,38 +573,27 @@
 
     <div class="container">
         <header>
-            <a href="#" class="logo">
+            <div class="logo">
                 <div class="logo-icon"></div>
                 REDPLUS
-            </a>
-            <div class="nav-links">
-                <a href="#" class="nav-link">Главная</a>
-                <a href="#" class="nav-link">О нас</a>
-                <a href="#" class="nav-link">Контакты</a>
             </div>
         </header>
 
         <section class="hero">
             <div class="hero-content">
-                <h1>Премиум доступ</h1>
-                <p class="subtitle">Эксклюзивный контент для избранных. <span class="highlight">Присоединяйся к сообществу</span> и открой все возможности.</p>
+                <h1>код10 пузо</h1>
+                <p class="subtitle">вход только для <span class="highlight">избранных</span></p>
                 <div class="buttons">
                     <a href="#" class="btn btn-primary" id="next-btn">
-                        <i class="fas fa-arrow-right"></i> Начать
+                        <i class="fas fa-arrow-right"></i> Дальше
                     </a>
                     <a href="#" class="btn btn-secret" id="secret-btn">
-                        <i class="fas fa-lock"></i> Секретный доступ
+                        <i class="fas fa-lock"></i> Секретная страница
                     </a>
                 </div>
             </div>
         </section>
     </div>
-
-    <footer>
-        <div class="container">
-            <p class="footer-text">© 2023 REDPLUS. Все права защищены. Конфиденциальность и безопасность.</p>
-        </div>
-    </footer>
 
     <!-- Элементы управления -->
     <div class="control-btn sound-btn" id="sound-btn">
@@ -780,16 +603,6 @@
     <div class="control-btn emergency-exit" id="emergency-exit">
         <i class="fas fa-times"></i>
     </div>
-    
-    <div class="mode-btn rainbow-mode" id="rainbow-mode" title="Режим радуги">R</div>
-    <div class="mode-btn matrix-btn" id="matrix-btn" title="Matrix режим">M</div>
-    <div class="mode-btn chaos-btn" id="chaos-btn" title="Режим хаоса">C</div>
-    <div class="mode-btn neon-btn" id="neon-btn" title="Неоновый режим">N</div>
-    <div class="mode-btn retro-btn" id="retro-btn" title="8-bit ретро режим">8</div>
-    
-    <div class="countdown" id="countdown">00:00</div>
-    <div class="secret-message" id="secret-message"></div>
-    <canvas id="matrix-canvas" class="matrix-rain"></canvas>
     
     <div class="konami-alert" id="konami-alert">
         <h3>Секретный код активирован!</h3>
@@ -801,13 +614,13 @@
     <div class="page" id="second-page">
         <div class="page-content">
             <button class="secret-image-btn" id="secret-image-btn">
-                <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iI2ZmZmZmZiI+PHBhdGggZD0iTTEyIDJDNi40OCAyIDIgNi40OCAyIDEyczQuNDggMTAgMTAgMTAgMTAtNC40OCAxMC0xMFMxNy41MiAyIDEyIDJ6bTAgMTgtNC45OS0yLjE2TDEyIDE1LjQ1bDQuOTkgNC4zOUExMC4wMDIgMTAuMDAyIDAgMCAxIDEyIDIwemAtMy42MS00LjQ0bC0yLjg5IDIuNTlBNy45OTUgNy45OTUgMCAwIDEgNCAxMmMwLTEuODUuNjMtMy41NSAxLjY3LTQuOUw5LjM5IDE1bC0xLjAwIDQuNDZ6bTUuNjMgMGwtMS4wMS00LjQ2TDE4LjMzIDcuMUE3Ljk5NSA3Ljk5NSAwIDAgMSAyMCAxMmMwIDIuMjYtLjk2IDQuMy0yLjUgNS43NGwtMi44OS0yLjU5eiIvPjwvc3ZnPg==" alt="Секретная кнопка">
+                <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iI2ZmZmZmZiI+PHBhdGggZD0iTTEyIDJDNi40OCAyIDIgNi40OCAyIDEyczQuNDggMTAgMTAgMTAgMTAtNC40OCAxMC0xMFMxNy41MiAyIDEyIDJ6bTAgMTgtNC45OS0yLjE2TDEyIDE1LjQ1bDQuOTkgNC4zOUExMC4wMDIgMTAuMDAyIDAgMCAxIDEyIDIwemwtMy42MS00LjQ0bC0yLjg5IDIuNTlBNy45OTUgNy45OTUgMCAwIDEgNCAxMmMwLTEuODUuNjMtMy41NSAxLjY3LTQuOUw5LjM5IDE1bC0xLjAwIDQuNDZ6bTUuNjMgMGwtMS4wMS00LjQ2TDE4LjMzIDcuMUE3Ljk5NSA3Ljk5NSAwIDAgMSAyMCAxMmMwIDIuMjYtLjk2IDQuMy0yLjUgNS43NGwtMi44OS0yLjU5eiIvPjwvc3ZnPg==" alt="Секретная кнопка">
             </button>
             
-            <h2>Эксклюзивный контент</h2>
-            <p>Добро пожаловать в закрытый раздел. Здесь вы найдете материалы, доступные только избранным участникам нашего сообщества.</p>
+            <h2>факт...</h2>
+            <p>Это не строительный уровень, это я целюсь твоей сучке в пизду</p>
             <button class="back-btn" id="to-third-page-btn">
-                <i class="fas fa-arrow-left"></i> Продолжить
+                <i class="fas fa-arrow-left"></i> Вернуться назад
             </button>
         </div>
     </div>
@@ -815,8 +628,8 @@
     <!-- Третья страница -->
     <div class="page" id="third-page">
         <div class="page-content">
-            <h2>Премиум возможности</h2>
-            <p>Используйте все преимущества вашего статуса. Расширенные настройки, приоритетная поддержка и эксклюзивные функции уже ждут вас.</p>
+            <h2>Третья страница</h2>
+            <p>Здесь будет ваш текст, который вы сможете изменить позже прямо в коде.</p>
             <button class="back-btn" id="to-main-btn">
                 <i class="fas fa-home"></i> На главную
             </button>
@@ -826,8 +639,8 @@
     <!-- Четвертая страница -->
     <div class="page" id="fourth-page">
         <div class="page-content">
-            <h2>Секретная зона</h2>
-            <p>Поздравляем! Вы успешно прошли проверку и получили доступ к специальному разделу. Здесь хранятся самые ценные материалы нашей платформы.</p>
+            <h2>Секретная страница</h2>
+            <p>Поздравляю! Вы ввели правильный пароль и получили доступ к секретной странице. Здесь вы можете разместить любой контент, который захотите.</p>
             <button class="back-btn" id="to-main-from-fourth-btn">
                 <i class="fas fa-home"></i> На главную
             </button>
@@ -838,9 +651,9 @@
     <div class="page" id="fifth-page">
         <div class="page-content">
             <div class="hidden-content">
-                <h2>Секретная находка!</h2>
-                <p>Вы обнаружили скрытый раздел! Это специальная зона для самых внимательных пользователей.</p>
-                <p>Здесь мы размещаем экспериментальные функции и эксклюзивные материалы.</p>
+                <h2>Секрет обнаружен!</h2>
+                <p>Вы нашли скрытую кнопку! Это пятая страница с дополнительным контентом.</p>
+                <p>Здесь вы можете разместить любую информацию, которую хотите скрыть от большинства пользователей.</p>
                 <button class="back-btn" id="to-main-from-fifth-btn">
                     <i class="fas fa-home"></i> На главную
                 </button>
@@ -851,14 +664,14 @@
     <!-- Модальное окно для ввода пароля -->
     <div class="password-modal" id="password-modal">
         <div class="password-content">
-            <h3>Подтвердите доступ</h3>
+            <h3>Введите пароль</h3>
             <div class="password-input-container">
-                <input type="password" class="password-input" id="password-input" placeholder="Введите секретный код">
+                <input type="password" class="password-input" id="password-input" placeholder="Введите пароль">
             </div>
             <div class="password-error" id="password-error"></div>
             <div class="password-buttons">
                 <button class="btn btn-primary" id="submit-password">
-                    <i class="fas fa-check"></i> Подтвердить
+                    <i class="fas fa-check"></i> Войти
                 </button>
                 <button class="btn btn-secondary" id="cancel-password">
                     <i class="fas fa-times"></i> Отмена
@@ -950,7 +763,7 @@
                 passwordInput.value = '';
                 passwordError.textContent = '';
             } else {
-                passwordError.textContent = 'Неверный код доступа! Попробуйте снова.';
+                passwordError.textContent = 'Неверный пароль! Попробуйте снова.';
                 passwordInput.value = '';
                 passwordInput.focus();
             }
@@ -1043,23 +856,7 @@
         // Инициализация функций
         window.addEventListener('load', function() {
             initEmergencyExit();
-            
-            // Автозапуск приветственного сообщения
-            setTimeout(() => {
-                showSecretMessage("Добро пожаловать! Исследуйте все возможности сайта!");
-            }, 2000);
         });
-
-        // Показать секретное сообщение
-        function showSecretMessage(message) {
-            const messageElement = document.getElementById('secret-message');
-            messageElement.textContent = message;
-            messageElement.style.opacity = '1';
-            
-            setTimeout(() => {
-                messageElement.style.opacity = '0';
-            }, 3000);
-        }
     </script>
 </body>
 </html>
