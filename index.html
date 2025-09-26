@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мои проекты | Портфолио</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #8a2be2;
+            --primary-light: #9d4edd;
+            --primary-dark: #6a1b9a;
+            --secondary: #f3e5f5;
+            --white: #ffffff;
+            --text: #333333;
+            --text-light: #666666;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--white);
+            color: var(--text);
+            overflow-x: hidden;
+        }
+        
+        /* Навигация */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(138, 43, 226, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 2rem;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--primary);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        /* Герой секция */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 0 5%;
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--white) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-content {
+            max-width: 600px;
+            z-index: 2;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(90deg, var(--primary), var(--primary-light));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUp 1s ease forwards;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: var(--text-light);
+            line-height: 1.6;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUp 1s ease 0.3s forwards;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background: linear-gradient(90deg, var(--primary), var(--primary-light));
+            color: white;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(138, 43, 226, 0.3);
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUp 1s ease 0.6s forwards;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(138, 43, 226, 0.4);
+        }
+        
+        .hero-bg {
+            position: absolute;
+            right: 5%;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, var(--primary-light) 0%, transparent 70%);
+            opacity: 0.1;
+            border-radius: 50%;
+            z-index: 1;
+        }
+        
+        /* Секция проектов */
+        .projects {
+            padding: 5rem 5%;
+            background-color: var(--white);
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--primary);
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .project-card {
+            background: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(138, 43, 226, 0.1);
+        }
+        
+        .project-image {
+            height: 200px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+        
+        .project-content {
+            padding: 1.5rem;
+        }
+        
+        .project-title {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+        
+        .project-description {
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            line-height: 1.5;
+        }
+        
+        .project-links {
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.5rem 1rem;
+            background: var(--secondary);
+            color: var(--primary);
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .project-link:hover {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .project-link i {
+            margin-right: 0.5rem;
+        }
+        
+        /* Футер */
+        footer {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+            color: white;
+            padding: 3rem 5%;
+            text-align: center;
+        }
+        
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+        
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            margin: 0 0.5rem;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .social-link:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
+        /* Анимации */
+        @keyframes fadeUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-bg {
+                width: 300px;
+                height: 300px;
+            }
+            
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Навигация -->
+    <header>
+        <nav>
+            <a href="#" class="logo">DevPortfolio</a>
+            <ul class="nav-links">
+                <li><a href="#home">Главная</a></li>
+                <li><a href="#projects">Проекты</a></li>
+                <li><a href="#about">Обо мне</a></li>
+                <li><a href="#contact">Контакты</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Герой секция -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Привет, я разработчик</h1>
+            <p>Здесь вы найдете мои лучшие проекты с открытым исходным кодом. Исследуйте, скачивайте и используйте их для своих целей.</p>
+            <a href="#projects" class="cta-button">Смотреть проекты</a>
+        </div>
+        <div class="hero-bg"></div>
+    </section>
+
+    <!-- Секция проектов -->
+    <section class="projects" id="projects">
+        <h2 class="section-title">Мои проекты</h2>
+        <div class="projects-grid">
+            <!-- Проект 1: T-OS -->
+            <div class="project-card">
+                <div class="project-image">
+                    <i class="fab fa-python"></i>
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">T-OS</h3>
+                    <p class="project-description">Небольшая операционная система на Python с базовым функционалом. Экспериментальный проект для изучения основ ОС.</p>
+                    <div class="project-links">
+                        <a href="https://github.com/skinsfarmy-max/test.github.io/tree/main" class="project-link" target="_blank">
+                            <i class="fab fa-github"></i> GitHub
+                        </a>
+                        <a href="https://github.com/skinsfarmy-max/test.github.io/raw/refs/heads/main/windows_like_os.zip" class="project-link download-btn" download="T-OS.zip">
+                            <i class="fas fa-download"></i> Скачать
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Проект 2: Анти-двойка -->
+            <div class="project-card">
+                <div class="project-image">
+                    <i class="fas fa-school"></i>
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Анти-двойка для Сетевого города</h3>
+                    <p class="project-description">Расширение заменяет двойки в электронном дневнике на оценки 3, 4 или 5. Только для учебных целей!</p>
+                    <div class="project-links">
+                        <a href="https://github.com/skinsfarmy-max/test.github.io/tree/main" class="project-link" target="_blank">
+                            <i class="fab fa-github"></i> GitHub
+                        </a>
+                        <a href="https://github.com/skinsfarmy-max/test.github.io/raw/refs/heads/main/sgo-script.zip" class="project-link download-btn" download="Anti-Dvoika.zip">
+                            <i class="fas fa-download"></i> Скачать
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Проект 3: Юзербот для Telegram -->
+            <div class="project-card">
+                <div class="project-image">
+                    <i class="fab fa-telegram"></i>
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Супер быстрый спам-юзербот</h3>
+                    <p class="project-description">Мощный юзербот для Telegram с функцией быстрого спама. Используйте осторожно и ответственно.</p>
+                    <div class="project-links">
+                        <a href="https://github.com/skinsfarmy-max/test.github.io/tree/main" class="project-link" target="_blank">
+                            <i class="fab fa-github"></i> GitHub
+                        </a>
+                        <a href="#" class="project-link" onclick="showComingSoon()">
+                            <i class="fas fa-download"></i> Скоро
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Проект 4: Экспериментальная программа -->
+            <div class="project-card">
+                <div class="project-image">
+                    <i class="fas fa-video"></i>
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Запускатель видео при запуске</h3>
+                    <p class="project-description">Бесполезная, но забавная программа, которая автоматически запускает видео при каждом запуске системы.</p>
+                    <div class="project-links">
+                        <a href="https://github.com/skinsfarmy-max/test.github.io/tree/main" class="project-link" target="_blank">
+                            <i class="fab fa-github"></i> GitHub
+                        </a>
+                        <a href="https://github.com/skinsfarmy-max/test.github.io/raw/refs/heads/main/VideoPlayer.exe" class="project-link download-btn" download="VideoPlayer.exe">
+                            <i class="fas fa-download"></i> Скачать
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Футер -->
+    <footer id="contact">
+        <div class="footer-content">
+            <div class="social-links">
+                <a href="https://github.com/skinsfarmy-max" class="social-link" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="#" class="social-link"><i class="fab fa-telegram"></i></a>
+                <a href="#" class="social-link"><i class="fas fa-envelope"></i></a>
+            </div>
+            <p class="copyright">© 2023 Все права защищены. Разработано с ❤️</p>
+        </div>
+    </footer>
+
+    <script>
+        // Анимация появления элементов при прокрутке
+        document.addEventListener('DOMContentLoaded', function() {
+            // Анимация для заголовка секции
+            const sectionTitle = document.querySelector('.section-title');
+            if (sectionTitle) {
+                setTimeout(() => {
+                    sectionTitle.style.opacity = '1';
+                    sectionTitle.style.transform = 'translateY(0)';
+                }, 500);
+            }
+            
+            // Анимация для карточек проектов
+            const projectCards = document.querySelectorAll('.project-card');
+            projectCards.forEach((card, index) => {
+                setTimeout(() => {
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, 800 + index * 200);
+            });
+            
+            // Плавная прокрутка для навигационных ссылок
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            // Эффект появления элементов при прокрутке
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+            
+            // Наблюдаем за элементами, которые должны появляться при прокрутке
+            const animatedElements = document.querySelectorAll('.project-card, .section-title');
+            animatedElements.forEach(el => {
+                observer.observe(el);
+            });
+            
+            // Изменение стиля навигации при прокрутке
+            window.addEventListener('scroll', function() {
+                const header = document.querySelector('header');
+                if (window.scrollY > 100) {
+                    header.style.background = 'rgba(255, 255, 255, 0.98)';
+                    header.style.boxShadow = '0 2px 20px rgba(138, 43, 226, 0.15)';
+                } else {
+                    header.style.background = 'rgba(255, 255, 255, 0.95)';
+                    header.style.boxShadow = '0 2px 20px rgba(138, 43, 226, 0.1)';
+                }
+            });
+            
+            // Добавляем анимацию для кнопок скачивания
+            document.querySelectorAll('.download-btn').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    // Анимация нажатия
+                    this.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        this.style.transform = '';
+                    }, 200);
+                    
+                    // Отслеживание скачивания (можно добавить аналитику)
+                    const projectName = this.closest('.project-card').querySelector('.project-title').textContent;
+                    console.log(`Скачивание проекта: ${projectName}`);
+                });
+            });
+        });
+        
+        // Функция для показа уведомления о скором появлении
+        function showComingSoon() {
+            alert('Этот проект скоро будет доступен для скачивания!');
+        }
+    </script>
+</body>
+</html>
